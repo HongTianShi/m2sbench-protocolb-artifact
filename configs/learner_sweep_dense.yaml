@@ -1,0 +1,85 @@
+slice: dense_semantic
+purpose: diagnostic audit, not model-selection leaderboard
+description: >
+  Learner-family diagnostic for the dense summary/PQ/full Protocol B slice.
+  It unifies the released legal and supplemental learner-family sweep reports
+  into one CSV so weak learned gains can be compared against oracle headroom,
+  fixed-view references, and negative learner-family outcomes.
+input_reports:
+  - source: dense_legal_learner_sweep
+    path: reports/dense_legal_learner_sweep.json
+  - source: dense_additional_learner_sweep
+    path: reports/dense_additional_learner_sweep.json
+deduplicate_models: true
+exclude_models:
+  - best_fixed_test
+family_map:
+  oracle: evaluator-only oracle
+  fixed_full: fixed reference
+  fixed_pq: fixed reference
+  fixed_summary: fixed reference
+  rf_expanded: tree ensemble
+  rf_multioutput: tree ensemble
+  extra_trees_multioutput: tree ensemble
+  extra_trees_expanded: tree ensemble
+  dev_best_single_model: dev-selected ensemble
+  dev_top3_ensemble: dev-selected ensemble
+  dev_top5_ensemble: dev-selected ensemble
+  gbdt_expanded: boosted tree
+  hist_gbdt_expanded: boosted tree
+  lightgbm_expanded: boosted tree
+  xgb_expanded: boosted tree
+  catboost_expanded: boosted tree
+  decision_tree_expanded: tree
+  adaboost_expanded: boosted tree
+  ridge_expanded: linear
+  elasticnet_expanded: linear
+  ridge_expanded_linear: linear
+  lasso_expanded: linear
+  elasticnet_expanded_linear: linear
+  ridge_multioutput_linear: linear multi-output
+  lasso_multioutput: linear multi-output
+  elasticnet_multioutput_linear: linear multi-output
+  kernel_ridge_rbf_expanded: kernel regression
+  svr_rbf_expanded: kernel regression
+  knn_expanded: nonparametric
+  top3_rule_vote: QPP/rule
+  top5_rule_vote: QPP/rule
+  top9_rule_vote: QPP/rule
+  best_single_qpp_rule: QPP/rule
+  meta_qpp_margin_cascade: QPP/rule cascade
+  calibrated_ridge_isotonic: calibrated regressor
+  logistic_oracle_view: classifier
+  calibrated_logistic_oracle_view: calibrated classifier
+  lightgbm_lambdamart_ranker: rank-learning
+  xgboost_pairwise_ranker: rank-learning
+  pairwise_ranknet: rank-learning
+  mlp_expanded: neural
+  mlp_multioutput: neural
+  tabnet_expanded: neural tabular
+notes:
+  oracle: evaluator-held upper bound; measures view-mixing headroom, not a legal solver
+  fixed_full: strongest fixed dense reference under lambda=.08
+  fixed_pq: cheaper fixed compressed-view reference
+  fixed_summary: cheap first-view reference
+  rf_expanded: small stable positive signal from legal compact features
+  extra_trees_multioutput: small stable positive signal from legal compact features
+  dev_best_single_model: dev-selected learner; diagnostic only
+  dev_top3_ensemble: dev-selected learner ensemble; diagnostic only
+  dev_top5_ensemble: dev-selected learner ensemble; diagnostic only
+  top5_rule_vote: simple QPP/rule ensemble; positive weak-signal check
+  top3_rule_vote: simple QPP/rule ensemble; positive weak-signal check
+  best_single_qpp_rule: single visible-score rule; positive weak-signal check
+  ridge_multioutput_linear: simple linear multi-output readout; modest positive signal
+  lasso_multioutput: sparse linear multi-output readout; modest positive signal
+  elasticnet_multioutput_linear: regularized linear multi-output readout; modest positive signal
+  catboost_expanded: near fixed-full baseline; no strong rescue
+  calibrated_ridge_isotonic: calibration can over-select the wrong paid view
+  logistic_oracle_view: oracle-view classifier over-selects cheap/mixed actions
+  calibrated_logistic_oracle_view: calibrated classifier still underperforms in weak-signal regime
+  lightgbm_lambdamart_ranker: rank objective overfits/over-selects cheaper views here
+  xgboost_pairwise_ranker: rank objective overfits/over-selects cheaper views here
+  pairwise_ranknet: neural pairwise ranker underperforms fixed full here
+  mlp_expanded: neural regressor underperforms fixed full here
+  mlp_multioutput: neural multi-output regressor underperforms fixed full here
+  tabnet_expanded: neural tabular learner underperforms fixed full here

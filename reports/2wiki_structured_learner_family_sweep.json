@@ -1,0 +1,604 @@
+{
+  "task": "2wiki_structured_learner_family_sweep",
+  "scope": "released 2Wiki structured learner-family diagnostic; appendix robustness for the structured-evidence regime",
+  "n_rows": 2000,
+  "repeats": 20,
+  "feature_tier": "B1_context",
+  "lambda_cost": 0.08,
+  "topk": 4,
+  "no_ce": false,
+  "view_order": [
+    "summary",
+    "one_hop",
+    "two_hop",
+    "full_context",
+    "ce"
+  ],
+  "view_costs": {
+    "summary": 0.0,
+    "one_hop": 0.16,
+    "two_hop": 0.26,
+    "full_context": 0.55,
+    "ce": 0.95
+  },
+  "best_fixed_full_sample": {
+    "policy": "fixed_one_hop",
+    "utility": 0.8988952885204553,
+    "raw_ndcg": 0.9116952885204556,
+    "recall": 0.932875,
+    "mrr": 0.956875,
+    "cost": 0.16,
+    "regret": 0.05342508897575685,
+    "ce_buy": 0.0,
+    "view_share": {
+      "one_hop": 1.0
+    }
+  },
+  "oracle_full_sample": {
+    "policy": "oracle_route",
+    "utility": 0.9523203774962121,
+    "raw_ndcg": 0.9646895774962122,
+    "recall": 0.966875,
+    "mrr": 0.9965,
+    "cost": 0.154615,
+    "regret": 0.0,
+    "ce_buy": 0.0405,
+    "view_share": {
+      "summary": 0.3855,
+      "one_hop": 0.4325,
+      "two_hop": 0.1065,
+      "full_context": 0.035,
+      "ce": 0.0405
+    }
+  },
+  "dev_selected_winners": {
+    "extra_trees_multioutput": 8,
+    "extra_trees_expanded": 8,
+    "rf_multioutput": 4
+  },
+  "summaries": [
+    {
+      "model": "oracle",
+      "learner_family": "evaluator-only oracle",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.9523985269269947,
+      "regret_mean": 0.0,
+      "cost_mean": 0.154615,
+      "delta_vs_best_fixed_mean": 0.051282127629405615,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.051282127629405615,
+        "lo": 0.04902054001609937,
+        "hi": 0.05351382873715282
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 1.0,
+      "choice_share": {
+        "summary": 0.3855,
+        "one_hop": 0.4325,
+        "two_hop": 0.1065,
+        "full_context": 0.035,
+        "ce": 0.0405
+      }
+    },
+    {
+      "model": "extra_trees_multioutput",
+      "learner_family": "tree ensemble",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9256904545400987,
+      "regret_mean": 0.026708072386896337,
+      "cost_mean": 0.14884625,
+      "delta_vs_best_fixed_mean": 0.024574055242509323,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.024574055242509323,
+        "lo": 0.022629660302773236,
+        "hi": 0.026717320140622475
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.4766303627609852,
+      "choice_share": {
+        "summary": 0.361875,
+        "one_hop": 0.315875,
+        "two_hop": 0.30062500000000003,
+        "full_context": 0.0009999999999999998,
+        "ce": 0.020625000000000004
+      }
+    },
+    {
+      "model": "extra_trees_expanded",
+      "learner_family": "tree ensemble",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9252210569467179,
+      "regret_mean": 0.027177469980277053,
+      "cost_mean": 0.14906625,
+      "delta_vs_best_fixed_mean": 0.024104657649128575,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.024104657649128575,
+        "lo": 0.022435697757649725,
+        "hi": 0.025797735856641826
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.46901185987911564,
+      "choice_share": {
+        "summary": 0.34812499999999996,
+        "one_hop": 0.3565,
+        "two_hop": 0.2720000000000001,
+        "full_context": 0.00225,
+        "ce": 0.021125000000000005
+      }
+    },
+    {
+      "model": "dev_best_single_model",
+      "learner_family": "dev-selected learner",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9249557198954411,
+      "regret_mean": 0.027442807031553763,
+      "cost_mean": 0.14923625000000001,
+      "delta_vs_best_fixed_mean": 0.023839320597851894,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.023839320597851894,
+        "lo": 0.022308571427812788,
+        "hi": 0.025430473527612654
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.4636353401442522,
+      "choice_share": {
+        "summary": 0.353,
+        "one_hop": 0.33599999999999997,
+        "two_hop": 0.28887500000000005,
+        "full_context": 0.0016250000000000001,
+        "ce": 0.02050000000000001
+      }
+    },
+    {
+      "model": "rf_multioutput",
+      "learner_family": "tree ensemble",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9244638548410858,
+      "regret_mean": 0.027934672085909013,
+      "cost_mean": 0.15418124999999996,
+      "delta_vs_best_fixed_mean": 0.023347455543496636,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.023347455543496636,
+        "lo": 0.021495521509539647,
+        "hi": 0.025443708405525657
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.4527842288303794,
+      "choice_share": {
+        "summary": 0.342375,
+        "one_hop": 0.31,
+        "two_hop": 0.32625000000000004,
+        "full_context": 0.001375,
+        "ce": 0.020000000000000004
+      }
+    },
+    {
+      "model": "rf_expanded",
+      "learner_family": "tree ensemble",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9238837473577266,
+      "regret_mean": 0.028514779569268105,
+      "cost_mean": 0.14757124999999996,
+      "delta_vs_best_fixed_mean": 0.02276734806013752,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.02276734806013752,
+        "lo": 0.02128602232011057,
+        "hi": 0.024143273892517903
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.4433053696203392,
+      "choice_share": {
+        "summary": 0.32325000000000004,
+        "one_hop": 0.407625,
+        "two_hop": 0.25075,
+        "full_context": 0.00075,
+        "ce": 0.017625000000000002
+      }
+    },
+    {
+      "model": "hist_gbdt_expanded",
+      "learner_family": "boosted tree",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9207909691913192,
+      "regret_mean": 0.03160755773567579,
+      "cost_mean": 0.17237875000000003,
+      "delta_vs_best_fixed_mean": 0.019674569893729888,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.019674569893729888,
+        "lo": 0.01786927014742915,
+        "hi": 0.021544630388136744
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.3827839957791419,
+      "choice_share": {
+        "summary": 0.3045,
+        "one_hop": 0.18412500000000004,
+        "two_hop": 0.49375,
+        "full_context": 0.005500000000000001,
+        "ce": 0.012125000000000002
+      }
+    },
+    {
+      "model": "ridge_multioutput",
+      "learner_family": "linear multi-output",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9165983643727204,
+      "regret_mean": 0.03580016255427466,
+      "cost_mean": 0.18326124999999996,
+      "delta_vs_best_fixed_mean": 0.015481965075130999,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.015481965075130999,
+        "lo": 0.013643475793724087,
+        "hi": 0.0172891571052061
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.29849446830603105,
+      "choice_share": {
+        "summary": 0.162,
+        "one_hop": 0.36674999999999996,
+        "two_hop": 0.46812499999999996,
+        "full_context": 0.00025,
+        "ce": 0.002875
+      }
+    },
+    {
+      "model": "elasticnet_multioutput",
+      "learner_family": "linear multi-output",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9164983213635647,
+      "regret_mean": 0.03590020556343019,
+      "cost_mean": 0.1845925,
+      "delta_vs_best_fixed_mean": 0.01538192206597549,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.01538192206597549,
+        "lo": 0.01349777767270239,
+        "hi": 0.017302000273945083
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.29620678780400256,
+      "choice_share": {
+        "summary": 0.15475000000000003,
+        "one_hop": 0.36724999999999997,
+        "two_hop": 0.47574999999999995,
+        "ce": 0.00225
+      }
+    },
+    {
+      "model": "knn_expanded",
+      "learner_family": "nonparametric",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.916372238014799,
+      "regret_mean": 0.036026288912195795,
+      "cost_mean": 0.16126125,
+      "delta_vs_best_fixed_mean": 0.015255838717209846,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.015255838717209846,
+        "lo": 0.013541544963670913,
+        "hi": 0.017150759887351645
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.29586708390902555,
+      "choice_share": {
+        "summary": 0.253125,
+        "one_hop": 0.381375,
+        "two_hop": 0.357875,
+        "full_context": 0.000125,
+        "ce": 0.0075000000000000015
+      }
+    },
+    {
+      "model": "mlp_expanded",
+      "learner_family": "neural",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9132266554515069,
+      "regret_mean": 0.03917187147548795,
+      "cost_mean": 0.20042125,
+      "delta_vs_best_fixed_mean": 0.01211025615391767,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.01211025615391767,
+        "lo": 0.01001686074058769,
+        "hi": 0.014237445587517801
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.23419212144256263,
+      "choice_share": {
+        "summary": 0.18875000000000003,
+        "one_hop": 0.378,
+        "two_hop": 0.38912500000000005,
+        "full_context": 0.007875000000000002,
+        "ce": 0.03625
+      }
+    },
+    {
+      "model": "mlp_multioutput",
+      "learner_family": "neural",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.91310532933989,
+      "regret_mean": 0.03929319758710524,
+      "cost_mean": 0.19835624999999998,
+      "delta_vs_best_fixed_mean": 0.011988930042300389,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.011988930042300389,
+        "lo": 0.010366402180611698,
+        "hi": 0.013746433067555816
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.23166792822464638,
+      "choice_share": {
+        "summary": 0.18375,
+        "one_hop": 0.37200000000000005,
+        "two_hop": 0.403625,
+        "full_context": 0.011750000000000002,
+        "ce": 0.028875
+      }
+    },
+    {
+      "model": "gbdt_expanded",
+      "learner_family": "boosted tree",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9118932945821223,
+      "regret_mean": 0.04050523234487259,
+      "cost_mean": 0.20804375,
+      "delta_vs_best_fixed_mean": 0.010776895284533055,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.010776895284533055,
+        "lo": 0.009248120090014085,
+        "hi": 0.012277922797296531
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.20896834403450057,
+      "choice_share": {
+        "summary": 0.050375,
+        "one_hop": 0.40124999999999994,
+        "two_hop": 0.54625,
+        "full_context": 0.0005,
+        "ce": 0.0016250000000000001
+      }
+    },
+    {
+      "model": "adaboost_expanded",
+      "learner_family": "boosted tree",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9065302706081632,
+      "regret_mean": 0.045868256318831784,
+      "cost_mean": 0.1485475,
+      "delta_vs_best_fixed_mean": 0.005413871310573776,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.005413871310573776,
+        "lo": 0.003952417937723307,
+        "hi": 0.0068924881158701
+      },
+      "positive_split_share": 0.95,
+      "oracle_gap_closed_mean": 0.10377850930676547,
+      "choice_share": {
+        "summary": 0.074,
+        "one_hop": 0.9221250000000001,
+        "two_hop": 0.003874999999999999
+      }
+    },
+    {
+      "model": "decision_tree_expanded",
+      "learner_family": "tree",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9062109373769662,
+      "regret_mean": 0.04618758955002875,
+      "cost_mean": 0.16225,
+      "delta_vs_best_fixed_mean": 0.005094538079376859,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.005094538079376859,
+        "lo": 0.0031002743140743174,
+        "hi": 0.007112739994941308
+      },
+      "positive_split_share": 0.9,
+      "oracle_gap_closed_mean": 0.09938292738423914,
+      "choice_share": {
+        "summary": 0.3036250000000001,
+        "one_hop": 0.55675,
+        "two_hop": 0.068875,
+        "full_context": 0.029875000000000002,
+        "ce": 0.040875
+      }
+    },
+    {
+      "model": "logistic_oracle_view",
+      "learner_family": "classifier",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9050120859412625,
+      "regret_mean": 0.04738644098573248,
+      "cost_mean": 0.097155,
+      "delta_vs_best_fixed_mean": 0.0038956866436731406,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0038956866436731406,
+        "lo": 0.0015443627616005243,
+        "hi": 0.00621682953467915
+      },
+      "positive_split_share": 0.75,
+      "oracle_gap_closed_mean": 0.07313892987170542,
+      "choice_share": {
+        "summary": 0.42512499999999986,
+        "one_hop": 0.532875,
+        "two_hop": 0.0395,
+        "full_context": 0.0018750000000000004,
+        "ce": 0.000625
+      }
+    },
+    {
+      "model": "ridge_expanded",
+      "learner_family": "linear",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9042672670893339,
+      "regret_mean": 0.04813125983766091,
+      "cost_mean": 0.222115,
+      "delta_vs_best_fixed_mean": 0.003150867791744727,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.003150867791744727,
+        "lo": 0.002314885084019998,
+        "hi": 0.003968289781469387
+      },
+      "positive_split_share": 0.95,
+      "oracle_gap_closed_mean": 0.06130832199370907,
+      "choice_share": {
+        "summary": 0.0015,
+        "one_hop": 0.38012499999999994,
+        "two_hop": 0.6176249999999999,
+        "ce": 0.00075
+      }
+    },
+    {
+      "model": "elasticnet_expanded",
+      "learner_family": "linear",
+      "status": "ok x20",
+      "n_reps": 20,
+      "utility_mean": 0.9036775430701711,
+      "regret_mean": 0.048720983856823816,
+      "cost_mean": 0.22329999999999997,
+      "delta_vs_best_fixed_mean": 0.00256114377258182,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.00256114377258182,
+        "lo": 0.001704331311883134,
+        "hi": 0.003469967965484914
+      },
+      "positive_split_share": 0.9,
+      "oracle_gap_closed_mean": 0.04949925258408773,
+      "choice_share": {
+        "summary": 0.000625,
+        "one_hop": 0.36537500000000006,
+        "two_hop": 0.634
+      }
+    },
+    {
+      "model": "fixed_one_hop",
+      "learner_family": "fixed reference",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.8988952885204553,
+      "regret_mean": 0.05342508897575685,
+      "cost_mean": 0.16,
+      "delta_vs_best_fixed_mean": 0.0,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 1.0,
+      "oracle_gap_closed_mean": 0.0,
+      "choice_share": {
+        "one_hop": 1.0
+      }
+    },
+    {
+      "model": "fixed_two_hop",
+      "learner_family": "fixed reference",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.8984391864750539,
+      "regret_mean": 0.05388119102115847,
+      "cost_mean": 0.2599999999999999,
+      "delta_vs_best_fixed_mean": -0.0004561020454013631,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.0004561020454013631,
+        "lo": -0.0004561020454013631,
+        "hi": -0.0004561020454013631
+      },
+      "positive_split_share": 0.0,
+      "oracle_gap_closed_mean": -0.008537225751899686,
+      "choice_share": {
+        "two_hop": 1.0
+      }
+    },
+    {
+      "model": "fixed_summary",
+      "learner_family": "fixed reference",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.771994991809092,
+      "regret_mean": 0.18032538568712017,
+      "cost_mean": 0.0,
+      "delta_vs_best_fixed_mean": -0.12690029671136327,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.12690029671136327,
+        "lo": -0.12690029671136327,
+        "hi": -0.12690029671136327
+      },
+      "positive_split_share": 0.0,
+      "oracle_gap_closed_mean": -2.375294063973351,
+      "choice_share": {
+        "summary": 1.0
+      }
+    },
+    {
+      "model": "fixed_ce",
+      "learner_family": "fixed reference",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.7590661879371015,
+      "regret_mean": 0.193254189559111,
+      "cost_mean": 0.9499999999999997,
+      "delta_vs_best_fixed_mean": -0.13982910058335385,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.13982910058335385,
+        "lo": -0.13982910058335385,
+        "hi": -0.13982910058335385
+      },
+      "positive_split_share": 0.0,
+      "oracle_gap_closed_mean": -2.6172927975244993,
+      "choice_share": {
+        "ce": 1.0
+      }
+    },
+    {
+      "model": "fixed_full_context",
+      "learner_family": "fixed reference",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.6800392834928457,
+      "regret_mean": 0.2722810940033666,
+      "cost_mean": 0.5499999999999999,
+      "delta_vs_best_fixed_mean": -0.2188560050276096,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.2188560050276096,
+        "lo": -0.2188560050276096,
+        "hi": -0.2188560050276096
+      },
+      "positive_split_share": 0.0,
+      "oracle_gap_closed_mean": -4.096502396597259,
+      "choice_share": {
+        "full_context": 1.0
+      }
+    }
+  ],
+  "config": {
+    "max_rows": 2000,
+    "topk": 4,
+    "lambda_cost": 0.08,
+    "seed": 20260517,
+    "repeats": 20,
+    "tier": "B1_context",
+    "hf_cache": "<external HuggingFace datasets cache>",
+    "hyperlink_corpus": "<external 2WikiMultiHopQA hyperlink corpus path>",
+    "ce_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "ce_batch_size": 64,
+    "max_doc_chars": 1800,
+    "no_ce": false,
+    "include_slow": false,
+    "cache_records": true,
+    "out_dir": "2wiki_learner_sweep_exploration\\full_structured_2k_ce_20rep"
+  }
+}

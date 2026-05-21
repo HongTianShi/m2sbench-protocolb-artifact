@@ -1,0 +1,159 @@
+{
+  "task": "standard_ir_access_audit",
+  "dataset": "antique/test",
+  "model": "BAAI/bge-small-en-v1.5",
+  "faiss_gpus": 1,
+  "documents": 403666,
+  "queries": 200,
+  "qrel_pairs": 6589,
+  "nlist": 512,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "nprobe": 32,
+  "lambda": 0.08,
+  "views": {
+    "summary": {
+      "ndcg@5": 0.005201766267418861,
+      "hit@5": 0.025,
+      "recall@5": 0.0010913990026893252,
+      "ndcg@10": 0.005478392820805311,
+      "hit@10": 0.075,
+      "recall@10": 0.002518383711654012,
+      "cost": 0.0,
+      "utility@10": 0.005478392820805311,
+      "mean_us_per_query": 3106.4596400000255
+    },
+    "pq": {
+      "ndcg@5": 0.2629101276397705,
+      "hit@5": 0.78,
+      "recall@5": 0.055039262906825565,
+      "ndcg@10": 0.23969358205795288,
+      "hit@10": 0.85,
+      "recall@10": 0.08140351326151475,
+      "cost": 0.2,
+      "utility@10": 0.22369358205795287,
+      "mean_us_per_query": 349.00046500013104
+    },
+    "full": {
+      "ndcg@5": 0.4348268210887909,
+      "hit@5": 0.935,
+      "recall@5": 0.09590398580076019,
+      "ndcg@10": 0.4026426672935486,
+      "hit@10": 0.965,
+      "recall@10": 0.1487859176388169,
+      "cost": 0.58,
+      "utility@10": 0.3562426672935486,
+      "mean_us_per_query": 4166.043230000014
+    }
+  },
+  "diagnostics": {
+    "non_full_best_share": 0.225,
+    "pq_dominates_full_precost_share": 0.155,
+    "summary_best_share": 0.05,
+    "pq_best_share": 0.175,
+    "full_best_share": 0.775,
+    "lambda_star_summary_to_pq": 1.1710759461857378,
+    "lambda_star_pq_to_full": 0.42881338219893606,
+    "bootstrap_ci": {
+      "non_full_best_share": {
+        "mean": 0.22499999403953552,
+        "lo": 0.16500000655651093,
+        "hi": 0.2849999964237213
+      },
+      "pq_dominates_full_precost_share": {
+        "mean": 0.1550000011920929,
+        "lo": 0.10499999672174454,
+        "hi": 0.20999999344348907
+      }
+    }
+  },
+  "heldout_fixed_views": {
+    "summary": {
+      "test_queries": 80,
+      "ndcg@10": 0.008561110123991966,
+      "cost": 0.0,
+      "utility@10": 0.008561110123991966,
+      "regret": 0.33416080474853516
+    },
+    "pq": {
+      "test_queries": 80,
+      "ndcg@10": 0.2041800320148468,
+      "cost": 0.2,
+      "utility@10": 0.18818001449108124,
+      "regret": 0.15454192459583282
+    },
+    "full": {
+      "test_queries": 80,
+      "ndcg@10": 0.37698739767074585,
+      "cost": 0.58,
+      "utility@10": 0.33058738708496094,
+      "regret": 0.012134537100791931
+    }
+  },
+  "routers": {
+    "summary_qpp_b0": {
+      "test_queries": 80,
+      "ndcg@10": 0.37698739767074585,
+      "cost": 0.5799999833106995,
+      "utility@10": 0.33058738708496094,
+      "regret": 0.012134537100791931,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    "query_summary_rf_b0": {
+      "test_queries": 80,
+      "ndcg@10": 0.37698739767074585,
+      "cost": 0.5799999833106995,
+      "utility@10": 0.33058738708496094,
+      "regret": 0.012134537100791931,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      },
+      "model": "random_forest_qpp"
+    },
+    "summary_pq_qpp_b1": {
+      "test_queries": 80,
+      "ndcg@10": 0.37698739767074585,
+      "cost": 0.5799999833106995,
+      "utility@10": 0.33058738708496094,
+      "regret": 0.012134537100791931,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    "query_summary_pq_rf_b1": {
+      "test_queries": 80,
+      "ndcg@10": 0.37698739767074585,
+      "cost": 0.5799999833106995,
+      "utility@10": 0.33058738708496094,
+      "regret": 0.012134537100791931,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      },
+      "model": "random_forest_qpp"
+    },
+    "selective_rerank_cascade_b1": {
+      "train_utility@10": 0.34020933508872986,
+      "test_queries": 80,
+      "ndcg@10": 0.29933494329452515,
+      "cost": 0.46674996614456177,
+      "utility@10": 0.26199495792388916,
+      "regret": 0.0807269811630249,
+      "choices": {
+        "summary": 0.1625,
+        "pq": 0.05,
+        "full": 0.7875
+      },
+      "rule": "summary if top ge 0.7868; else PQ if mean ge 0.7497; else full"
+    }
+  }
+}

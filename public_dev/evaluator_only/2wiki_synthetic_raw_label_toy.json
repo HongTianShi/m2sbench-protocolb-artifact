@@ -1,0 +1,44 @@
+{
+  "purpose": "Tiny synthetic label-construction example for reviewers. This file is not a training fixture and is not used by public-dev scoring.",
+  "rows": [
+    {
+      "query_id": "toy_2wiki_q0000",
+      "question": "Which city is the birthplace of the director of Example Film?",
+      "candidate_titles": [
+        "Example Film",
+        "Example Director",
+        "Unrelated City"
+      ],
+      "supporting_facts": [
+        {
+          "title": "Example Film",
+          "sent_id": 0
+        },
+        {
+          "title": "Example Director",
+          "sent_id": 1
+        }
+      ],
+      "evidence_triples": [
+        [
+          "Example Film",
+          "director",
+          "Example Director"
+        ],
+        [
+          "Example Director",
+          "birthplace",
+          "Example City"
+        ]
+      ],
+      "answer": "Example City",
+      "view_scores_example": {
+        "summary": 0.25,
+        "one_hop": 0.75,
+        "two_hop": 1.0,
+        "full_context": 1.0
+      },
+      "note": "Real public-dev references ship only view_scores for scoring fixtures. Full paper reports derive analogous view scores from evaluator-held public support facts/triples."
+    }
+  ]
+}

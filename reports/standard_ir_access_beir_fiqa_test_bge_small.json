@@ -1,0 +1,159 @@
+{
+  "task": "standard_ir_access_audit",
+  "dataset": "beir/fiqa/test",
+  "model": "BAAI/bge-small-en-v1.5",
+  "faiss_gpus": 1,
+  "documents": 57638,
+  "queries": 648,
+  "qrel_pairs": 1706,
+  "nlist": 512,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "nprobe": 32,
+  "lambda": 0.08,
+  "views": {
+    "summary": {
+      "ndcg@5": 0.01656983606517315,
+      "hit@5": 0.05246913580246913,
+      "recall@5": 0.019441382520086228,
+      "ndcg@10": 0.021586524322628975,
+      "hit@10": 0.08641975308641975,
+      "recall@10": 0.03365555911852208,
+      "cost": 0.0,
+      "utility@10": 0.021586524322628975,
+      "mean_us_per_query": 752.5366064813683
+    },
+    "pq": {
+      "ndcg@5": 0.18729081749916077,
+      "hit@5": 0.35648148148148145,
+      "recall@5": 0.20034463992797327,
+      "ndcg@10": 0.2126120626926422,
+      "hit@10": 0.46141975308641975,
+      "recall@10": 0.27132746797098645,
+      "cost": 0.2,
+      "utility@10": 0.1966120626926422,
+      "mean_us_per_query": 144.82662808640507
+    },
+    "full": {
+      "ndcg@5": 0.3637416362762451,
+      "hit@5": 0.5787037037037037,
+      "recall@5": 0.37087256022441206,
+      "ndcg@10": 0.3848326504230499,
+      "hit@10": 0.6404320987654321,
+      "recall@10": 0.4396250825648974,
+      "cost": 0.58,
+      "utility@10": 0.33843265042304993,
+      "mean_us_per_query": 58.15463271610609
+    }
+  },
+  "diagnostics": {
+    "non_full_best_share": 0.5231481481481481,
+    "pq_dominates_full_precost_share": 0.5077160493827161,
+    "summary_best_share": 0.3533950617283951,
+    "pq_best_share": 0.1697530864197531,
+    "full_best_share": 0.47685185185185186,
+    "lambda_star_summary_to_pq": 0.9551276918500662,
+    "lambda_star_pq_to_full": 0.45321207297475713,
+    "bootstrap_ci": {
+      "non_full_best_share": {
+        "mean": 0.5231481194496155,
+        "lo": 0.48761574774980543,
+        "hi": 0.5602623537182807
+      },
+      "pq_dominates_full_precost_share": {
+        "mean": 0.5077160596847534,
+        "lo": 0.47067901492118835,
+        "hi": 0.5462962985038757
+      }
+    }
+  },
+  "heldout_fixed_views": {
+    "summary": {
+      "test_queries": 259,
+      "ndcg@10": 0.021377386525273323,
+      "cost": 0.0,
+      "utility@10": 0.021377386525273323,
+      "regret": 0.35441482067108154
+    },
+    "pq": {
+      "test_queries": 259,
+      "ndcg@10": 0.22120584547519684,
+      "cost": 0.2,
+      "utility@10": 0.20520582795143127,
+      "regret": 0.17058639228343964
+    },
+    "full": {
+      "test_queries": 259,
+      "ndcg@10": 0.3823368549346924,
+      "cost": 0.58,
+      "utility@10": 0.33593684434890747,
+      "regret": 0.03985538333654404
+    }
+  },
+  "routers": {
+    "summary_qpp_b0": {
+      "test_queries": 259,
+      "ndcg@10": 0.3823368549346924,
+      "cost": 0.5799999833106995,
+      "utility@10": 0.33593684434890747,
+      "regret": 0.03985538333654404,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    "query_summary_rf_b0": {
+      "test_queries": 259,
+      "ndcg@10": 0.3812432885169983,
+      "cost": 0.577065646648407,
+      "utility@10": 0.33507803082466125,
+      "regret": 0.04071419686079025,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.007722007722007722,
+        "full": 0.9922779922779923
+      },
+      "model": "random_forest_qpp"
+    },
+    "summary_pq_qpp_b1": {
+      "test_queries": 259,
+      "ndcg@10": 0.38175904750823975,
+      "cost": 0.5770655870437622,
+      "utility@10": 0.3355937898159027,
+      "regret": 0.04019845277070999,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.007722007722007722,
+        "full": 0.9922779922779923
+      }
+    },
+    "query_summary_pq_rf_b1": {
+      "test_queries": 259,
+      "ndcg@10": 0.38119369745254517,
+      "cost": 0.5785328149795532,
+      "utility@10": 0.334911048412323,
+      "regret": 0.04088118299841881,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.003861003861003861,
+        "full": 0.9961389961389961
+      },
+      "model": "random_forest_qpp"
+    },
+    "selective_rerank_cascade_b1": {
+      "train_utility@10": 0.31616660952568054,
+      "test_queries": 259,
+      "ndcg@10": 0.3403250277042389,
+      "cost": 0.48880305886268616,
+      "utility@10": 0.3012208044528961,
+      "regret": 0.07457144558429718,
+      "choices": {
+        "summary": 0.09652509652509653,
+        "pq": 0.09266409266409266,
+        "full": 0.8108108108108109
+      },
+      "rule": "summary if range ge 0.08169; else PQ if top ge 0.816; else full"
+    }
+  }
+}

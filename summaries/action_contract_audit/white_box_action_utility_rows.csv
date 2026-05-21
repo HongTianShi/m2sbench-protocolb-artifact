@@ -1,0 +1,6 @@
+access_level,balanced_action_accuracy,lambda_cost_adjusted_utility,access_cost
+moments_only,0.6666666666666666,0.6666666666666666,0.0
+occupancy_grid,0.75,0.7276,0.28
+raster,0.5416666666666666,0.5080666666666667,0.42
+point_cloud,0.6770833333333334,0.6306833333333334,0.58
+family_aware_oracle,1.0,0.924,0.95

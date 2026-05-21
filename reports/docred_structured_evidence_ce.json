@@ -1,0 +1,301 @@
+{
+  "audit": "docred_structured_evidence",
+  "status": "candidate_structured_evidence_slice",
+  "purpose": "DocRED structured evidence acquisition under Protocol B with exact evidence-sentence qrels.",
+  "config": {
+    "max_queries": 30000,
+    "topk": 5,
+    "lambda_cost": 0.08,
+    "seed": 20260525,
+    "repeats": 10,
+    "with_ce": true,
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "ce_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "view_cost": {
+      "summary": 0.0,
+      "co_mention": 0.12,
+      "evidence_sentences": 0.22,
+      "full_context": 0.55,
+      "ce": 0.95
+    }
+  },
+  "sources": [
+    {
+      "split": "train",
+      "source": "文本数据集/知识图谱/DocRED文档级关系抽取数据集基于维基百科/DocRED-20221017T064209Z-001/DocRED/train_annotated.json"
+    },
+    {
+      "split": "dev",
+      "source": "文本数据集/知识图谱/DocRED文档级关系抽取数据集基于维基百科/DocRED-20221017T064209Z-001/DocRED/dev.json"
+    },
+    {
+      "split": "relations",
+      "source": "文本数据集/知识图谱/DocRED文档级关系抽取数据集基于维基百科/DocRED-20221017T064209Z-001/DocRED/rel_info.json"
+    }
+  ],
+  "queries": 30000,
+  "candidate_sentences": 32313,
+  "split_sizes": {
+    "train": 18000,
+    "dev": 6000,
+    "test": 6000
+  },
+  "view_order": [
+    "summary",
+    "co_mention",
+    "evidence_sentences",
+    "full_context",
+    "ce"
+  ],
+  "fixed_and_adaptive": [
+    {
+      "policy": "fixed_summary",
+      "utility": 0.7208320032716616,
+      "raw_ndcg": 0.7208320032716616,
+      "evidence_f1": 0.39507135827135836,
+      "cost": 0.0,
+      "regret": 0.24747253521267137,
+      "view_share": {
+        "summary": 1.0
+      },
+      "gap_closed": -5.521506338623279,
+      "diff_vs_best_fixed": -0.20952539196648168
+    },
+    {
+      "policy": "fixed_co_mention",
+      "utility": 0.9303573952381433,
+      "raw_ndcg": 0.9399573952381434,
+      "evidence_f1": 0.4681972194472194,
+      "cost": 0.12000000000000004,
+      "regret": 0.03794714324618974,
+      "view_share": {
+        "co_mention": 1.0
+      },
+      "gap_closed": 0.0,
+      "diff_vs_best_fixed": 0.0
+    },
+    {
+      "policy": "fixed_evidence_sentences",
+      "utility": 0.8901091428747852,
+      "raw_ndcg": 0.9077091428747849,
+      "evidence_f1": 0.4649013680763681,
+      "cost": 0.22,
+      "regret": 0.07819539560954794,
+      "view_share": {
+        "evidence_sentences": 1.0
+      },
+      "gap_closed": -1.0606398511276494,
+      "diff_vs_best_fixed": -0.04024825236335816
+    },
+    {
+      "policy": "fixed_full_context",
+      "utility": 0.8163799164787514,
+      "raw_ndcg": 0.8603799164787513,
+      "evidence_f1": 0.4556718466718466,
+      "cost": 0.5499999999999998,
+      "regret": 0.15192462200558168,
+      "view_share": {
+        "full_context": 1.0
+      },
+      "gap_closed": -3.0035852243195316,
+      "diff_vs_best_fixed": -0.1139774787593919
+    },
+    {
+      "policy": "fixed_ce",
+      "utility": 0.8100882368620033,
+      "raw_ndcg": 0.8860882368620032,
+      "evidence_f1": 0.46180448255448253,
+      "cost": 0.9499999999999998,
+      "regret": 0.15821630162232972,
+      "view_share": {
+        "ce": 1.0
+      },
+      "gap_closed": -3.169386364498375,
+      "diff_vs_best_fixed": -0.12026915837614005
+    },
+    {
+      "policy": "ridge_B0_summary",
+      "utility": 0.9303573952381433,
+      "raw_ndcg": 0.9399573952381434,
+      "evidence_f1": 0.4681972194472194,
+      "cost": 0.12000000000000004,
+      "regret": 0.03794714324618974,
+      "view_share": {
+        "co_mention": 1.0
+      },
+      "feature_tier": "B0_summary",
+      "gap_closed": 0.0,
+      "diff_vs_best_fixed": 0.0
+    },
+    {
+      "policy": "oracle_route",
+      "utility": 0.968304538484333,
+      "raw_ndcg": 0.976983738484333,
+      "evidence_f1": 0.47830032190032196,
+      "cost": 0.10849,
+      "regret": 0.0,
+      "view_share": {
+        "co_mention": 0.4847,
+        "summary": 0.3923,
+        "evidence_sentences": 0.0707,
+        "ce": 0.015,
+        "full_context": 0.0373
+      },
+      "gap_closed": 1.0,
+      "diff_vs_best_fixed": 0.03794714324618964
+    }
+  ],
+  "feature_tier_rows": [
+    {
+      "policy": "ridge_B0_summary",
+      "utility": 0.9303573952381433,
+      "raw_ndcg": 0.9399573952381434,
+      "evidence_f1": 0.4681972194472194,
+      "cost": 0.12000000000000004,
+      "regret": 0.03794714324618974,
+      "view_share": {
+        "co_mention": 1.0
+      },
+      "feature_tier": "B0_summary",
+      "gap_closed": 0.0,
+      "diff_vs_best_fixed": 0.0
+    },
+    {
+      "policy": "ridge_B1_entity",
+      "utility": 0.9303573952381433,
+      "raw_ndcg": 0.9399573952381434,
+      "evidence_f1": 0.4681972194472194,
+      "cost": 0.12000000000000004,
+      "regret": 0.03794714324618974,
+      "view_share": {
+        "co_mention": 1.0
+      },
+      "feature_tier": "B1_entity",
+      "gap_closed": 0.0,
+      "diff_vs_best_fixed": 0.0
+    },
+    {
+      "policy": "ridge_B1_sentence",
+      "utility": 0.9303573952381433,
+      "raw_ndcg": 0.9399573952381434,
+      "evidence_f1": 0.4681972194472194,
+      "cost": 0.12000000000000004,
+      "regret": 0.03794714324618974,
+      "view_share": {
+        "co_mention": 1.0
+      },
+      "feature_tier": "B1_sentence",
+      "gap_closed": 0.0,
+      "diff_vs_best_fixed": 0.0
+    },
+    {
+      "policy": "ridge_B1_context",
+      "utility": 0.9303573952381433,
+      "raw_ndcg": 0.9399573952381434,
+      "evidence_f1": 0.4681972194472194,
+      "cost": 0.12000000000000004,
+      "regret": 0.03794714324618974,
+      "view_share": {
+        "co_mention": 1.0
+      },
+      "feature_tier": "B1_context",
+      "gap_closed": 0.0,
+      "diff_vs_best_fixed": 0.0
+    }
+  ],
+  "control_rows": [
+    {
+      "control": "title_position",
+      "utility": 0.7208320032716616,
+      "raw_ndcg": 0.7208320032716616,
+      "evidence_f1": 0.39507135827135836,
+      "hit": 0.9061666666666667,
+      "cost": 0.0,
+      "diff_vs_best_control": -0.20952539196648168
+    },
+    {
+      "control": "real_co_mention",
+      "utility": 0.9303573952381433,
+      "raw_ndcg": 0.9399573952381434,
+      "evidence_f1": 0.4681972194472194,
+      "hit": 0.9975,
+      "cost": 0.12000000000000004,
+      "diff_vs_best_control": 0.0
+    },
+    {
+      "control": "shuffled_co_mention",
+      "utility": 0.44735115592299735,
+      "raw_ndcg": 0.4569511559229974,
+      "evidence_f1": 0.3237695748695749,
+      "hit": 0.7965,
+      "cost": 0.12000000000000004,
+      "diff_vs_best_control": -0.48300623931514597
+    },
+    {
+      "control": "degree_random_co_mention",
+      "utility": 0.5006824735570393,
+      "raw_ndcg": 0.5102824735570394,
+      "evidence_f1": 0.3628425296925297,
+      "hit": 0.8585,
+      "cost": 0.12000000000000004,
+      "diff_vs_best_control": -0.429674921681104
+    },
+    {
+      "control": "same_doc_random",
+      "utility": 0.435397401334246,
+      "raw_ndcg": 0.4529974013342459,
+      "evidence_f1": 0.321497484922485,
+      "hit": 0.7893333333333333,
+      "cost": 0.22,
+      "diff_vs_best_control": -0.49495999390389733
+    },
+    {
+      "control": "evidence_sentences",
+      "utility": 0.8901091428747852,
+      "raw_ndcg": 0.9077091428747849,
+      "evidence_f1": 0.4649013680763681,
+      "hit": 0.998,
+      "cost": 0.22,
+      "diff_vs_best_control": -0.04024825236335816
+    },
+    {
+      "control": "full_context",
+      "utility": 0.8163799164787514,
+      "raw_ndcg": 0.8603799164787513,
+      "evidence_f1": 0.4556718466718466,
+      "hit": 0.9915,
+      "cost": 0.5499999999999998,
+      "diff_vs_best_control": -0.1139774787593919
+    },
+    {
+      "control": "ce",
+      "utility": 0.8100882368620033,
+      "raw_ndcg": 0.8860882368620032,
+      "evidence_f1": 0.46180448255448253,
+      "hit": 0.9951666666666666,
+      "cost": 0.9499999999999998,
+      "diff_vs_best_control": -0.12026915837614005
+    }
+  ],
+  "oracle_view_share": {
+    "co_mention": 0.4846666666666667,
+    "summary": 0.3923333333333333,
+    "evidence_sentences": 0.07066666666666667,
+    "ce": 0.015,
+    "full_context": 0.037333333333333336
+  },
+  "repeated_split_stability": {
+    "mean_learned_minus_best_fixed": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "positive_share": 0.0,
+    "selected_policies": {
+      "ridge_B0_summary": 9,
+      "ridge_B1_entity": 1
+    }
+  },
+  "elapsed_seconds": 1334.0305571556091,
+  "reading": "DocRED is a second structured-evidence family: methods buy entity/co-mention, candidate-sentence, full-context, or optional CE evidence before evaluator-held evidence-sentence qrels are scored."
+}

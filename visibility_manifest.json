@@ -1,0 +1,60 @@
+{
+  "evaluator_only_files": [
+    "evaluator_only/hidden_reference.jsonl"
+  ],
+  "hashes": {
+    "challenge_cells.jsonl": "b9174b26c49d48e717f28ddb5b8faa94544e3f56e0657b07ad6e043d63d23e3e",
+    "evaluator_only/hidden_reference.jsonl": "6c67c13194cb8cf6561afcca4b86abe4b595e36b40c8cfe3c77d15688ec1fcbb"
+  },
+  "method_visible_files": [
+    "challenge_cells.jsonl",
+    "visibility_manifest.json",
+    "challenge_cell_schema.json",
+    "submission_schema.json"
+  ],
+  "metrics": [
+    "valid_output",
+    "feasible",
+    "mean_linf_error",
+    "cov_linf_error",
+    "norm_cd",
+    "iou",
+    "coverage",
+    "mrr",
+    "utility_at_1",
+    "regret"
+  ],
+  "n_cells": 50,
+  "protocol": "Protocol B",
+  "quick_start": [
+    "pip install -r requirements.txt",
+    "bash scripts/run_baseline.sh",
+    "python scripts/evaluate_submission.py outputs/example_submission.jsonl"
+  ],
+  "schema_version": "m2sbench-submission-kit-v1",
+  "solver_entrypoint": "submission_template/solver.py::solve",
+  "validator": "scripts/validate_submission.py",
+  "visibility_contract": {
+    "evaluator_only_fields": [
+      "target_points",
+      "family",
+      "budget_id",
+      "seed",
+      "phase_name",
+      "source_probe_cell_id",
+      "oracle_view",
+      "view_utilities"
+    ],
+    "leakage_rule": "Solvers must never import evaluator_only/hidden_reference.jsonl or use hidden target/family/budget/seed fields.",
+    "method_visible_fields": [
+      "cell_id",
+      "n_points",
+      "summary.mean",
+      "summary.covariance",
+      "summary.tolerance",
+      "granted_views.support_points",
+      "granted_views.support_bounds",
+      "cost_menu"
+    ]
+  }
+}

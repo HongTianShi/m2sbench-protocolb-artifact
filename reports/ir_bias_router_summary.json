@@ -1,0 +1,216 @@
+{
+  "router_summary": {
+    "aggregate": {
+      "fixed_summary": {
+        "queries": 1148,
+        "utility": 0.12999135491564767,
+        "ndcg": 0.12999135491564767,
+        "cost": 0.0,
+        "regret": 0.28998244949697616
+      },
+      "fixed_pq": {
+        "queries": 1148,
+        "utility": 0.3189040974353664,
+        "ndcg": 0.3349040796013244,
+        "cost": 0.2,
+        "regret": 0.10106971747654032
+      },
+      "fixed_full": {
+        "queries": 1148,
+        "utility": 0.34645619336840167,
+        "ndcg": 0.3928562197639552,
+        "cost": 0.58,
+        "regret": 0.07351760798578479
+      },
+      "summary_qpp_b0": {
+        "queries": 1148,
+        "utility": 0.3467704883228196,
+        "ndcg": 0.37820742479184777,
+        "cost": 0.39296168467932047,
+        "regret": 0.0732033095397185
+      },
+      "query_summary_rf_b0": {
+        "queries": 1148,
+        "utility": 0.34932163066980315,
+        "ndcg": 0.38351678627604807,
+        "cost": 0.42743903029878794,
+        "regret": 0.07065215410229844
+      },
+      "summary_pq_qpp_b1": {
+        "queries": 1148,
+        "utility": 0.3497735659367947,
+        "ndcg": 0.38402862418507866,
+        "cost": 0.42818815196225035,
+        "regret": 0.07020023799718776
+      },
+      "query_summary_pq_rf_b1": {
+        "queries": 1148,
+        "utility": 0.34541645918677494,
+        "ndcg": 0.3784659517351343,
+        "cost": 0.41311844913386303,
+        "regret": 0.07455733798132748
+      },
+      "selective_rerank_cascade_b1": {
+        "queries": 1148,
+        "utility": 0.33604551586955267,
+        "ndcg": 0.3643786196405464,
+        "cost": 0.3541637537319486,
+        "regret": 0.08392828332344622
+      }
+    },
+    "per_dataset": [
+      {
+        "dataset": "beir/fiqa/test",
+        "fixed_summary_utility": 0.01716083101928234,
+        "fixed_pq_utility": 0.242631733417511,
+        "fixed_full_utility": 0.31831231713294983,
+        "summary_qpp_b0_utility": 0.31831231713294983,
+        "query_summary_rf_b0_utility": 0.3175528347492218,
+        "summary_pq_qpp_b1_utility": 0.31861594319343567,
+        "query_summary_pq_rf_b1_utility": 0.31385061144828796,
+        "selective_rerank_cascade_b1_utility": 0.302272230386734
+      },
+      {
+        "dataset": "beir/scifact/test",
+        "fixed_summary_utility": 0.11430490761995316,
+        "fixed_pq_utility": 0.5459846258163452,
+        "fixed_full_utility": 0.591009795665741,
+        "summary_qpp_b0_utility": 0.5914685726165771,
+        "query_summary_rf_b0_utility": 0.5893230438232422,
+        "summary_pq_qpp_b1_utility": 0.6011331081390381,
+        "query_summary_pq_rf_b1_utility": 0.5896377563476562,
+        "selective_rerank_cascade_b1_utility": 0.5205160975456238
+      },
+      {
+        "dataset": "beir/nfcorpus/test",
+        "fixed_summary_utility": 0.1657141149044037,
+        "fixed_pq_utility": 0.26354050636291504,
+        "fixed_full_utility": 0.2649150490760803,
+        "summary_qpp_b0_utility": 0.261803537607193,
+        "query_summary_rf_b0_utility": 0.262729674577713,
+        "summary_pq_qpp_b1_utility": 0.26363062858581543,
+        "query_summary_pq_rf_b1_utility": 0.25586700439453125,
+        "selective_rerank_cascade_b1_utility": 0.2619200050830841
+      },
+      {
+        "dataset": "beir/arguana",
+        "fixed_summary_utility": 0.18546874821186066,
+        "fixed_pq_utility": 0.3299078345298767,
+        "fixed_full_utility": 0.32763370871543884,
+        "summary_qpp_b0_utility": 0.3288964629173279,
+        "query_summary_rf_b0_utility": 0.33472397923469543,
+        "summary_pq_qpp_b1_utility": 0.33207523822784424,
+        "query_summary_pq_rf_b1_utility": 0.3298812508583069,
+        "selective_rerank_cascade_b1_utility": 0.3320555090904236
+      },
+      {
+        "dataset": "antique/test",
+        "fixed_summary_utility": 0.07286514341831207,
+        "fixed_pq_utility": 0.23746271431446075,
+        "fixed_full_utility": 0.3339840769767761,
+        "summary_qpp_b0_utility": 0.3339840769767761,
+        "query_summary_rf_b0_utility": 0.3339840769767761,
+        "summary_pq_qpp_b1_utility": 0.3364008367061615,
+        "query_summary_pq_rf_b1_utility": 0.33442389965057373,
+        "selective_rerank_cascade_b1_utility": 0.3161380887031555
+      }
+    ]
+  },
+  "nested_bias": {
+    "aggregate": {
+      "queries": 2872,
+      "mean_qrels_per_query": 7.788648772870598,
+      "candidate_top200_recall": 0.8364888510581179,
+      "candidate_top200_hit": 0.9571727019498607,
+      "positive_density_in_top200": 0.01639798050139276,
+      "pq_ge_full_share": 0.6152506963788301,
+      "pq_strict_better_share": 0.18001392757660167,
+      "pq_equal_full_share": 0.4352367688022284,
+      "pq_strict_worse_share": 0.38474930362116994,
+      "mean_pq_minus_full_ndcg": -0.05211530949642835,
+      "summary_equal_full_share": 0.26497214484679665
+    },
+    "per_dataset": [
+      {
+        "dataset": "beir/fiqa/test",
+        "queries": 648,
+        "qrel_pairs": 1706,
+        "mean_qrels_per_query": 2.632715940475464,
+        "median_qrels_per_query": 2.0,
+        "candidate_top200_recall": 0.7811780571937561,
+        "candidate_top200_hit": 0.9027777777777778,
+        "positive_density_in_top200": 0.009969135802469135,
+        "pq_ge_full_share": 0.6018518518518519,
+        "pq_strict_better_share": 0.125,
+        "pq_equal_full_share": 0.47685185185185186,
+        "pq_strict_worse_share": 0.39814814814814814,
+        "mean_pq_minus_full_ndcg": -0.08167066425085068,
+        "summary_equal_full_share": 0.39197530864197533
+      },
+      {
+        "dataset": "beir/scifact/test",
+        "queries": 300,
+        "qrel_pairs": 339,
+        "mean_qrels_per_query": 1.1299999952316284,
+        "median_qrels_per_query": 1.0,
+        "candidate_top200_recall": 0.9599999785423279,
+        "candidate_top200_hit": 0.96,
+        "positive_density_in_top200": 0.00545,
+        "pq_ge_full_share": 0.7366666666666667,
+        "pq_strict_better_share": 0.11333333333333333,
+        "pq_equal_full_share": 0.6233333333333333,
+        "pq_strict_worse_share": 0.2633333333333333,
+        "mean_pq_minus_full_ndcg": -0.06508089601993561,
+        "summary_equal_full_share": 0.45
+      },
+      {
+        "dataset": "beir/nfcorpus/test",
+        "queries": 323,
+        "qrel_pairs": 12334,
+        "mean_qrels_per_query": 38.18575668334961,
+        "median_qrels_per_query": 16.0,
+        "candidate_top200_recall": 0.38332492113113403,
+        "candidate_top200_hit": 0.8885448916408669,
+        "positive_density_in_top200": 0.0528328173374613,
+        "pq_ge_full_share": 0.628482972136223,
+        "pq_strict_better_share": 0.23529411764705882,
+        "pq_equal_full_share": 0.3931888544891641,
+        "pq_strict_worse_share": 0.3715170278637771,
+        "mean_pq_minus_full_ndcg": -0.024442581459879875,
+        "summary_equal_full_share": 0.28173374613003094
+      },
+      {
+        "dataset": "beir/arguana",
+        "queries": 1401,
+        "qrel_pairs": 1401,
+        "mean_qrels_per_query": 1.0,
+        "median_qrels_per_query": 1.0,
+        "candidate_top200_recall": 0.9935759902000427,
+        "candidate_top200_hit": 0.9935760171306209,
+        "positive_density_in_top200": 0.004967880085653105,
+        "pq_ge_full_share": 0.6438258386866524,
+        "pq_strict_better_share": 0.20342612419700215,
+        "pq_equal_full_share": 0.44039971448965026,
+        "pq_strict_worse_share": 0.3561741613133476,
+        "mean_pq_minus_full_ndcg": -0.037945009768009186,
+        "summary_equal_full_share": 0.1934332619557459
+      },
+      {
+        "dataset": "antique/test",
+        "queries": 200,
+        "qrel_pairs": 6589,
+        "mean_qrels_per_query": 32.94499969482422,
+        "median_qrels_per_query": 32.0,
+        "candidate_top200_recall": 0.4618934690952301,
+        "candidate_top200_hit": 0.985,
+        "positive_density_in_top200": 0.074875,
+        "pq_ge_full_share": 0.255,
+        "pq_strict_better_share": 0.205,
+        "pq_equal_full_share": 0.05,
+        "pq_strict_worse_share": 0.745,
+        "mean_pq_minus_full_ndcg": -0.08086198568344116,
+        "summary_equal_full_share": 0.05
+      }
+    ]
+  }
+}

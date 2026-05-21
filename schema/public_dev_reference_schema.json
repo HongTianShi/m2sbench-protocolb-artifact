@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2S-Bench public-dev evaluator reference row",
+  "type": "object",
+  "required": ["query_id", "cell_id", "view_scores"],
+  "properties": {
+    "query_id": {"type": "string"},
+    "cell_id": {"type": "string"},
+    "view_scores": {
+      "type": "object",
+      "additionalProperties": {"type": "number"},
+      "description": "Evaluator-held raw quality by declared view."
+    },
+    "oracle_view": {
+      "type": "string",
+      "description": "Optional cached diagnostic. The official scorer derives oracle_view from view_scores and the declared cost menu."
+    },
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": true
+}

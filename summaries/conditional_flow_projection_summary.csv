@@ -1,0 +1,2 @@
+row,train_cells,cells,valid,violation,med_v,cov,norm_cd,iou,coverage,runtime_s,train_seconds,scope
+Conditional flow + proj.,270,50,1.0,0.0,6.661338147750939e-14,7.316486261698009e-16,0.29797923541041266,0.1287650970892174,0.5925,0.01283634200000961,18.32114619999993,270 held-in phase-map cells train; 50 FM-probe cells eval; summary-only rectified flow; exact moment projection

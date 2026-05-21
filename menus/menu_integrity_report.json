@@ -1,0 +1,32 @@
+{
+  "schema_version": "m2sbench-menu-integrity-v1",
+  "checks": [
+    {
+      "view_menu": "menus/dense_semantic.view_menu.json",
+      "accepted_cost_menus": [
+        "dense-semantic-v1-op",
+        "dense-semantic-v1-mem",
+        "dense-semantic-v1-lat"
+      ],
+      "row_level_declared_views": "enforced_when_manifest_supplied",
+      "cost_key_coverage": "all_declared_views_covered",
+      "hidden_aliases": ["hidden_evaluator_fields", "evaluator_only_fields"]
+    },
+    {
+      "view_menu": "menus/2wiki_structured.view_menu.json",
+      "accepted_cost_menus": ["2wiki-structured-v1-op"],
+      "row_level_declared_views": "enforced_when_manifest_supplied",
+      "cost_key_coverage": "all_declared_views_covered",
+      "hidden_aliases": ["hidden_evaluator_fields", "evaluator_only_fields"]
+    },
+    {
+      "view_menu": "menus/2wiki_hyperlink.view_menu.json",
+      "accepted_cost_menus": ["2wiki-hyper-v1-op"],
+      "row_level_declared_views": "enforced_when_manifest_supplied",
+      "cost_key_coverage": "all_declared_views_covered",
+      "hidden_aliases": ["hidden_evaluator_fields", "evaluator_only_fields"]
+    }
+  ],
+  "validator": "scripts/validate_protocol_b_route.py",
+  "notes": "Plain JSON schemas describe row shape. Cross-file checks are enforced by the validator and summarized here for static artifact review."
+}

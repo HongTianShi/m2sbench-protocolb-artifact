@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2S-Bench Protocol B cost-menu declaration",
+  "description": "Schema for official and rescoring profiles. C_op is the frozen leaderboard profile; C_mem and C_lat are secondary materialization/latency rescoring profiles.",
+  "type": "object",
+  "required": ["cost_menu", "profile_id", "lambda", "unit", "active_cost_field", "view_costs"],
+  "properties": {
+    "cost_menu": {"type": "string"},
+    "profile_id": {
+      "type": "string",
+      "enum": ["C_op", "C_mem", "C_lat", "custom"]
+    },
+    "lambda": {
+      "type": "number",
+      "minimum": 0
+    },
+    "unit": {
+      "type": "string",
+      "description": "Declared operation units, normalized bytes/footprint units, normalized p95 latency units, or custom units."
+    },
+    "active_cost_field": {
+      "type": "string",
+      "enum": ["declared_cost"],
+      "description": "Field used by the Protocol B scorer for this cost profile."
+    },
+    "trace_cost_fields": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Additional cost fields retained for lineage or secondary interpretation, not used unless explicitly copied into declared_cost."
+    },
+    "units": {
+      "type": "string",
+      "description": "Backward-compatible alias for unit. New cost menus should use unit."
+    },
+    "view_costs": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["declared_cost"],
+        "properties": {
+          "declared_cost": {"type": "number", "minimum": 0},
+          "incremental_cost": {"type": "number", "minimum": 0},
+          "cumulative_cost": {"type": "number", "minimum": 0},
+          "bytes_touched": {"type": "number", "minimum": 0},
+          "model_or_index_bytes": {"type": "number", "minimum": 0},
+          "p50_ms": {"type": "number", "minimum": 0},
+          "p95_ms": {"type": "number", "minimum": 0},
+          "p99_ms": {"type": "number", "minimum": 0},
+          "qps": {"type": "number", "minimum": 0},
+          "device": {"type": "string"},
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "scoring_rule": {
+      "type": "string",
+      "description": "Utility/regret rule for this profile, normally U=A-lambda*C and R=max_v U(v)-U(route)."
+    }
+  },
+  "additionalProperties": true
+}

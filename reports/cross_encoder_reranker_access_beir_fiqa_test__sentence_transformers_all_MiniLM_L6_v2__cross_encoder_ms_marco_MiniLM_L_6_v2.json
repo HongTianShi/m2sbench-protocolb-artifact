@@ -1,0 +1,70 @@
+{
+  "task": "cross_encoder_reranker_access_audit",
+  "dataset": "beir/fiqa/test",
+  "bi_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "cross_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "documents": 57638,
+  "queries": 648,
+  "qrel_pairs": 1706,
+  "candidate_k": 50,
+  "eval_k": 10,
+  "lambda": 0.08,
+  "reranker_cost": 0.45,
+  "views": {
+    "bi_encoder": {
+      "ndcg@5": 0.34503790736198425,
+      "hit@5": 0.5725308641975309,
+      "recall@5": 0.36705632758873497,
+      "ndcg@10": 0.36867135763168335,
+      "hit@10": 0.6574074074074074,
+      "recall@10": 0.441305560865746,
+      "cost": 0.0,
+      "utility@10": 0.36867135763168335,
+      "mean_us_per_query": 21.736876543209668
+    },
+    "cross_encoder": {
+      "ndcg@5": 0.36196988821029663,
+      "hit@5": 0.5925925925925926,
+      "recall@5": 0.3846928234659716,
+      "ndcg@10": 0.3869924545288086,
+      "hit@10": 0.6682098765432098,
+      "recall@10": 0.46268363409567104,
+      "cost": 0.45,
+      "utility@10": 0.35099244117736816,
+      "mean_us_per_query": 44066.930833333325
+    },
+    "oracle": {
+      "utility@10": 0.4386313259601593,
+      "reranker_share": 0.28703703703703703
+    }
+  },
+  "diagnostics": {
+    "reranker_raw_gain@10": 0.0183210838586092,
+    "reranker_gain_ci": {
+      "mean": 0.0183210838586092,
+      "lo": 0.0022192416538018736,
+      "hi": 0.038400246202945694
+    },
+    "reranker_cost_adjusted_win_share": 0.28703703703703703,
+    "reranker_precost_win_share": 0.3101851851851852,
+    "lambda_star_bi_to_reranker": 0.04071351968579822
+  },
+  "router": {
+    "name": "cheap_only_ce_adapter",
+    "feature_budget": "cheap bi-encoder score statistics only",
+    "test_queries": 260,
+    "utility@10": 0.37372419238090515,
+    "ndcg@10": 0.389370322227478,
+    "cost": 0.1955769230769231,
+    "regret@10": 0.04874272644519806,
+    "choice_share": {
+      "bi_encoder": 0.5653846153846154,
+      "cross_encoder": 0.4346153846153846
+    },
+    "boundary_csv": "<artifact-root>/reports/cross_encoder_access_boundary_beir_fiqa_test__sentence_transformers_all_MiniLM_L6_v2__cross_encoder_ms_marco_MiniLM_L_6_v2.csv",
+    "boundary_figure": "<artifact-root>/reports/cross_encoder_access_boundary_beir_fiqa_test__sentence_transformers_all_MiniLM_L6_v2__cross_encoder_ms_marco_MiniLM_L_6_v2.png"
+  },
+  "ce_accounting_context": "incremental_ce_purchase_after_first_stage_pool",
+  "active_ce_cost": 0.45,
+  "dense_ladder_ce_cost_reference": 1.03
+}

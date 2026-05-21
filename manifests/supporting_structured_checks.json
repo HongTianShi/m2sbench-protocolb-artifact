@@ -1,0 +1,172 @@
+{
+  "purpose": "Machine-readable status cards for structured-evidence checks that support the 2Wiki core but are not promoted official leaderboard slices.",
+  "official_core": [
+    "2wiki_structured_evidence",
+    "2wiki_hyperlink_stress"
+  ],
+  "supporting_generalization_checks": [
+    {
+      "slice_id": "hotpot_structured_evidence",
+      "dataset_family": "HotpotQA supporting-fact QA",
+      "status": "supporting_generalization_check",
+      "contract_status": "supporting_aggregate_contract_not_official_validator_pack",
+      "not_official_core_reason": "Uses the same Protocol B readout pattern but is reported as a supporting robustness check rather than a promoted leaderboard slice.",
+      "declared_views": [
+        "summary",
+        "title_shortlist",
+        "paragraph_evidence",
+        "sentence_evidence",
+        "full_context"
+      ],
+      "cost_menu_id": "hotpot-structured-v0-op",
+      "view_costs": {
+        "summary": 0.0,
+        "title_shortlist": 0.04,
+        "paragraph_evidence": 0.16,
+        "sentence_evidence": 0.28,
+        "full_context": 0.55
+      },
+      "visibility_tiers": [
+        "B0_title",
+        "B1_structured"
+      ],
+      "method_visible_fields": [
+        "question",
+        "context titles",
+        "title/entity overlap sketches",
+        "released paragraph/sentence evidence sketches"
+      ],
+      "hidden_evaluator_fields": [
+        "supporting_facts",
+        "gold_titles",
+        "answer",
+        "oracle_view",
+        "unpaid full/CE scores"
+      ],
+      "canonical_reports": [
+        "reports/hotpot_structured_evidence.md",
+        "reports/hotpot_structured_evidence_5000_noce.md"
+      ]
+    },
+    {
+      "slice_id": "musique_structured_evidence",
+      "dataset_family": "MuSiQue compositional QA",
+      "status": "supporting_generalization_check",
+      "contract_status": "supporting_aggregate_contract_not_official_validator_pack",
+      "not_official_core_reason": "Replicates structured-evidence acquisition behavior on a different decompositional QA family, without becoming a third validated core.",
+      "declared_views": [
+        "summary",
+        "decomposition_sketch",
+        "paragraph_evidence",
+        "supporting_paragraph_set",
+        "full_context"
+      ],
+      "cost_menu_id": "musique-structured-v0-op",
+      "view_costs": {
+        "summary": 0.0,
+        "decomposition_sketch": 0.04,
+        "paragraph_evidence": 0.16,
+        "supporting_paragraph_set": 0.3,
+        "full_context": 0.55
+      },
+      "visibility_tiers": [
+        "B0_title",
+        "B1_structured"
+      ],
+      "method_visible_fields": [
+        "question",
+        "decomposition titles",
+        "paragraph titles",
+        "coarse paragraph/decomposition sketches"
+      ],
+      "hidden_evaluator_fields": [
+        "supporting paragraph labels",
+        "answer",
+        "decomposition answers",
+        "oracle_view",
+        "unpaid full/CE scores"
+      ],
+      "canonical_reports": [
+        "reports/musique_structured_evidence.md",
+        "reports/musique_structured_evidence_10000_noce.md"
+      ]
+    }
+  ],
+  "boundary_checks": [
+    {
+      "slice_id": "docred_structured_evidence",
+      "status": "boundary_check",
+      "contract_status": "aggregate_boundary_report_not_official_validator_pack",
+      "canonical_report": "reports/docred_structured_evidence.md",
+      "dataset_family": "DocRED relation/evidence annotations",
+      "declared_views": [
+        "summary",
+        "co_mention",
+        "evidence_sentences",
+        "full_context"
+      ],
+      "method_visible_fields": [
+        "document id sketch",
+        "head/tail entity-pair summary",
+        "co-mention counts",
+        "declared evidence-menu metadata"
+      ],
+      "hidden_evaluator_fields": [
+        "relation label",
+        "gold evidence sentence ids",
+        "unpaid full/CE scores",
+        "oracle view"
+      ],
+      "boundary_readout": "real co-mention/evidence controls pass, but legal routing does not improve over the best fixed co-mention view"
+    },
+    {
+      "slice_id": "strategyqa_reasoning_evidence",
+      "status": "boundary_check",
+      "contract_status": "aggregate_boundary_report_not_official_validator_pack",
+      "canonical_report": "reports/strategyqa_reasoning_evidence.md",
+      "dataset_family": "StrategyQA reasoning/fact decomposition",
+      "declared_views": [
+        "summary",
+        "fact_snippets",
+        "full_fact_set"
+      ],
+      "method_visible_fields": [
+        "question",
+        "term/description/decomposition sketch",
+        "declared evidence-menu metadata"
+      ],
+      "hidden_evaluator_fields": [
+        "supporting facts",
+        "answer",
+        "fact-view scores",
+        "oracle view"
+      ],
+      "boundary_readout": "random/shuffled facts collapse, but the cheap decomposition sketch is already strong; retained as noisy reasoning frontier"
+    },
+    {
+      "slice_id": "fever_claim_evidence",
+      "status": "boundary_check",
+      "contract_status": "aggregate_boundary_report_not_official_validator_pack",
+      "canonical_report": "reports/fever_claim_evidence.md",
+      "dataset_family": "FEVER claim verification evidence",
+      "declared_views": [
+        "summary",
+        "retrieved_title_page",
+        "evidence_sentence",
+        "full_evidence_page"
+      ],
+      "method_visible_fields": [
+        "claim text",
+        "cheap title/entity overlap statistics",
+        "declared evidence-menu metadata"
+      ],
+      "hidden_evaluator_fields": [
+        "evidence sentence handles",
+        "label",
+        "verification target",
+        "oracle view"
+      ],
+      "boundary_readout": "real evidence handles beat controls, but claim/title shortcuts dominate; stopped after smoke"
+    }
+  ]
+}

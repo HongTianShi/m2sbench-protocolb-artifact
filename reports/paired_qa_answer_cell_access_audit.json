@@ -1,0 +1,56 @@
+{
+  "audit": "paired_qa_answer_cell_access",
+  "status": "optional_repository_record",
+  "purpose": "Check the access-routing contract with exact paired-answer qrels rather than label-derived relevance surrogates.",
+  "reading": "Full answer evidence is best in aggregate, but non-full views remain best on many individual queries, giving a boundary case complementary to the main IVF-PQ text audit.",
+  "qrels": "exact paired answer; one evaluator-held relevant answer per query",
+  "queries": 30000,
+  "cell_size": {
+    "median": 172.0,
+    "p90": 276.0,
+    "max": 339
+  },
+  "lambda": 0.08,
+  "costs": {
+    "summary": 0.0,
+    "pq": 0.2,
+    "full": 0.58
+  },
+  "views": {
+    "summary": {
+      "ndcg_at_10": 0.02907877976376541,
+      "utility": 0.02907877976376541,
+      "cost": 0.0,
+      "hit_at_10": 0.064,
+      "regret": 0.32066778787921457
+    },
+    "pq": {
+      "ndcg_at_10": 0.16425648975295218,
+      "utility": 0.14825648975295214,
+      "cost": 0.2,
+      "hit_at_10": 0.29263333333333336,
+      "regret": 0.20149007789002785
+    },
+    "full": {
+      "ndcg_at_10": 0.33358564044722744,
+      "utility": 0.2871856404472274,
+      "cost": 0.58,
+      "hit_at_10": 0.5132,
+      "regret": 0.06256092719575253
+    }
+  },
+  "per_query": {
+    "best_view_shares": {
+      "summary": 0.4686666666666667,
+      "pq": 0.14,
+      "full": 0.3913333333333333
+    },
+    "non_full_best_share": 0.6086666666666667,
+    "pq_dominates_full_before_cost_share": 0.5972333333333333
+  },
+  "lambda_star": {
+    "summary_to_pq": 0.6758885499459338,
+    "pq_to_full": 0.44560302814282965
+  },
+  "runtime_sec": 87.6
+}

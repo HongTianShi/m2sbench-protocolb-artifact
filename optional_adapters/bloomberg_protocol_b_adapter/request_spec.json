@@ -1,0 +1,26 @@
+{
+  "adapter_name": "m2sbench_optional_bloomberg_protocol_b_adapter",
+  "host": "localhost",
+  "port": 8194,
+  "start_date": "2024-01-01",
+  "end_date": "",
+  "periodicity": "DAILY",
+  "securities": [
+    "SPX Index",
+    "INDU Index",
+    "RTY Index",
+    "SX5E Index",
+    "NKY Index",
+    "HSI Index",
+    "DXY Curncy",
+    "CO1 Comdty"
+  ],
+  "fields": [
+    "PX_LAST"
+  ],
+  "notes": [
+    "This optional adapter is intentionally small and entitlement-neutral.",
+    "Returned data remains subject to the license of the Bloomberg account that runs the script.",
+    "If some securities or fields are not entitled, the audit file records the failure and keeps successful rows."
+  ]
+}

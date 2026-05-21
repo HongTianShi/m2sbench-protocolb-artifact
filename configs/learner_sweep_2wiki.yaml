@@ -1,0 +1,64 @@
+slice: 2wiki_structured_evidence
+purpose: diagnostic audit, not model-selection leaderboard
+description: >
+  Learner-family diagnostic for the 2Wiki structured and 10k hyperlink
+  Protocol B slices. It uses the same summary format as the dense learner
+  sweep so the weak dense regime can be compared with structured-evidence
+  regimes where method-visible graph/path/context signals recover more oracle
+  value.
+input_reports:
+  - source: 2wiki_structured_learner_family_sweep
+    path: reports/2wiki_structured_learner_family_sweep.json
+  - source: 2wiki_hyperlink_learner_family_sweep
+    path: reports/2wiki_hyperlink_learner_family_sweep.json
+deduplicate_models: false
+view_order:
+  - summary
+  - one_hop
+  - two_hop
+  - provided_context
+  - hyperlink_1hop
+  - hyperlink_2hop
+  - full_context
+  - full_local_pool
+  - ce
+family_map:
+  oracle: evaluator-only oracle
+  fixed_one_hop: fixed reference
+  fixed_two_hop: fixed reference
+  fixed_summary: fixed reference
+  fixed_ce: fixed reference
+  fixed_full_context: fixed reference
+  fixed_hyperlink_1hop: fixed reference
+  fixed_hyperlink_2hop: fixed reference
+  fixed_provided_context: fixed reference
+  fixed_full_local_pool: fixed reference
+  extra_trees_multioutput: tree ensemble
+  extra_trees_expanded: tree ensemble
+  rf_multioutput: tree ensemble
+  rf_expanded: tree ensemble
+  dev_best_single_model: dev-selected learner
+  hist_gbdt_expanded: boosted tree
+  gbdt_expanded: boosted tree
+  adaboost_expanded: boosted tree
+  decision_tree_expanded: tree
+  ridge_multioutput: linear multi-output
+  elasticnet_multioutput: linear multi-output
+  ridge_expanded: linear
+  elasticnet_expanded: linear
+  knn_expanded: nonparametric
+  logistic_oracle_view: classifier
+  mlp_expanded: neural
+  mlp_multioutput: neural
+notes:
+  oracle: evaluator-held upper bound; measures structured view-mixing headroom, not a legal solver
+  extra_trees_multioutput: strongest released legal learner-family row; positive on every repeated split
+  rf_multioutput: tree multi-output row; positive on every repeated split
+  hist_gbdt_expanded: boosted-tree expanded-feature row; positive on every repeated split in the hyperlink audit
+  ridge_multioutput: simple linear multi-output readout; positive on every repeated split
+  elasticnet_multioutput: regularized linear multi-output readout; positive on every repeated split
+  mlp_expanded: neural regressor remains positive in this structured regime
+  mlp_multioutput: neural multi-output regressor remains positive in this structured regime
+  logistic_oracle_view: direct oracle-view classification is less stable than utility regression
+  fixed_one_hop: best fixed structured reference in the 2k CE run
+  fixed_hyperlink_1hop: best fixed hyperlink reference in the 10k corpus-scale run

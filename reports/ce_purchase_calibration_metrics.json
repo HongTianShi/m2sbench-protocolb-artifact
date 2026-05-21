@@ -1,0 +1,76 @@
+{
+  "source_csv": "<artifact-root>/reports/cross_encoder_access_boundary_beir_fiqa_test__sentence_transformers_all_MiniLM_L6_v2__cross_encoder_ms_marco_MiniLM_L_6_v2.csv",
+  "n": 260,
+  "worth_buy_base_rate": 0.2653846153846154,
+  "auprc_raw_predicted_net_gain": 0.36829216306181767,
+  "brier_cv_platt": 0.19375863197421314,
+  "ece5_cv_platt_equal_count": 0.0476703162423607,
+  "adapter_precision": 0.336283185840708,
+  "adapter_recall": 0.5507246376811594,
+  "calibration_bins": [
+    {
+      "n": 52,
+      "conf": 0.24912264539353213,
+      "worth_buy": 0.19230769230769232,
+      "score_min": -0.1582877,
+      "score_max": -0.05487445
+    },
+    {
+      "n": 52,
+      "conf": 0.25940403092403735,
+      "worth_buy": 0.23076923076923078,
+      "score_min": -0.07666782,
+      "score_max": -0.0203519
+    },
+    {
+      "n": 52,
+      "conf": 0.2645394627516098,
+      "worth_buy": 0.23076923076923078,
+      "score_min": -0.04556882,
+      "score_max": 0.0077865
+    },
+    {
+      "n": 52,
+      "conf": 0.270565958397561,
+      "worth_buy": 0.36538461538461536,
+      "score_min": -0.02091505,
+      "score_max": 0.08208371
+    },
+    {
+      "n": 52,
+      "conf": 0.283379368690584,
+      "worth_buy": 0.3076923076923077,
+      "score_min": 0.01445979,
+      "score_max": 0.24762443
+    }
+  ],
+  "tercile_buckets": [
+    {
+      "bucket": "low",
+      "n": 87,
+      "mean_predicted_net_gain": -0.08122982206896552,
+      "mean_raw_gain": -0.024291809310344834,
+      "worth_buy_share": 0.1724137931034483,
+      "adapter_buy_share": 0.0
+    },
+    {
+      "bucket": "mid",
+      "n": 86,
+      "mean_predicted_net_gain": -0.01044508046511628,
+      "mean_raw_gain": -0.006122953720930233,
+      "worth_buy_share": 0.26744186046511625,
+      "adapter_buy_share": 0.3023255813953488
+    },
+    {
+      "bucket": "high",
+      "n": 87,
+      "mean_predicted_net_gain": 0.0617767583908046,
+      "mean_raw_gain": 0.06788324793103448,
+      "worth_buy_share": 0.3563218390804598,
+      "adapter_buy_share": 1.0
+    }
+  ],
+  "ce_accounting_context": "incremental_ce_purchase_after_first_stage_pool",
+  "active_ce_cost": 0.45,
+  "dense_ladder_ce_cost_reference": 1.03
+}

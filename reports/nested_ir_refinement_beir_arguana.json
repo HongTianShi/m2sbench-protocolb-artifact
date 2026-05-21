@@ -1,0 +1,77 @@
+{
+  "task": "nested_ir_refinement_audit",
+  "dataset": "beir/arguana",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "faiss_gpus": 1,
+  "documents": 8674,
+  "queries": 1401,
+  "qrel_pairs": 1401,
+  "nlist": 433,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "lambda": 0.08,
+  "candidate_generation": {
+    "view": "full_flat",
+    "candidate_k": 200,
+    "mean_us_per_query": 33.608385438969286
+  },
+  "views": {
+    "summary": {
+      "ndcg@5": 0.0218154639005661,
+      "hit@5": 0.042112776588151324,
+      "recall@5": 0.042112776588151324,
+      "ndcg@10": 0.04736226424574852,
+      "hit@10": 0.12419700214132762,
+      "recall@10": 0.12419700214132762,
+      "cost": 0.0,
+      "utility@10": 0.04736226424574852,
+      "mean_us_per_query": 27.87168522484621
+    },
+    "pq": {
+      "ndcg@5": 0.26019608974456787,
+      "hit@5": 0.4825124910778016,
+      "recall@5": 0.4825124910778016,
+      "ndcg@10": 0.3332090377807617,
+      "hit@10": 0.7073518915060671,
+      "recall@10": 0.7073518915060671,
+      "cost": 0.2,
+      "utility@10": 0.3172090377807617,
+      "mean_us_per_query": 27.267540328345575
+    },
+    "full": {
+      "ndcg@5": 0.3090400695800781,
+      "hit@5": 0.5774446823697359,
+      "recall@5": 0.5774446823697359,
+      "ndcg@10": 0.3711540400981903,
+      "hit@10": 0.76802284082798,
+      "recall@10": 0.76802284082798,
+      "cost": 0.58,
+      "utility@10": 0.3247540400981903,
+      "mean_us_per_query": 23.739784439687188
+    }
+  },
+  "diagnostics": {
+    "candidate_pool": "full_flat_topk_fixed_for_all_views",
+    "candidate_k": 200,
+    "non_full_best_share": 0.6730906495360457,
+    "summary_best_share": 0.22983583154889364,
+    "pq_best_share": 0.44325481798715205,
+    "full_best_share": 0.3269093504639543,
+    "pq_beats_full_precost_share": 0.6438258386866524,
+    "summary_beats_full_precost_share": 0.26195574589578874,
+    "lambda_star_summary_to_pq": 1.429233867675066,
+    "lambda_star_pq_to_full": 0.09985526925639102,
+    "bootstrap_ci": {
+      "non_full_best_share": {
+        "mean": 0.6730906367301941,
+        "lo": 0.6488222479820251,
+        "hi": 0.6987865567207336
+      },
+      "pq_beats_full_precost_share": {
+        "mean": 0.6438258290290833,
+        "lo": 0.6209850311279297,
+        "hi": 0.6681120619177818
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2S-Bench Protocol B view-menu declaration",
+  "description": "Schema for declaring purchasable evidence views, their free fields, paid fields, costs, dependencies, and frozen scorers.",
+  "type": "object",
+  "required": ["menu_id", "slice_id", "schema_version", "allowed_tiers", "default_cost_menu", "primary_metric", "views"],
+  "properties": {
+    "menu_id": {"type": "string"},
+    "slice_id": {
+      "type": "string",
+      "description": "Benchmark slice, e.g. dense-semantic, compression-ladder, ce-purchase, 2wiki-structured, or controlled-diagnostic."
+    },
+    "schema_version": {"type": "string"},
+    "allowed_tiers": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "description": "Visibility tiers accepted by this menu."
+    },
+    "default_cost_menu": {
+      "type": "string",
+      "description": "Default declared cost-menu id for official scoring."
+    },
+    "accepted_cost_menus": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Additional declared cost-menu ids accepted by the validator for rescoring profiles."
+    },
+    "secondary_cost_menus": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Paths to non-default cost-menu files that reuse this view menu."
+    },
+    "primary_metric": {"type": "string"},
+    "secondary_metrics": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "public_dev_visible_fields": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "description": {"type": "string"},
+    "views": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["view_id", "tier", "cost_key", "scorer_id", "visible_fields", "paid_fields", "forbidden_before_purchase"],
+        "properties": {
+          "view_id": {"type": "string"},
+          "tier": {"type": "string", "enum": ["B0", "B1", "B2", "paid"]},
+          "visible_fields": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Fields visible before this view is bought."
+          },
+          "paid_fields": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Fields materialized only when this view is bought."
+          },
+          "forbidden_before_purchase": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Evaluator-only fields that fail validation if present before purchase."
+          },
+          "cost_key": {"type": "string"},
+          "scorer_id": {"type": "string"},
+          "parents": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Declared dependency views for cumulative-cost profiles."
+          },
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "hidden_evaluator_fields": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Canonical slice-level evaluator-held fields. These fields must not appear in submissions unless a slice explicitly declares a paid materialization rule."
+    },
+    "evaluator_only_fields": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Backward-compatible alias for hidden_evaluator_fields."
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,107 @@
+{
+  "audit": "docred_evidence_access",
+  "status": "optional_repository_record",
+  "purpose": "Exact-qrel evidence-sentence access audit for a RAG-style DocRED setting.",
+  "config": {
+    "max_queries": 30000,
+    "topk": 5,
+    "pq_dim": 64,
+    "lambda_cost": 0.08,
+    "cost_summary": 0.0,
+    "cost_pq": 0.2,
+    "cost_full": 0.58,
+    "random_state": 20260525,
+    "batch_size": 128,
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "sources": [
+    {
+      "split": "train",
+      "source": "文本数据集/知识图谱/DocRED文档级关系抽取数据集基于维基百科/DocRED-20221017T064209Z-001/DocRED/train_annotated.json"
+    },
+    {
+      "split": "dev",
+      "source": "文本数据集/知识图谱/DocRED文档级关系抽取数据集基于维基百科/DocRED-20221017T064209Z-001/DocRED/dev.json"
+    },
+    {
+      "split": "relations",
+      "source": "文本数据集/知识图谱/DocRED文档级关系抽取数据集基于维基百科/DocRED-20221017T064209Z-001/DocRED/rel_info.json"
+    }
+  ],
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "queries": 30000,
+  "unique_candidate_sentences": 32313,
+  "candidate_sentence_median": 8.0,
+  "candidate_sentence_p90": 12.0,
+  "rows": [
+    {
+      "view": "summary",
+      "NDCG@5": 0.9408517022185658,
+      "utility": 0.9408517022185658,
+      "regret": 0.023738311329560356,
+      "hit@5": 0.9974333333333333,
+      "cost": 0.0,
+      "mean_us": 2.2347700015416194
+    },
+    {
+      "view": "pq_dense",
+      "NDCG@5": 0.8286306783789351,
+      "utility": 0.8126306783789352,
+      "regret": 0.15195933516919094,
+      "hit@5": 0.9854,
+      "cost": 0.2,
+      "mean_us": 3.7144799972035494
+    },
+    {
+      "view": "full_dense",
+      "NDCG@5": 0.8607565999398288,
+      "utility": 0.8143565999398287,
+      "regret": 0.15023341360829737,
+      "hit@5": 0.9909666666666667,
+      "cost": 0.58,
+      "mean_us": 4.403436667447143
+    }
+  ],
+  "scope_rows": [
+    {
+      "scope": "all",
+      "queries": 30000,
+      "summary_ndcg": 0.9408517022185658,
+      "pq_ndcg": 0.8286306783789351,
+      "full_ndcg": 0.8607565999398288,
+      "best": "summary",
+      "non_full_best": 0.9666
+    },
+    {
+      "scope": "summary_imperfect",
+      "queries": 6761,
+      "summary_ndcg": 0.7375463787245929,
+      "pq_ndcg": 0.7312647274500073,
+      "full_ndcg": 0.7655582786138213,
+      "best": "summary",
+      "non_full_best": 0.8517970714391362
+    },
+    {
+      "scope": "summary_hard",
+      "queries": 418,
+      "summary_ndcg": 0.3189659100318947,
+      "pq_ndcg": 0.579060649521169,
+      "full_ndcg": 0.6070311332654653,
+      "best": "pq_dense",
+      "non_full_best": 0.7200956937799043
+    }
+  ],
+  "best_view_share": {
+    "summary": 0.8878333333333334,
+    "pq_dense": 0.07876666666666667,
+    "full_dense": 0.0334
+  },
+  "non_full_best_share": 0.9666,
+  "pq_dominates_full_precost_share": 0.7367,
+  "lambda_star": {
+    "summary_to_pq": -0.5611051191981536,
+    "pq_to_full": 0.08454189884445702
+  },
+  "elapsed_seconds": 125.74546027183533,
+  "reading": "DocRED evidence retrieval supplies exact evidence-sentence qrels. Cheap entity/co-mention evidence is often enough, while dense sentence evidence is a targeted escalation view for the residual hard subset."
+}

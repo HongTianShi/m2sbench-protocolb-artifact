@@ -1,0 +1,159 @@
+{
+  "task": "standard_ir_access_audit",
+  "dataset": "beir/scifact/test",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "faiss_gpus": 1,
+  "documents": 5183,
+  "queries": 300,
+  "qrel_pairs": 339,
+  "nlist": 256,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "nprobe": 32,
+  "lambda": 0.08,
+  "views": {
+    "summary": {
+      "ndcg@5": 0.11209597438573837,
+      "hit@5": 0.19333333333333333,
+      "recall@5": 0.17644444444444443,
+      "ndcg@10": 0.14379170536994934,
+      "hit@10": 0.2866666666666667,
+      "recall@10": 0.2723888888888889,
+      "cost": 0.0,
+      "utility@10": 0.14379170536994934,
+      "mean_us_per_query": 98.21420999998054
+    },
+    "pq": {
+      "ndcg@5": 0.5278066992759705,
+      "hit@5": 0.65,
+      "recall@5": 0.6340555555555555,
+      "ndcg@10": 0.5539199709892273,
+      "hit@10": 0.7166666666666667,
+      "recall@10": 0.7098888888888889,
+      "cost": 0.2,
+      "utility@10": 0.5379199709892273,
+      "mean_us_per_query": 116.69367999999736
+    },
+    "full": {
+      "ndcg@5": 0.6292831301689148,
+      "hit@5": 0.7533333333333333,
+      "recall@5": 0.7379444444444444,
+      "ndcg@10": 0.6450816988945007,
+      "hit@10": 0.7933333333333333,
+      "recall@10": 0.7833333333333333,
+      "cost": 0.58,
+      "utility@10": 0.5986816988945007,
+      "mean_us_per_query": 2.549543333335199
+    }
+  },
+  "diagnostics": {
+    "non_full_best_share": 0.7166666666666667,
+    "pq_dominates_full_precost_share": 0.7033333333333334,
+    "summary_best_share": 0.24666666666666667,
+    "pq_best_share": 0.47,
+    "full_best_share": 0.2833333333333333,
+    "lambda_star_summary_to_pq": 2.0506413280963898,
+    "lambda_star_pq_to_full": 0.23989928396124588,
+    "bootstrap_ci": {
+      "non_full_best_share": {
+        "mean": 0.7166666388511658,
+        "lo": 0.6666666865348816,
+        "hi": 0.7699999809265137
+      },
+      "pq_dominates_full_precost_share": {
+        "mean": 0.70333331823349,
+        "lo": 0.653333306312561,
+        "hi": 0.7566666603088379
+      }
+    }
+  },
+  "heldout_fixed_views": {
+    "summary": {
+      "test_queries": 120,
+      "ndcg@10": 0.11430490761995316,
+      "cost": 0.0,
+      "utility@10": 0.11430490761995316,
+      "regret": 0.5355448126792908
+    },
+    "pq": {
+      "test_queries": 120,
+      "ndcg@10": 0.561984658241272,
+      "cost": 0.2,
+      "utility@10": 0.5459846258163452,
+      "regret": 0.1038651168346405
+    },
+    "full": {
+      "test_queries": 120,
+      "ndcg@10": 0.6374098062515259,
+      "cost": 0.58,
+      "utility@10": 0.591009795665741,
+      "regret": 0.05883997306227684
+    }
+  },
+  "routers": {
+    "summary_qpp_b0": {
+      "test_queries": 120,
+      "ndcg@10": 0.635081946849823,
+      "cost": 0.5451666712760925,
+      "utility@10": 0.5914685726165771,
+      "regret": 0.05838114395737648,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.09166666666666666,
+        "full": 0.9083333333333333
+      }
+    },
+    "query_summary_rf_b0": {
+      "test_queries": 120,
+      "ndcg@10": 0.6291363835334778,
+      "cost": 0.4976666271686554,
+      "utility@10": 0.5893230438232422,
+      "regret": 0.060526683926582336,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.21666666666666667,
+        "full": 0.7833333333333333
+      },
+      "model": "random_forest_qpp"
+    },
+    "summary_pq_qpp_b1": {
+      "test_queries": 120,
+      "ndcg@10": 0.6414531469345093,
+      "cost": 0.5039999485015869,
+      "utility@10": 0.6011331081390381,
+      "regret": 0.048716600984334946,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.2,
+        "full": 0.8
+      }
+    },
+    "query_summary_pq_rf_b1": {
+      "test_queries": 120,
+      "ndcg@10": 0.626157820224762,
+      "cost": 0.45649996399879456,
+      "utility@10": 0.5896377563476562,
+      "regret": 0.06021193042397499,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.325,
+        "full": 0.675
+      },
+      "model": "random_forest_qpp"
+    },
+    "selective_rerank_cascade_b1": {
+      "train_utility@10": 0.5936818718910217,
+      "test_queries": 120,
+      "ndcg@10": 0.5469294190406799,
+      "cost": 0.33016666769981384,
+      "utility@10": 0.5205160975456238,
+      "regret": 0.12933366000652313,
+      "choices": {
+        "summary": 0.125,
+        "pq": 0.4666666666666667,
+        "full": 0.4083333333333333
+      },
+      "rule": "summary if range ge 0.3233; else PQ if range ge 0.08814; else full"
+    }
+  }
+}

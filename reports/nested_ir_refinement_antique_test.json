@@ -1,0 +1,77 @@
+{
+  "task": "nested_ir_refinement_audit",
+  "dataset": "antique/test",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "faiss_gpus": 1,
+  "documents": 403666,
+  "queries": 200,
+  "qrel_pairs": 6589,
+  "nlist": 2048,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "lambda": 0.08,
+  "candidate_generation": {
+    "view": "full_flat",
+    "candidate_k": 200,
+    "mean_us_per_query": 228.80016499996714
+  },
+  "views": {
+    "summary": {
+      "ndcg@5": 0.12888818979263306,
+      "hit@5": 0.535,
+      "recall@5": 0.022251900812494306,
+      "ndcg@10": 0.10690271109342575,
+      "hit@10": 0.61,
+      "recall@10": 0.030087142157362978,
+      "cost": 0.0,
+      "utility@10": 0.10690271109342575,
+      "mean_us_per_query": 377.90519499999675
+    },
+    "pq": {
+      "ndcg@5": 0.3471607267856598,
+      "hit@5": 0.895,
+      "recall@5": 0.07789118358245091,
+      "ndcg@10": 0.31848692893981934,
+      "hit@10": 0.925,
+      "recall@10": 0.1163473581480614,
+      "cost": 0.2,
+      "utility@10": 0.3024869289398193,
+      "mean_us_per_query": 55.78291999995599
+    },
+    "full": {
+      "ndcg@5": 0.42797961831092834,
+      "hit@5": 0.93,
+      "recall@5": 0.09510071035318564,
+      "ndcg@10": 0.3993489444255829,
+      "hit@10": 0.955,
+      "recall@10": 0.14756028920806288,
+      "cost": 0.58,
+      "utility@10": 0.3529489444255829,
+      "mean_us_per_query": 47.231560000042805
+    }
+  },
+  "diagnostics": {
+    "candidate_pool": "full_flat_topk_fixed_for_all_views",
+    "candidate_k": 200,
+    "non_full_best_share": 0.435,
+    "summary_best_share": 0.11,
+    "pq_best_share": 0.325,
+    "full_best_share": 0.565,
+    "pq_beats_full_precost_share": 0.255,
+    "summary_beats_full_precost_share": 0.09,
+    "lambda_star_summary_to_pq": 1.057921089231968,
+    "lambda_star_pq_to_full": 0.2127947775941146,
+    "bootstrap_ci": {
+      "non_full_best_share": {
+        "mean": 0.4350000023841858,
+        "lo": 0.3700000047683716,
+        "hi": 0.5
+      },
+      "pq_beats_full_precost_share": {
+        "mean": 0.2549999952316284,
+        "lo": 0.19499999284744263,
+        "hi": 0.3149999976158142
+      }
+    }
+  }
+}

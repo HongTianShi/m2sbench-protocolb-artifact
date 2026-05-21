@@ -1,0 +1,760 @@
+{
+  "task": "2wiki_structured_evidence_access",
+  "dataset": "voidful/2wikimultihopqa",
+  "n_rows": 100,
+  "split_sizes": {
+    "train": 60,
+    "dev": 20,
+    "test": 20
+  },
+  "lambda_cost": 0.08,
+  "topk": 4,
+  "view_costs": {
+    "summary": 0.0,
+    "one_hop": 0.16,
+    "two_hop": 0.26,
+    "full_context": 0.55,
+    "ce": 0.95
+  },
+  "views": {
+    "summary": "title/entity sketch from question and candidate titles",
+    "one_hop": "paid hyperlink edges among candidate titles",
+    "two_hop": "paid two-hop hyperlink paths among candidate titles",
+    "full_context": "paid full context paragraphs",
+    "ce": "paid cross-encoder rerank over context paragraphs"
+  },
+  "qrels": "Evaluator-held 2Wiki supporting_facts and evidence triples; primary score is support-title NDCG@k.",
+  "policy_rows": [
+    {
+      "policy": "fixed_summary",
+      "utility": 0.7684845286387725,
+      "raw_ndcg": 0.7684845286387725,
+      "recall": 0.7,
+      "mrr": 1.0,
+      "cost": 0.0,
+      "regret": 0.17644705152584889,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 1.0
+      },
+      "gap_closed": -2.5148250183910763,
+      "diff_vs_best_fixed": -0.12624624477086055
+    },
+    {
+      "policy": "fixed_one_hop",
+      "utility": 0.8904156539725966,
+      "raw_ndcg": 0.9032156539725966,
+      "recall": 0.9375,
+      "mrr": 0.9166666666666666,
+      "cost": 0.16000000000000003,
+      "regret": 0.05451592619202472,
+      "ce_buy": 0.0,
+      "view_share": {
+        "one_hop": 1.0
+      },
+      "gap_closed": -0.08595717312068203,
+      "diff_vs_best_fixed": -0.004315119437036441
+    },
+    {
+      "policy": "fixed_two_hop",
+      "utility": 0.894730773409633,
+      "raw_ndcg": 0.9155307734096331,
+      "recall": 0.95,
+      "mrr": 0.9166666666666666,
+      "cost": 0.25999999999999995,
+      "regret": 0.050200806754988225,
+      "ce_buy": 0.0,
+      "view_share": {
+        "two_hop": 1.0
+      },
+      "gap_closed": 0.0,
+      "diff_vs_best_fixed": 0.0
+    },
+    {
+      "policy": "fixed_full_context",
+      "utility": 0.6015923459315238,
+      "raw_ndcg": 0.6455923459315238,
+      "recall": 0.65,
+      "mrr": 0.8291666666666666,
+      "cost": 0.5500000000000002,
+      "regret": 0.34333923423309753,
+      "ce_buy": 0.0,
+      "view_share": {
+        "full_context": 1.0
+      },
+      "gap_closed": -5.83931706334541,
+      "diff_vs_best_fixed": -0.29313842747810925
+    },
+    {
+      "policy": "fixed_ce",
+      "utility": 0.5695923459315237,
+      "raw_ndcg": 0.6455923459315238,
+      "recall": 0.65,
+      "mrr": 0.8291666666666666,
+      "cost": 0.9499999999999998,
+      "regret": 0.37533923423309756,
+      "ce_buy": 1.0,
+      "view_share": {
+        "ce": 1.0
+      },
+      "gap_closed": -6.47675701836805,
+      "diff_vs_best_fixed": -0.3251384274781093
+    },
+    {
+      "policy": "structured_gate",
+      "utility": 0.7716133992033156,
+      "raw_ndcg": 0.7780933992033157,
+      "recall": 0.725,
+      "mrr": 0.975,
+      "cost": 0.081,
+      "regret": 0.17331818096130572,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.8,
+        "two_hop": 0.1,
+        "full_context": 0.1
+      },
+      "thresholds": [
+        0.8,
+        0.05,
+        -0.5
+      ],
+      "dev_utility": 0.7804772624951164,
+      "gap_closed": -2.4524979211431375,
+      "diff_vs_best_fixed": -0.12311737420631741
+    },
+    {
+      "policy": "et_B1_path",
+      "utility": 0.9252029003454847,
+      "raw_ndcg": 0.9364029003454848,
+      "recall": 0.95,
+      "mrr": 0.975,
+      "cost": 0.14,
+      "regret": 0.01972867981913647,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.25,
+        "one_hop": 0.55,
+        "two_hop": 0.2
+      },
+      "dev_utility": 0.8579702958767536,
+      "feature_tier": "B1_path",
+      "routes": [
+        "summary",
+        "two_hop",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "one_hop",
+        "two_hop",
+        "two_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "two_hop",
+        "one_hop",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "summary"
+      ],
+      "gap_closed": 0.6070047257322948,
+      "diff_vs_best_fixed": 0.030472126935851662
+    },
+    {
+      "policy": "oracle_route",
+      "utility": 0.9449315801646214,
+      "raw_ndcg": 0.9517315801646212,
+      "recall": 0.95,
+      "mrr": 1.0,
+      "cost": 0.08499999999999999,
+      "regret": 0.0,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.5,
+        "one_hop": 0.45,
+        "two_hop": 0.05
+      },
+      "gap_closed": 1.0,
+      "diff_vs_best_fixed": 0.05020080675498839
+    }
+  ],
+  "best_fixed": "fixed_two_hop",
+  "feature_tier_rows": [
+    {
+      "policy": "hgb_B0_title",
+      "utility": 0.9195629003454849,
+      "raw_ndcg": 0.9364029003454848,
+      "recall": 0.95,
+      "mrr": 0.975,
+      "cost": 0.2105,
+      "regret": 0.025368679819136476,
+      "ce_buy": 0.05,
+      "view_share": {
+        "summary": 0.15,
+        "one_hop": 0.45,
+        "two_hop": 0.35,
+        "ce": 0.05
+      },
+      "dev_utility": 0.8124681612981712,
+      "feature_tier": "B0_title",
+      "routes": [
+        "summary",
+        "one_hop",
+        "one_hop",
+        "summary",
+        "two_hop",
+        "one_hop",
+        "two_hop",
+        "two_hop",
+        "two_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "two_hop",
+        "two_hop",
+        "two_hop",
+        "ce",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "one_hop"
+      ],
+      "diff_vs_best_fixed": 0.024832126935851906,
+      "gap_closed": 0.4946559336595595
+    },
+    {
+      "policy": "et_B1_entity",
+      "utility": 0.8972163769211893,
+      "raw_ndcg": 0.9098563769211891,
+      "recall": 0.925,
+      "mrr": 0.95,
+      "cost": 0.158,
+      "regret": 0.04771520324343213,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.2,
+        "one_hop": 0.5,
+        "two_hop": 0.3
+      },
+      "dev_utility": 0.8160821218407619,
+      "feature_tier": "B1_entity",
+      "routes": [
+        "summary",
+        "one_hop",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "two_hop",
+        "two_hop",
+        "summary",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "two_hop",
+        "two_hop",
+        "one_hop",
+        "one_hop",
+        "two_hop",
+        "summary",
+        "one_hop",
+        "two_hop"
+      ],
+      "diff_vs_best_fixed": 0.0024856035115562447,
+      "gap_closed": 0.04951321845657895
+    },
+    {
+      "policy": "rf_B1_graph",
+      "utility": 0.8794492771590408,
+      "raw_ndcg": 0.8948092771590407,
+      "recall": 0.9125,
+      "mrr": 0.9375,
+      "cost": 0.19200000000000003,
+      "regret": 0.0654823030055806,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.2,
+        "one_hop": 0.45,
+        "two_hop": 0.25,
+        "full_context": 0.1
+      },
+      "dev_utility": 0.8303568411173078,
+      "feature_tier": "B1_graph",
+      "routes": [
+        "summary",
+        "one_hop",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "two_hop",
+        "two_hop",
+        "two_hop",
+        "summary",
+        "one_hop",
+        "full_context",
+        "one_hop",
+        "two_hop",
+        "one_hop",
+        "one_hop",
+        "full_context",
+        "two_hop",
+        "summary",
+        "one_hop",
+        "one_hop"
+      ],
+      "diff_vs_best_fixed": -0.015281496250592275,
+      "gap_closed": -0.30440738383300525
+    },
+    {
+      "policy": "et_B1_path",
+      "utility": 0.9252029003454847,
+      "raw_ndcg": 0.9364029003454848,
+      "recall": 0.95,
+      "mrr": 0.975,
+      "cost": 0.14,
+      "regret": 0.01972867981913647,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.25,
+        "one_hop": 0.55,
+        "two_hop": 0.2
+      },
+      "dev_utility": 0.8579702958767536,
+      "feature_tier": "B1_path",
+      "routes": [
+        "summary",
+        "two_hop",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "one_hop",
+        "two_hop",
+        "two_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "two_hop",
+        "one_hop",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "summary"
+      ],
+      "gap_closed": 0.6070047257322948,
+      "diff_vs_best_fixed": 0.030472126935851662
+    },
+    {
+      "policy": "et_B1_context",
+      "utility": 0.8719741577220042,
+      "raw_ndcg": 0.8824941577220041,
+      "recall": 0.9,
+      "mrr": 0.9375,
+      "cost": 0.1315,
+      "regret": 0.07295742244261709,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.3,
+        "one_hop": 0.65,
+        "full_context": 0.05
+      },
+      "dev_utility": 0.8480955766002077,
+      "feature_tier": "B1_context",
+      "routes": [
+        "summary",
+        "one_hop",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "one_hop",
+        "full_context",
+        "one_hop",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "summary",
+        "one_hop",
+        "summary"
+      ],
+      "diff_vs_best_fixed": -0.02275661568762888,
+      "gap_closed": -0.45331175251217615
+    }
+  ],
+  "control_rows": [
+    {
+      "control": "title_only",
+      "utility": 0.7684845286387725,
+      "raw_ndcg": 0.7684845286387725,
+      "support_recall": 0.7,
+      "support_f1": 0.5166666666666667,
+      "triple_endpoint_f1": 0.36097402597402606,
+      "cost": 0.0,
+      "regret": 0.17644705152584889,
+      "diff_vs_best_control": -0.12624624477086055
+    },
+    {
+      "control": "real_1hop",
+      "utility": 0.8904156539725966,
+      "raw_ndcg": 0.9032156539725966,
+      "support_recall": 0.9375,
+      "support_f1": 0.7041666666666665,
+      "triple_endpoint_f1": 0.5148701298701299,
+      "cost": 0.16,
+      "regret": 0.05451592619202472,
+      "diff_vs_best_control": -0.004315119437036441
+    },
+    {
+      "control": "real_2hop",
+      "utility": 0.894730773409633,
+      "raw_ndcg": 0.9155307734096331,
+      "support_recall": 0.95,
+      "support_f1": 0.7166666666666666,
+      "triple_endpoint_f1": 0.5248701298701299,
+      "cost": 0.26,
+      "regret": 0.050200806754988225,
+      "diff_vs_best_control": 0.0
+    },
+    {
+      "control": "shuffled_1hop",
+      "utility": 0.7360276812176509,
+      "raw_ndcg": 0.7488276812176511,
+      "support_recall": 0.725,
+      "support_f1": 0.5333333333333333,
+      "triple_endpoint_f1": 0.3752597402597403,
+      "cost": 0.16,
+      "regret": 0.2089038989469702,
+      "diff_vs_best_control": -0.1587030921919821
+    },
+    {
+      "control": "degree_random_1hop",
+      "utility": 0.7159795923044119,
+      "raw_ndcg": 0.728779592304412,
+      "support_recall": 0.725,
+      "support_f1": 0.5416666666666667,
+      "triple_endpoint_f1": 0.3800649350649351,
+      "cost": 0.16,
+      "regret": 0.22895198786020932,
+      "diff_vs_best_control": -0.17875118110522115
+    },
+    {
+      "control": "random_2hop",
+      "utility": 0.7435994238774137,
+      "raw_ndcg": 0.7643994238774138,
+      "support_recall": 0.7625,
+      "support_f1": 0.5624999999999999,
+      "triple_endpoint_f1": 0.4004545454545455,
+      "cost": 0.26,
+      "regret": 0.20133215628720755,
+      "diff_vs_best_control": -0.1511313495322193
+    },
+    {
+      "control": "full_context",
+      "utility": 0.6015923459315238,
+      "raw_ndcg": 0.6455923459315238,
+      "support_recall": 0.65,
+      "support_f1": 0.4833333333333333,
+      "triple_endpoint_f1": 0.34938311688311685,
+      "cost": 0.55,
+      "regret": 0.34333923423309753,
+      "diff_vs_best_control": -0.29313842747810925
+    },
+    {
+      "control": "ce",
+      "utility": 0.5695923459315237,
+      "raw_ndcg": 0.6455923459315238,
+      "support_recall": 0.65,
+      "support_f1": 0.4833333333333333,
+      "triple_endpoint_f1": 0.34938311688311685,
+      "cost": 0.95,
+      "regret": 0.37533923423309756,
+      "diff_vs_best_control": -0.3251384274781093
+    }
+  ],
+  "type_rows": [
+    {
+      "type": "bridge_comparison",
+      "n": 6,
+      "best_fixed": "two_hop",
+      "fixed_utility": 0.7754912477131692,
+      "adaptive_utility": 0.8546650041660083,
+      "oracle_utility": 0.8559983374993417,
+      "gain": 0.07917375645283908,
+      "oracle_gap": 0.08050708978617249
+    },
+    {
+      "type": "comparison",
+      "n": 6,
+      "best_fixed": "summary",
+      "fixed_utility": 1.0,
+      "adaptive_utility": 0.9425044006028784,
+      "oracle_utility": 1.0,
+      "gain": -0.057495599397121566,
+      "oracle_gap": 0.0
+    },
+    {
+      "type": "compositional",
+      "n": 8,
+      "best_fixed": "one_hop",
+      "fixed_utility": 0.9671301972870469,
+      "adaptive_utility": 0.9651301972870469,
+      "oracle_utility": 0.9703301972870468,
+      "gain": -0.0020000000000000018,
+      "oracle_gap": 0.0031999999999999806
+    }
+  ],
+  "oracle_view_share": {
+    "one_hop": 0.45,
+    "summary": 0.5,
+    "two_hop": 0.05
+  },
+  "fixed_bootstrap_diffs": {
+    "summary_minus_fixed_two_hop": [
+      -0.1262462447708606,
+      -0.24148508842003505,
+      -0.025344023028055256
+    ],
+    "one_hop_minus_fixed_two_hop": [
+      -0.004315119437036491,
+      -0.028945358311109486,
+      0.008000000000000007
+    ],
+    "two_hop_minus_fixed_two_hop": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "full_context_minus_fixed_two_hop": [
+      -0.29313842747810936,
+      -0.4314728446442379,
+      -0.14687803440586666
+    ],
+    "ce_minus_fixed_two_hop": [
+      -0.3251384274781093,
+      -0.4634728446442378,
+      -0.1788780344058666
+    ]
+  },
+  "repeat_summary": {
+    "mean_learned_minus_best_fixed": 0.018768679819136658,
+    "ci95": [
+      0.018768679819136658,
+      0.018768679819136658
+    ],
+    "positive_share": 1.0,
+    "selected_learners": {
+      "ridge_B1_path": 1
+    },
+    "selected_tiers": {
+      "B1_path": 1
+    }
+  },
+  "hard_bucket_rows": [
+    {
+      "bucket": "low title margin",
+      "share": 0.35,
+      "ce_worth_share": 0.0,
+      "oracle_regret_fixed_best": 0.05613908519753276,
+      "summary_ndcg": 0.7817260207456106,
+      "two_hop_ndcg": 0.9562037719453244,
+      "ce_ndcg": 0.811417275994257
+    },
+    {
+      "bucket": "high graph density",
+      "share": 0.5,
+      "ce_worth_share": 0.0,
+      "oracle_regret_fixed_best": 0.08344161350997643,
+      "summary_ndcg": 0.6530248994479073,
+      "two_hop_ndcg": 0.8390894679044475,
+      "ce_ndcg": 0.5968895639465134
+    },
+    {
+      "bucket": "high full-context entropy",
+      "share": 0.35,
+      "ce_worth_share": 0.0,
+      "oracle_regret_fixed_best": 0.07969303680487157,
+      "summary_ndcg": 0.774497772932424,
+      "two_hop_ndcg": 0.8725509040898741,
+      "ce_ndcg": 0.6462244610029391
+    }
+  ],
+  "hyperlink_cache": "not_shipped_in_review_release; regenerated from public 2Wiki hyperlink corpus by scripts/run_2wiki_structured_evidence_audit.py",
+  "examples": [
+    {
+      "id": "13f5ad2c088c11ebbd6fac1f6bf848b6",
+      "question": "Are director of film Move (1970 Film) and director of film M\u00e9diterran\u00e9e (1963 Film) from the same country?",
+      "answer": "no",
+      "support_titles": [
+        "jean-daniel pollet",
+        "move (1970 film)",
+        "m\u00e9diterran\u00e9e (1963 film)",
+        "stuart rosenberg"
+      ],
+      "oracle_view": "one_hop",
+      "view_ndcg": {
+        "summary": 0.6367,
+        "one_hop": 1.0,
+        "two_hop": 1.0,
+        "full_context": 0.8319,
+        "ce": 0.8319
+      },
+      "top_titles": {
+        "summary": [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Move (1970 film)",
+          "Ian Barry (director)",
+          "Brian Johnson (special effects artist)"
+        ],
+        "one_hop": [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Move (1970 film)",
+          "Jean-Daniel Pollet",
+          "Stuart Rosenberg"
+        ],
+        "two_hop": [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Move (1970 film)",
+          "Jean-Daniel Pollet",
+          "Stuart Rosenberg"
+        ],
+        "full_context": [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Move (1970 film)",
+          "Stuart Rosenberg",
+          "Ian Barry (director)"
+        ],
+        "ce": [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Move (1970 film)",
+          "Stuart Rosenberg",
+          "Ian Barry (director)"
+        ]
+      },
+      "evidences": [
+        [
+          "Move (1970 film)",
+          "director",
+          "Stuart Rosenberg"
+        ],
+        [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "director",
+          "Jean-Daniel Pollet"
+        ],
+        [
+          "Stuart Rosenberg",
+          "country of citizenship",
+          "American"
+        ],
+        [
+          "Jean-Daniel Pollet",
+          "country of citizenship",
+          "French"
+        ]
+      ]
+    },
+    {
+      "id": "3057c6c4086111ebbd5dac1f6bf848b6",
+      "question": "Do both films The Falcon (Film) and Valentin The Good have the directors from the same country?",
+      "answer": "no",
+      "support_titles": [
+        "martin fri\u010d",
+        "the falcon (film)",
+        "valentin the good",
+        "vatroslav mimica"
+      ],
+      "oracle_view": "summary",
+      "view_ndcg": {
+        "summary": 0.6367,
+        "one_hop": 0.3633,
+        "two_hop": 0.3633,
+        "full_context": 0.5856,
+        "ce": 0.5856
+      },
+      "top_titles": {
+        "summary": [
+          "Valentin the Good",
+          "The Falcon (film)",
+          "The Falcon and the Co-eds",
+          "The Falcon Out West"
+        ],
+        "one_hop": [
+          "The Falcon's Adventure",
+          "The Falcon's Alibi",
+          "Valentin the Good",
+          "Martin Fri\u010d"
+        ],
+        "two_hop": [
+          "The Falcon's Adventure",
+          "The Falcon's Alibi",
+          "Valentin the Good",
+          "Martin Fri\u010d"
+        ],
+        "full_context": [
+          "Valentin the Good",
+          "The Falcon and the Co-eds",
+          "Vatroslav Mimica",
+          "The Falcon Out West"
+        ],
+        "ce": [
+          "Valentin the Good",
+          "The Falcon and the Co-eds",
+          "Vatroslav Mimica",
+          "The Falcon Out West"
+        ]
+      },
+      "evidences": [
+        [
+          "The Falcon (film)",
+          "director",
+          "Vatroslav Mimica"
+        ],
+        [
+          "Valentin the Good",
+          "director",
+          "Martin Fri\u010d"
+        ],
+        [
+          "Vatroslav Mimica",
+          "country of citizenship",
+          "Croatian"
+        ],
+        [
+          "Vatroslav Mimica",
+          "country of citizenship",
+          "Yugoslavia"
+        ],
+        [
+          "Martin Fri\u010d",
+          "country of citizenship",
+          "Czech"
+        ]
+      ]
+    }
+  ],
+  "config": {
+    "max_rows": 100,
+    "topk": 4,
+    "lambda_cost": 0.08,
+    "seed": 20260517,
+    "repeats": 1,
+    "hf_cache": "<HF_DATASETS_CACHE>",
+    "hyperlink_corpus": "<local-data-root>/2WikiMultiHopQA/para_with_hyperlink/para_with_hyperlink.jsonl",
+    "ce_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "ce_batch_size": 64,
+    "max_doc_chars": 1800,
+    "no_ce": true,
+    "example_rows": 2
+  }
+}

@@ -1,0 +1,5 @@
+model_class,status,norm_cd,iou,violation
+Context prior + transf. flow + proj.,Contextual budget pilot,0.2667250536885955,0.12252292118217742,0.0
+Transformer flow + proj.,Existing zero-prior/projection comparison,0.2673836740656187,0.1180336048734557,0.0
+Conditional flow + proj.,Existing zero-prior/projection comparison,0.2979792354104126,0.1287650970892174,0.0
+Gaussian + projection,Existing zero-prior/projection comparison,0.3110172323900143,0.1191413894379561,0.0

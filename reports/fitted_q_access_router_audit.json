@@ -1,0 +1,11 @@
+{
+  "synthetic_fitted_q_utility": 0.6865824561403508,
+  "synthetic_best_fixed_utility": 0.5676350877192982,
+  "ivf_fitted_q_b0_utility": 0.2656875876073368,
+  "ivf_cluster_log_b1_utility": 0.28365839093049106,
+  "ivf_best_fixed_utility": 0.2713677566160306,
+  "ivf_fitted_q_b0_ndcg": 0.2810154596073368,
+  "ivf_cluster_log_b1_ndcg": 0.2963337189304911,
+  "ivf_best_fixed_ndcg": 0.29674370983763154,
+  "interpretation": "one-step offline RL/contextual-bandit baseline; B0 uses method-visible summary/proxy features, while B1 cluster-log bandit simulates historical query/cache context as an extended summary budget; action chooses a view; reward is cost-adjusted utility"
+}

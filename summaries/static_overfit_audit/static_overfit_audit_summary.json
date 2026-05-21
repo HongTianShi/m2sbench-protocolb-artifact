@@ -1,0 +1,32 @@
+[
+  {
+    "check": "public_320_development_slice",
+    "cells": 320,
+    "finding": "evolutionary-blind has the lowest mean Norm. CD (0.189); top winner share is 0.509."
+  },
+  {
+    "check": "public_320_bootstrap_200",
+    "cells": 320,
+    "finding": "evolutionary-blind has mean rank 1.21; evolutionary-blind appears in the top two with probability 1.000."
+  },
+  {
+    "check": "private_seed_320_offset_1000",
+    "cells": 320,
+    "finding": "Private-seed top method is evolutionary-blind (mean Norm. CD 0.187); public top was evolutionary-blind; top-two set preserved=True."
+  },
+  {
+    "check": "reference_32_same_generator",
+    "cells": 32,
+    "finding": "Reference-slice top method is evolutionary-blind (mean Norm. CD 0.084)."
+  },
+  {
+    "check": "constructor_240_independent_cells",
+    "cells": 240,
+    "finding": "Constructor slice top method is evolutionary-blind (mean Norm. CD 0.271); this is an independent generator stress slice, not the public 320."
+  },
+  {
+    "check": "anti_overfit_contract",
+    "cells": 0,
+    "finding": "Released cells are a public development/review slice; the same generator and evaluator support private seed regeneration with evaluator-only targets."
+  }
+]

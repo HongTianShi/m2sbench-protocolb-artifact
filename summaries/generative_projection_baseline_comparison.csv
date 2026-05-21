@@ -1,0 +1,7 @@
+model_class,status,valid,violation,norm_cd,iou,boundary
+Conditional flow matching + exact projection,Tested modern generative baseline,1.0,0.0,0.29797923541041266,0.1287650970892174,Summary-only rectified flow tests whether a trained modern generator improves the feasible proposal before projection.
+Neural proposal + exact projection,Tested lightweight baseline,1.0,0.0,0.3119572628032207,0.0446497581778694,Existing projection comparison row.
+Gaussian proposal + projection,Tested control,1.0,0.0,0.3110172323900143,0.1191413894379561,Existing projection comparison row.
+FM + exact projection adapter,Tested,1.0,0.0,0.5186663825946473,0.07373918152313799,Projection repairs feasibility but leaves weak structure.
+Evolutionary blind,Search baseline,1.0,0.0,0.18569121904311547,0.2243501663094294,Search-based Protocol B recovery remains stronger on this subset.
+Blind-SA,Search baseline,1.0,0.0,0.1969801379947084,0.22161852297816942,Search-based Protocol B recovery remains stronger on this subset.

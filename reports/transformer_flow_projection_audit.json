@@ -1,0 +1,121 @@
+{
+  "config": {
+    "n_points": 64,
+    "cells_per_phase": 10,
+    "sample_seed": 20260426,
+    "model_seed": 20260520,
+    "epochs": 240,
+    "batch_size": 64,
+    "hidden_dim": 128,
+    "depth": 2,
+    "lr": 0.0007,
+    "weight_decay": 2e-05,
+    "ode_steps": 32,
+    "samples": 8,
+    "noise_jitter": 0.02,
+    "epsilon_mean": 0.01,
+    "epsilon_cov": 0.01,
+    "dense_support_points": 512,
+    "support_pool_size": 512,
+    "device": "auto",
+    "heads": 4,
+    "ff_dim": 256,
+    "dropout": 0.02
+  },
+  "diagnostics": {
+    "device": "cpu",
+    "epochs": 240,
+    "train_seconds": 111.46358840000175,
+    "final_loss": 0.260299015045166,
+    "loss_trace": [
+      0.7388099670410156,
+      0.3591840207576752,
+      0.35336892008781434,
+      0.32076711058616636,
+      0.32755827307701113,
+      0.30881460309028624,
+      0.301952588558197,
+      0.2899171531200409,
+      0.29426843523979185,
+      0.2990829885005951,
+      0.28246335983276366,
+      0.291263484954834,
+      0.29031580686569214,
+      0.2822792947292328,
+      0.2829641431570053,
+      0.28199302554130556,
+      0.27397539019584655,
+      0.2669041186571121,
+      0.27525991201400757,
+      0.2636687636375427,
+      0.260299015045166
+    ],
+    "parameters": 296194
+  },
+  "train_cells": 270,
+  "eval_cells": 50,
+  "visibility": "test-time summary-only: held-out cells expose only released moments and N to the transformer-flow proposal; held-in training targets are supervised labels; held-out hidden targets are used only for scoring",
+  "outputs": {
+    "cells": "summaries\\transformer_flow_probe\\transformer_flow_projection_cells.csv",
+    "results": "summaries\\transformer_flow_probe\\transformer_flow_projection_results.csv",
+    "summary": "summaries\\transformer_flow_probe\\transformer_flow_projection_summary.csv",
+    "by_phase": "summaries\\transformer_flow_probe\\transformer_flow_projection_by_phase.csv",
+    "comparison": "summaries\\transformer_flow_probe\\transformer_flow_projection_comparison.csv"
+  },
+  "comparison": [
+    {
+      "model_class": "Transformer rectified flow + exact projection",
+      "status": "Sequence-aware constraint-aware audit",
+      "valid": 1.0,
+      "violation": 0.0,
+      "norm_cd": 0.26738367406561875,
+      "iou": 0.11803360487345578,
+      "boundary": "Stronger summary-only rectified-flow vector field followed by exact projection."
+    },
+    {
+      "model_class": "Conditional flow + exact projection",
+      "status": "Existing trained flow",
+      "valid": 1.0,
+      "violation": 0.0,
+      "norm_cd": 0.2979792354104126,
+      "iou": 0.1287650970892174,
+      "boundary": "Existing Table 3 projection/proposal comparison."
+    },
+    {
+      "model_class": "Neural proposal + exact projection",
+      "status": "Existing lightweight baseline",
+      "valid": 1.0,
+      "violation": 0.0,
+      "norm_cd": 0.3119572628032207,
+      "iou": 0.0446497581778694,
+      "boundary": "Existing Table 3 projection/proposal comparison."
+    },
+    {
+      "model_class": "Gaussian proposal + projection",
+      "status": "Existing control",
+      "valid": 1.0,
+      "violation": 0.0,
+      "norm_cd": 0.3110172323900143,
+      "iou": 0.1191413894379561,
+      "boundary": "Existing Table 3 projection/proposal comparison."
+    },
+    {
+      "model_class": "Evolutionary blind",
+      "status": "Search baseline",
+      "valid": 1.0,
+      "violation": 0.0,
+      "norm_cd": 0.18569121904311547,
+      "iou": 0.2243501663094294,
+      "boundary": "Search-based Protocol B recovery remains stronger on this subset."
+    },
+    {
+      "model_class": "Blind-SA",
+      "status": "Search baseline",
+      "valid": 1.0,
+      "violation": 0.0,
+      "norm_cd": 0.1969801379947084,
+      "iou": 0.22161852297816942,
+      "boundary": "Search-based Protocol B recovery remains stronger on this subset."
+    }
+  ]
+}

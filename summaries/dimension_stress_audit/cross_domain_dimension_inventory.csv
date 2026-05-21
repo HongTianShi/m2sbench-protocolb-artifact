@@ -1,0 +1,5 @@
+slice,matched_support,support_dim,raw_or_rich_view_dim,summary_dim,notes
+Synthetic main,point cloud,2,64x64 raster / point set,5,visual controlled cells; extended by high-dimensional audit
+Fashion-MNIST contours,edge-contour point cloud,2,28x28 raw image = 784; occupancy 8x8=64; raster 16x16=256,7,128 contour points; 10 public clothing classes
+UrbanSound8K time-frequency,mel-time point cloud,2,48x249 log-mel grid = 11952; coarse 8x8=64; full 16x16=256,8,128 time-frequency points; 10 public audio classes
+High-dimensional matched-summary audit,ambient embedding point cloud,"2,10,50,128",same ambient point cloud; coarse and higher-order sketches,d + d(d+1)/2 + 1,auxiliary stress audit; all cells whitened to the same mean/covariance summary

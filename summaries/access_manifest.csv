@@ -1,0 +1,12 @@
+sees_canonical_target,sees_dense_support,sees_raster,sees_point_cloud,sees_family_label,method
+False,True,False,False,False,ambiguity-set-sampler
+True,True,True,True,False,anchor-aware-oracle
+True,True,False,True,False,anchor-aware-refiner
+False,True,False,False,False,best-of-k-restart-blind
+False,True,False,False,False,blind-sa
+False,True,False,False,False,entropy-transport-blind
+False,True,False,False,False,evolutionary-blind
+False,True,False,False,False,langevin-blind
+False,True,False,False,False,projected-gradient-blind
+False,True,False,False,True,semi-oracle-blind
+False,True,False,False,False,subset-affine-blind

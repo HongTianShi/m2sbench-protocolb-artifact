@@ -1,0 +1,103 @@
+{
+  "task": "gpu_faiss_docred_evidence_access",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "faiss_gpus": 1,
+  "corpus_sentences": 532313,
+  "queries": 30000,
+  "distractor_sentences_requested": 500000,
+  "qrel_type": "DocRED exact evidence sentence annotations",
+  "nlist": 2048,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "nprobe": 32,
+  "lambda": 0.08,
+  "views": {
+    "summary": {
+      "ndcg@5": 0.0078083822447945605,
+      "hit@5": 0.018166666666666668,
+      "recall@5": 0.010776243386243386,
+      "ndcg@10": 0.010997493610999415,
+      "hit@10": 0.030633333333333332,
+      "recall@10": 0.019431613756613755,
+      "cost": 0.0,
+      "utility@10": 0.010997493610999415,
+      "mean_us_per_query": 2.907376966666675
+    },
+    "pq": {
+      "ndcg@5": 0.4852798133820847,
+      "hit@5": 0.6841666666666667,
+      "recall@5": 0.5678020286195286,
+      "ndcg@10": 0.5142844215716433,
+      "hit@10": 0.7396333333333334,
+      "recall@10": 0.6442054689754689,
+      "cost": 0.2,
+      "utility@10": 0.4982844215716433,
+      "mean_us_per_query": 17.936075566666908
+    },
+    "full": {
+      "ndcg@5": 0.7568285322553232,
+      "hit@5": 0.9354,
+      "recall@5": 0.8601812638287638,
+      "ndcg@10": 0.7860077851604161,
+      "hit@10": 0.9669,
+      "recall@10": 0.9334990488215488,
+      "cost": 0.58,
+      "utility@10": 0.7396077851604161,
+      "mean_us_per_query": 44.31334773333333
+    }
+  },
+  "diagnostics": {
+    "non_full_best_share": 0.3747,
+    "pq_dominates_full_precost_share": 0.3625,
+    "summary_best_share": 0.03376666666666667,
+    "pq_best_share": 0.3409333333333333,
+    "full_best_share": 0.6253,
+    "lambda_star_summary_to_pq": 2.516434639803219,
+    "lambda_star_pq_to_full": 0.7150614831283496
+  },
+  "routers": {
+    "summary_visible_proxy_b0": {
+      "name": "summary-visible proxy router (B0)",
+      "views": [
+        "summary",
+        "pq",
+        "full"
+      ],
+      "train_queries": 20100,
+      "test_queries": 9900,
+      "utility@10": 0.7424980532908529,
+      "ndcg@10": 0.7888949926302891,
+      "cost": 0.5799616161616161,
+      "oracle_utility@10": 0.7731079459190369,
+      "regret@10": 0.030609880933030086,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.00010101010101010101,
+        "full": 0.99989898989899
+      },
+      "fixed_summary_utility@10_on_test": 0.010935249738395214,
+      "fixed_pq_utility@10_on_test": 0.5032837986946106,
+      "fixed_full_utility@10_on_test": 0.7425158619880676
+    },
+    "pq_aware_proxy_b1": {
+      "name": "PQ-aware proxy router (B1)",
+      "views": [
+        "pq",
+        "full"
+      ],
+      "train_queries": 20100,
+      "test_queries": 9900,
+      "utility@10": 0.735442784803007,
+      "ndcg@10": 0.7797485703666402,
+      "cost": 0.5538222222222222,
+      "oracle_utility@10": 0.7686346769332886,
+      "regret@10": 0.033191926337665684,
+      "choice_share": {
+        "pq": 0.06888888888888889,
+        "full": 0.9311111111111111
+      },
+      "fixed_pq_utility@10_on_test": 0.5011536478996277,
+      "fixed_full_utility@10_on_test": 0.7387140989303589
+    }
+  }
+}

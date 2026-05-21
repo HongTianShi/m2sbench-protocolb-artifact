@@ -1,0 +1,2 @@
+row,n,cells,valid,violation,med_v,cov,norm_cd,iou,norm_cd_median,iou_median,scope
+Gaussian + proj.,200,50,1.0,0.0,7.788645173256725e-07,1.2592431535771083e-08,0.3110172323900143,0.1191413894379561,0.3050887629512986,0.11905031892274982,"50 FM-probe cells x 4 deterministic Gaussian proposals, exact moment projection"

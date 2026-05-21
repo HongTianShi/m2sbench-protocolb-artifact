@@ -1,0 +1,34 @@
+{
+  "continuous_fidelity_mean_cost_adjusted_gain": -0.20146861683234113,
+  "continuous_fidelity_mean_raw_gain": -0.15506861683234113,
+  "continuous_fidelity_positive_cost_adjusted_share": 0.003125,
+  "continuous_gain_gap_gt_005_at5": 0.63296875,
+  "geometry_disagree_at5": 0.288125,
+  "lambda": 0.08,
+  "n_cells": 320,
+  "n_pairs_top5": 6400,
+  "pair_source": "summaries\\cikm_batch1_information_access_20260505\\matched_summary_witness_pairs_topk.csv",
+  "phase_counts": {
+    "ambiguity zone": 67,
+    "decision-fragile zone": 56,
+    "effective-collapse zone": 64,
+    "information-limited zone": 15,
+    "optimization-limited zone": 118
+  },
+  "point_cost": 0.58,
+  "routing_disagree_at5": 0.2940625,
+  "synthetic_heldout_utilities": {
+    "family_aware_oracle": 0.924,
+    "moments_only": 0.6666666666666666,
+    "moments_plus_handcrafted": 0.5945666666666666,
+    "moments_plus_pairwise_histogram": 0.57935,
+    "occupancy_grid": 0.7276,
+    "point_cloud": 0.6306833333333334,
+    "raster": 0.5080666666666667
+  },
+  "thresholds": {
+    "bbox_aspect_ratio": 1.5,
+    "hole_proxy": 40.0
+  },
+  "topology_disagree_at5": 0.3053125
+}

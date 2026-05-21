@@ -1,0 +1,1 @@
+{"query_id":"fiqa_q17","cell_id":"fiqa_boundary_004","tier":"B1_score","cost_menu":"dense-semantic-v1-op","ranked_views":["int8","hnsw64","full"],"route":"int8","method":"template_dense_router","diagnostics":{"score_margin":0.14,"entropy_bin":"medium"}}

@@ -1,0 +1,40 @@
+{
+  "parameters": {
+    "sample_csv": "summaries/ivf_pq_rerank_large_adapter/large_ivf_pq_rerank_per_query_sample.csv",
+    "max_rows": 25000,
+    "reps": 2000,
+    "dim": 192,
+    "subvectors": 12,
+    "codewords": 32,
+    "topk": 10,
+    "seed": 20260517
+  },
+  "candidate_count": {
+    "median": 336.0,
+    "p90": 731.0,
+    "max_sampled_for_profile": 1533
+  },
+  "rows": [
+    {
+      "view": "summary_centroid",
+      "median_us": 0.5000001692678779,
+      "ratio_to_pq": 0.020576139080381816,
+      "approx_bytes_at_median_n": 768,
+      "benchmark_cost": 0.0
+    },
+    {
+      "view": "pq_codes",
+      "median_us": 24.29999949526973,
+      "ratio_to_pq": 1.0,
+      "approx_bytes_at_median_n": 28608,
+      "benchmark_cost": 0.2
+    },
+    {
+      "view": "full_vectors",
+      "median_us": 4.100000296602957,
+      "ratio_to_pq": 0.16872429554581136,
+      "approx_bytes_at_median_n": 258048,
+      "benchmark_cost": 0.58
+    }
+  ]
+}

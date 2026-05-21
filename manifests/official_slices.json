@@ -1,0 +1,125 @@
+{
+  "schema_version": "m2sbench-official-slices-v1",
+  "purpose": "Machine-readable status card for official, stress, diagnostic, and portability slices in the anonymous artifact.",
+  "official_metric": "cost_adjusted_regret_under_declared_profile",
+  "slices": [
+    {
+      "slice_id": "dense_semantic_access",
+      "status": "validated_public_dev_core",
+      "view_menu": "menus/dense_semantic.view_menu.json",
+      "cost_menu": "menus/dense_semantic.cost_menu.json",
+      "public_dev_manifest": "public_dev/dense_semantic.manifest.jsonl",
+      "public_dev_reference": "public_dev/evaluator_only/dense_semantic.reference.jsonl",
+      "public_dev_example_submissions": [
+        "submission_template/protocol_b_public_dev_dense_semantic_fixed.jsonl",
+        "submission_template/protocol_b_public_dev_dense_semantic_router.jsonl"
+      ],
+      "public_dev_scorer": "scripts/score_protocol_b_public_dev.py",
+      "canonical_reports": [
+        "reports/protocol_b_standard_qrel_602020_sentence_transformers_all_MiniLM_L6_v2.md",
+        "reports/joint_dense_access_menu_beir_fiqa_test__sentence_transformers_all_MiniLM_L6_v2.md"
+      ],
+      "hidden_fields": [
+        "qrels",
+        "relevance_labels",
+        "unpaid_full_scores",
+        "unpaid_ce_scores",
+        "oracle_view",
+        "view_utilities"
+      ],
+      "claim_boundary": "Dense access is a comparable access-decision stress benchmark with modest legal-router gains, not a retrieval-SOTA claim.",
+      "secondary_cost_menus": [
+        "menus/dense_semantic.C_mem.cost_menu.json",
+        "menus/dense_semantic.C_lat.cost_menu.json"
+      ]
+    },
+    {
+      "slice_id": "2wiki_structured_evidence",
+      "status": "validated_structured_evidence_core",
+      "view_menu": "menus/2wiki_structured.view_menu.json",
+      "cost_menu": "menus/2wiki_structured.cost_menu.json",
+      "public_dev_manifest": "public_dev/2wiki_structured.manifest.jsonl",
+      "public_dev_reference": "public_dev/evaluator_only/2wiki_structured.reference.jsonl",
+      "public_dev_example_submissions": [
+        "submission_template/protocol_b_public_dev_2wiki_structured_fixed.jsonl",
+        "submission_template/protocol_b_public_dev_2wiki_structured_router.jsonl"
+      ],
+      "public_dev_scorer": "scripts/score_protocol_b_public_dev.py",
+      "canonical_reports": [
+        "reports/2wiki_structured_evidence_2000.md"
+      ],
+      "hidden_fields": [
+        "support_facts",
+        "support_titles",
+        "evidence_triples",
+        "answer",
+        "unpaid_ce_scores",
+        "oracle_view",
+        "view_utilities"
+      ],
+      "claim_boundary": "Structured evidence acquisition before answer generation; not an end-to-end RAG or generated-answer benchmark."
+    },
+    {
+      "slice_id": "2wiki_hyperlink_stress",
+      "status": "structured_core_stress_audit",
+      "view_menu": "menus/2wiki_hyperlink.view_menu.json",
+      "cost_menu": "menus/2wiki_hyperlink.cost_menu.json",
+      "public_dev_manifest": "public_dev/2wiki_hyperlink.manifest.jsonl",
+      "public_dev_reference": "public_dev/evaluator_only/2wiki_hyperlink.reference.jsonl",
+      "public_dev_example_submissions": [
+        "submission_template/protocol_b_public_dev_2wiki_hyperlink_fixed.jsonl",
+        "submission_template/protocol_b_public_dev_2wiki_hyperlink_router.jsonl"
+      ],
+      "public_dev_scorer": "scripts/score_protocol_b_public_dev.py",
+      "canonical_reports": [
+        "reports/2wiki_hyperlink_corpus_stress_10000.md",
+        "reports/2wiki_hyperlink_systems_profile_10000.md"
+      ],
+      "consistency_reports": [
+        "reports/2wiki_hyperlink_corpus_stress_5000.md",
+        "reports/2wiki_hyperlink_corpus_stress_2000.md"
+      ],
+      "hidden_fields": [
+        "support_facts",
+        "support_titles",
+        "evidence_triples",
+        "answer",
+        "oracle_view",
+        "view_utilities"
+      ],
+      "claim_boundary": "Query-local hyperlink expansion stress for support-title scoring; not online graph serving, full GraphRAG, or answer-generation latency."
+    },
+    {
+      "slice_id": "ivf_pq_scale_stress",
+      "status": "scale_stress_only",
+      "canonical_reports": [
+        "reports/large_ivf_pq_rerank_adapter_audit.md"
+      ],
+      "hidden_fields": [
+        "label_derived_relevance_bits",
+        "oracle_view",
+        "view_utilities"
+      ],
+      "claim_boundary": "Large-scale stress audit with label-derived evaluator bits; not the public semantic validity anchor."
+    },
+    {
+      "slice_id": "controlled_matched_summary_lab",
+      "status": "mechanism_diagnostic_only",
+      "canonical_reports": [
+        "summaries/static_overfit_audit/README.md",
+        "reports/proxy_diagnostic_routing_audit.md"
+      ],
+      "hidden_fields": [
+        "target_points",
+        "private_seed_targets",
+        "oracle_view",
+        "view_utilities"
+      ],
+      "claim_boundary": "Mechanism explanation for compact-summary ambiguity; not a production retrieval system."
+    }
+  ],
+  "supporting_structured_map": "reports/structured_evidence_check_map.md",
+  "supporting_structured_boundary_note": "HotpotQA and MuSiQue are supporting generalization checks; DocRED, StrategyQA, and FEVER are boundary checks, not official leaderboard cores.",
+  "legal_router_feature_tiers": "docs/legal_router_feature_tiers.md",
+  "cost_profile_changelog": "docs/cost_profile_changelog.md"
+}

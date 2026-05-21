@@ -1,0 +1,5 @@
+access_level,data_acquisition_cost,processing_cost,latency_cost,total_cost,cost_family,used_in_main_text,relative_operation_units,anchor_proxy,normalization
+moments_only,0.0,0.0,0.0,0.0,summary,yes,0,released summary already in memory/index; no extra access,reported cost = relative_operation_units / 100
+occupancy_grid,0.1,0.11,0.07,0.28,grid,yes,28,sparse support lookup plus O(N) coarse binning/aggregation,reported cost = relative_operation_units / 100
+raster,0.16,0.17,0.09,0.42,dense_view,yes,42,dense view decode/rasterization plus grid-level processing,reported cost = relative_operation_units / 100
+point_cloud,0.22,0.23,0.13,0.58,dense_view,yes,58,full support-level materialization plus point/domain-view processing,reported cost = relative_operation_units / 100

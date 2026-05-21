@@ -1,0 +1,88 @@
+{
+  "menu_id": "2wiki-structured-v1",
+  "slice_id": "2wiki_structured_evidence",
+  "schema_version": "protocol-b-route-v1",
+  "allowed_tiers": ["B0", "B1_entity", "B1_graph", "B1_path", "B1_context"],
+  "default_cost_menu": "2wiki-structured-v1-op",
+  "primary_metric": "support_title_ndcg_cost_adjusted_regret",
+  "secondary_metrics": ["support_title_recall", "support_f1", "triple_endpoint_f1", "charged_cost"],
+  "metric_aliases": {"support_fact_f1": "support_f1"},
+  "public_dev_visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "declared_views", "visible_features"],
+  "hidden_evaluator_fields": [
+    "support_facts",
+    "support_titles",
+    "evidence_triples",
+    "answer",
+    "view_scores",
+    "unpaid_ce_scores",
+    "oracle_view",
+    "view_utilities"
+  ],
+  "evaluator_only_fields": [
+    "support_facts",
+    "support_titles",
+    "evidence_triples",
+    "answer",
+    "view_scores",
+    "unpaid_ce_scores",
+    "oracle_view",
+    "view_utilities"
+  ],
+  "views": [
+    {
+      "view_id": "summary",
+      "tier": "B0",
+      "cost_key": "summary",
+      "scorer_id": "2wiki_support_title_ndcg_summary_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "title_entity_sketch", "context_title_count", "declared_view_menu"],
+      "paid_fields": [],
+      "forbidden_before_purchase": ["support_facts", "support_titles", "evidence_triples", "answer", "ce_scores", "oracle_view", "view_utilities"],
+      "parents": [],
+      "description": "Question plus title/entity sketch."
+    },
+    {
+      "view_id": "one_hop",
+      "tier": "paid",
+      "cost_key": "one_hop",
+      "scorer_id": "2wiki_support_title_ndcg_1hop_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "title_entity_sketch", "released_graph_summary"],
+      "paid_fields": ["one_hop_titles", "one_hop_edges", "one_hop_passage_sketches", "one_hop_scores"],
+      "forbidden_before_purchase": ["one_hop_titles", "one_hop_edges", "one_hop_scores", "support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "One-hop hyperlink evidence from released context titles."
+    },
+    {
+      "view_id": "two_hop",
+      "tier": "paid",
+      "cost_key": "two_hop",
+      "scorer_id": "2wiki_support_title_ndcg_2hop_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "title_entity_sketch", "released_path_summary"],
+      "paid_fields": ["two_hop_paths", "two_hop_titles", "two_hop_passage_sketches", "two_hop_scores"],
+      "forbidden_before_purchase": ["two_hop_paths", "two_hop_titles", "two_hop_scores", "support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Capped two-hop path evidence."
+    },
+    {
+      "view_id": "full_context",
+      "tier": "paid",
+      "cost_key": "full_context",
+      "scorer_id": "2wiki_support_title_ndcg_full_context_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "title_entity_sketch", "context_length_sketch"],
+      "paid_fields": ["context_titles", "context_passages", "context_sentence_scores"],
+      "forbidden_before_purchase": ["context_passages", "context_sentence_scores", "support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Dataset-provided context documents."
+    },
+    {
+      "view_id": "ce",
+      "tier": "paid",
+      "cost_key": "ce",
+      "scorer_id": "2wiki_support_title_ndcg_ce_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "title_entity_sketch", "declared_candidate_context"],
+      "paid_fields": ["ce_scores", "ce_ranked_titles", "ce_score_margin"],
+      "forbidden_before_purchase": ["ce_scores", "ce_score", "ce_score_margin", "support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": ["full_context"],
+      "description": "Cross-encoder evidence reranking view."
+    }
+  ]
+}

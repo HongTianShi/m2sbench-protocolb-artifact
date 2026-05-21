@@ -1,0 +1,40 @@
+{
+  "cost_menu": "2wiki-structured-v1-op",
+  "slice_id": "2wiki_structured_evidence",
+  "profile_id": "C_op",
+  "lambda": 0.08,
+  "unit": "versioned_operation_unit",
+  "active_cost_field": "declared_cost",
+  "trace_cost_fields": ["incremental_cost", "cumulative_cost"],
+  "profile_note": "Frozen structured-evidence operation-unit profile. It is not a measured deployment price; see docs/cost_profile_derivation.md.",
+  "source_report": "reports/2wiki_structured_evidence_2000.md",
+  "view_costs": {
+    "summary": {
+      "declared_cost": 0.0,
+      "incremental_cost": 0.0,
+      "cumulative_cost": 0.0
+    },
+    "one_hop": {
+      "declared_cost": 0.16,
+      "incremental_cost": 0.16,
+      "cumulative_cost": 0.16
+    },
+    "two_hop": {
+      "declared_cost": 0.26,
+      "incremental_cost": 0.26,
+      "cumulative_cost": 0.26
+    },
+    "full_context": {
+      "declared_cost": 0.55,
+      "incremental_cost": 0.55,
+      "cumulative_cost": 0.55
+    },
+    "ce": {
+      "declared_cost": 0.95,
+      "incremental_cost": 0.4,
+      "cumulative_cost": 0.95,
+      "parent": "full_context",
+      "accounting_note": "0.40 is the incremental CE-purchase cost after a structured candidate context exists; 0.95 is the cumulative paid-view cost when CE is treated as the richest structured evidence view."
+    }
+  }
+}

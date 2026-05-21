@@ -1,0 +1,1 @@
+{"query_id":"2wiki_q42","cell_id":"2wiki_context_042","tier":"B1_path","cost_menu":"2wiki-structured-v1-op","ranked_views":["one_hop","two_hop","summary"],"route":"one_hop","method":"template_2wiki_structured_router","diagnostics":{"title_margin":0.18,"entity_overlap":2,"path_candidate_count":7}}

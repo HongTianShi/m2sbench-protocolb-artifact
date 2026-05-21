@@ -1,0 +1,155 @@
+{
+  "schema_version": "m2sbench-cost-derivation-v1",
+  "purpose": "Static derivation card for declared Protocol B cost profiles. Values define leaderboard/rescoring profiles, not deployment prices.",
+  "lambda_default": 0.08,
+  "active_cost_field": "declared_cost",
+  "trace_cost_fields": [
+    "incremental_cost",
+    "cumulative_cost"
+  ],
+  "profiles": [
+    {
+      "profile_id": "C_op",
+      "cost_menu": "menus/dense_semantic.cost_menu.json",
+      "unit": "versioned_operation_unit",
+      "normalization": "frozen view-dependency operation ladder",
+      "views": {
+        "summary": {
+          "parents": [],
+          "components": {
+            "released_summary": 0.0
+          },
+          "declared_cost": 0.0
+        },
+        "binary": {
+          "parents": [
+            "summary"
+          ],
+          "components": {
+            "compressed_sign_view": 0.08
+          },
+          "declared_cost": 0.08
+        },
+        "pq": {
+          "parents": [
+            "summary"
+          ],
+          "components": {
+            "ivf_pq_access": 0.2
+          },
+          "declared_cost": 0.2
+        },
+        "int8": {
+          "parents": [
+            "summary"
+          ],
+          "components": {
+            "int8_dense_access": 0.3
+          },
+          "declared_cost": 0.3
+        },
+        "hnsw16": {
+          "parents": [
+            "summary"
+          ],
+          "components": {
+            "shallow_ann_depth": 0.138
+          },
+          "declared_cost": 0.138,
+          "unrounded_source_cost": 0.1375,
+          "scorer_truth": "menus/dense_semantic.cost_menu.json declared_cost=0.138"
+        },
+        "hnsw64": {
+          "parents": [
+            "hnsw16"
+          ],
+          "components": {
+            "additional_ann_depth": 0.112
+          },
+          "declared_cost": 0.25,
+          "unrounded_incremental_source_cost": 0.1125,
+          "scorer_truth": "menus/dense_semantic.cost_menu.json declared_cost=0.25, incremental_cost=0.113"
+        },
+        "full": {
+          "parents": [
+            "summary"
+          ],
+          "components": {
+            "full_dense_materialization": 0.58
+          },
+          "declared_cost": 0.58
+        },
+        "ce": {
+          "parents": [
+            "full"
+          ],
+          "components": {
+            "full_dense_materialization": 0.58,
+            "incremental_ce_purchase": 0.45
+          },
+          "declared_cost": 1.03
+        }
+      }
+    },
+    {
+      "profile_id": "C_mem",
+      "cost_menu": "menus/dense_semantic.C_mem.cost_menu.json",
+      "unit": "normalized_materialization_unit",
+      "source_report": "reports/unified_systems_profile_audit.json",
+      "normalization": "declared_cost is normalized bytes touched plus index/model footprint from the frozen profiler"
+    },
+    {
+      "profile_id": "C_lat",
+      "cost_menu": "menus/dense_semantic.C_lat.cost_menu.json",
+      "unit": "normalized_p95_latency_unit",
+      "source_report": "reports/unified_systems_profile_audit.json",
+      "normalization": "declared_cost is normalized p95 latency from the fixed profiler configuration"
+    },
+    {
+      "profile_id": "2wiki_C_op",
+      "cost_menus": [
+        "menus/2wiki_structured.cost_menu.json",
+        "menus/2wiki_hyperlink.cost_menu.json"
+      ],
+      "unit": "versioned_operation_unit",
+      "normalization": "frozen structured-evidence access ladder; systems/materialization fields are audit metadata only"
+    }
+  ],
+  "ce_accounting": {
+    "incremental_ce_purchase_after_first_stage_pool": 0.45,
+    "cumulative_ce_ladder_view": 1.03,
+    "rule": "CE purchase reports use the incremental accounting context when the first-stage pool already exists; compression/joint ladder reports use the cumulative ladder context declared by their cost menu."
+  },
+  "profiler_metadata": {
+    "environment": "WSL2/Ubuntu",
+    "os": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.10.20",
+    "pytorch": "2.5.1+cu121",
+    "faiss_gpu": "1.11.0",
+    "cuda_runtime": "cu121",
+    "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "cpu": "Intel Core i7-14700HX",
+    "logical_threads": 28,
+    "ram_bytes": 16873545728,
+    "storage_model": "YMTC YMSS2ED08D25MC",
+    "batch_size": 64,
+    "concurrency": 1,
+    "warmup_queries": 5,
+    "timing_reps": 220,
+    "dense_profile_type": "local calibration audit, not deployment-cost truth"
+  },
+  "operation_unit_decision_rules": {
+    "frozen_before_outcome_scoring": true,
+    "unit_definition": "Versioned operation-unit convention for leaderboard scoring, not measured deployment price.",
+    "ordering_constraints": [
+      "summary is released/free",
+      "binary and PQ compressed views are cheaper than dense materialization",
+      "shallow ANN depth is cheaper than deeper ANN/full vector evidence",
+      "CE is richest when treated as a cumulative ladder view",
+      "incremental CE purchase is used only when a first-stage pool already exists"
+    ],
+    "ce_incremental_context": "ce_incremental=0.45 for CE-purchase reports after first-stage pool exists",
+    "ce_cumulative_context": "ce=1.03 in dense semantic ladder/joint-menu cost menu",
+    "rounding_rule": "JSON cost menus are scorer truth. Unrounded source costs are retained only as audit provenance for HNSW rows."
+  }
+}

@@ -1,0 +1,22 @@
+# Optional heavy systems/profile dependencies.
+# The lightweight smoke reproduction uses requirements.txt only.
+#
+# Recommended tested environment:
+#   Python 3.10
+#   PyTorch 2.5.1+cu121
+#   FAISS-GPU 1.11.0
+#   RTX 4070 Laptop GPU
+#
+# Install GPU FAISS/PyTorch through conda or the official PyTorch/FAISS
+# channels appropriate for your CUDA platform. The lines below cover the
+# Python-level packages used by systems/profile scripts when the GPU stack is
+# already present.
+numpy
+pandas
+scipy
+scikit-learn
+sentence-transformers
+ir-datasets
+faiss-cpu
+torch
+pytest

@@ -1,0 +1,12 @@
+{
+  "report_family": "CE purchase / reranker-as-paid-view",
+  "active_context": "incremental_ce_purchase_after_first_stage_pool",
+  "active_ce_cost": 0.45,
+  "lambda": 0.08,
+  "dense_ladder_reference_context": {
+    "context": "cumulative_dense_ladder",
+    "ce_cost": 1.03,
+    "cost_menu": "menus/dense_semantic.cost_menu.json"
+  },
+  "interpretation": "CE purchase reports ask when to buy an expensive reranker after a first-stage candidate pool exists. Dense ladder/joint-menu reports charge CE as the cumulative richest text-reranking view."
+}

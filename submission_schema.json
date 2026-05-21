@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2S-Bench Protocol B Submission Row",
+  "type": "object",
+  "required": ["cell_id"],
+  "properties": {
+    "cell_id": {
+      "type": "string",
+      "description": "Opaque public challenge-cell id from challenge_cells.jsonl."
+    },
+    "method": {
+      "type": "string",
+      "description": "Optional method name used for leaderboard grouping."
+    },
+    "points": {
+      "type": "array",
+      "description": "Optional single candidate point set; use candidates for multiple hypotheses.",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {"type": "number"}
+      }
+    },
+    "candidate": {
+      "type": "array",
+      "description": "Optional single candidate point set used by the adapter-ready demo.",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {"type": "number"}
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "description": "Candidate structures. The evaluator scores candidates[0].points by default.",
+      "items": {
+        "type": "object",
+        "required": ["points"],
+        "properties": {
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {"type": "number"}
+            }
+          },
+          "score": {"type": "number"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "ranked_views": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["moments", "occupancy", "raster", "point"]
+      }
+    },
+    "route": {
+      "type": "string",
+      "enum": ["direct", "abstain", "escalate", "moments", "occupancy", "raster", "point"]
+    },
+    "runtime_s": {
+      "type": "number",
+      "description": "Optional wall-clock runtime in seconds recorded by the adapter runner."
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,127 @@
+{
+  "menu_id": "dense-semantic-v1",
+  "slice_id": "dense_semantic_access",
+  "schema_version": "protocol-b-route-v1",
+  "allowed_tiers": ["B0", "B1_score", "B1_context"],
+  "default_cost_menu": "dense-semantic-v1-op",
+  "accepted_cost_menus": [
+    "dense-semantic-v1-op",
+    "dense-semantic-v1-mem",
+    "dense-semantic-v1-lat"
+  ],
+  "secondary_cost_menus": [
+    "menus/dense_semantic.C_mem.cost_menu.json",
+    "menus/dense_semantic.C_lat.cost_menu.json"
+  ],
+  "primary_metric": "cost_adjusted_regret",
+  "secondary_metrics": ["raw_ndcg", "charged_cost", "buy_rate", "oracle_headroom"],
+  "public_dev_visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "declared_views", "visible_features"],
+  "hidden_evaluator_fields": [
+    "qrels",
+    "relevance_labels",
+    "view_scores",
+    "unpaid_full_scores",
+    "unpaid_ce_scores",
+    "oracle_view",
+    "view_utilities"
+  ],
+  "evaluator_only_fields": [
+    "qrels",
+    "relevance_labels",
+    "view_scores",
+    "unpaid_full_scores",
+    "unpaid_ce_scores",
+    "oracle_view",
+    "view_utilities"
+  ],
+  "views": [
+    {
+      "view_id": "summary",
+      "tier": "B0",
+      "cost_key": "summary",
+      "scorer_id": "ndcg10_summary_stats_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "summary_stats", "score_stats", "candidate_count", "declared_view_menu"],
+      "paid_fields": [],
+      "forbidden_before_purchase": ["qrels", "relevance_labels", "full_scores", "ce_scores", "oracle_view", "view_utilities"],
+      "parents": [],
+      "description": "Released compact retrieval summary and score statistics."
+    },
+    {
+      "view_id": "binary",
+      "tier": "paid",
+      "cost_key": "binary",
+      "scorer_id": "ndcg10_binary_sign_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "summary_stats", "score_stats"],
+      "paid_fields": ["binary_sign_codes", "binary_ranked_candidates", "binary_scores"],
+      "forbidden_before_purchase": ["binary_sign_codes", "binary_scores", "qrels", "relevance_labels", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Binary sign compressed dense-vector evidence."
+    },
+    {
+      "view_id": "pq",
+      "tier": "paid",
+      "cost_key": "pq",
+      "scorer_id": "ndcg10_ivf_pq_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "summary_stats", "score_stats"],
+      "paid_fields": ["ivf_cell_id", "pq_codes", "pq_reconstruction_scores", "pq_ranked_candidates"],
+      "forbidden_before_purchase": ["pq_codes", "pq_reconstruction_scores", "qrels", "relevance_labels", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "IVF-PQ compressed vector evidence."
+    },
+    {
+      "view_id": "int8",
+      "tier": "paid",
+      "cost_key": "int8",
+      "scorer_id": "ndcg10_int8_dense_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "summary_stats", "score_stats"],
+      "paid_fields": ["int8_vectors", "int8_scores", "int8_ranked_candidates"],
+      "forbidden_before_purchase": ["int8_vectors", "int8_scores", "qrels", "relevance_labels", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Post-training int8 dense-vector evidence."
+    },
+    {
+      "view_id": "hnsw16",
+      "tier": "paid",
+      "cost_key": "hnsw16",
+      "scorer_id": "ndcg10_hnsw_ef16_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "summary_stats", "score_stats"],
+      "paid_fields": ["hnsw_ef16_candidates", "hnsw_ef16_scores"],
+      "forbidden_before_purchase": ["hnsw_ef16_scores", "qrels", "relevance_labels", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Shallow HNSW depth view."
+    },
+    {
+      "view_id": "hnsw64",
+      "tier": "paid",
+      "cost_key": "hnsw64",
+      "scorer_id": "ndcg10_hnsw_ef64_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "summary_stats", "score_stats"],
+      "paid_fields": ["hnsw_ef64_candidates", "hnsw_ef64_scores"],
+      "forbidden_before_purchase": ["hnsw_ef64_scores", "qrels", "relevance_labels", "oracle_view", "view_utilities"],
+      "parents": ["hnsw16"],
+      "description": "Deeper HNSW depth view."
+    },
+    {
+      "view_id": "full",
+      "tier": "paid",
+      "cost_key": "full",
+      "scorer_id": "ndcg10_full_dense_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "summary_stats", "score_stats"],
+      "paid_fields": ["full_dense_vectors", "full_dense_scores", "full_ranked_candidates"],
+      "forbidden_before_purchase": ["full_dense_vectors", "full_dense_scores", "qrels", "relevance_labels", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Full dense-vector reranking view."
+    },
+    {
+      "view_id": "ce",
+      "tier": "paid",
+      "cost_key": "ce",
+      "scorer_id": "ndcg10_cross_encoder_top50_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "summary_stats", "score_stats", "declared_first_stage_pool"],
+      "paid_fields": ["ce_scores", "ce_score_margin", "ce_ranked_candidates"],
+      "forbidden_before_purchase": ["ce_scores", "ce_score", "ce_score_margin", "qrels", "relevance_labels", "oracle_view", "view_utilities"],
+      "parents": ["full"],
+      "description": "Cross-encoder reranking over a fixed first-stage pool."
+    }
+  ]
+}

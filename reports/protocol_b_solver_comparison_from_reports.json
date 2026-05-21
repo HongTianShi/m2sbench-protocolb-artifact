@@ -1,0 +1,375 @@
+{
+  "task": "protocol_b_solver_comparison_from_reports",
+  "source_reports": [
+    "evidence_cascade_router_audit.json",
+    "standard_ir_access_*.json",
+    "hnsw_cascade_router_beir_fiqa_test.json",
+    "ce_label_budget_beir_fiqa_test__sentence_transformers_all_MiniLM_L6_v2.json",
+    "ce_purchase_calibration_metrics.json"
+  ],
+  "rows": [
+    {
+      "solver": "Oracle route",
+      "paradigm": "evaluator-only upper bound",
+      "visible_tier": "invalid",
+      "route_menu": "S/PQ/F",
+      "utility": 0.43089456856250763,
+      "regret": 0.0,
+      "gap_closed": 1.0,
+      "buy_rate": 0.6681754874651811,
+      "full_buy_rate": 0.31824512534818944,
+      "ci_vs_best_fixed": "evaluator-only",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "CE cheap-only gate",
+      "paradigm": "expensive-view purchase",
+      "visible_tier": "B0/B1",
+      "route_menu": "cheap/CE",
+      "utility": 0.37770578265190125,
+      "regret": 0.04103824868798256,
+      "gap_closed": 0.38035183212712503,
+      "buy_rate": 0.4423076923076923,
+      "full_buy_rate": 0.4423076923076923,
+      "ci_vs_best_fixed": "AUPRC 0.368; Brier 0.194; ECE 0.048",
+      "source": "FiQA CE boundary"
+    },
+    {
+      "solver": "RF utility predictor",
+      "paradigm": "cost-sensitive utility prediction",
+      "visible_tier": "B1",
+      "route_menu": "S/PQ/F",
+      "utility": 0.35980626940727234,
+      "regret": 0.07108830660581589,
+      "gap_closed": 0.10247905648695321,
+      "buy_rate": 0.9825935596170583,
+      "full_buy_rate": 0.6057441253263708,
+      "ci_vs_best_fixed": "+0.0081 [+0.0025,+0.0138]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "B1 RF feature ablation",
+      "paradigm": "legal feature ablation",
+      "visible_tier": "B1",
+      "route_menu": "S/PQ/F",
+      "utility": 0.35846492648124695,
+      "regret": 0.07242967933416367,
+      "gap_closed": 0.08554401397156058,
+      "buy_rate": 0.9843342036553525,
+      "full_buy_rate": 0.6214099216710183,
+      "ci_vs_best_fixed": "+0.0068 [+0.0015,+0.0122]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "Selective rerank RF",
+      "paradigm": "selective reranking",
+      "visible_tier": "B1",
+      "route_menu": "PQ/F",
+      "utility": 0.3583291172981262,
+      "regret": 0.0725654736161232,
+      "gap_closed": 0.08382936349292025,
+      "buy_rate": 1.0,
+      "full_buy_rate": 0.4586597040905135,
+      "ci_vs_best_fixed": "+0.0066 [+0.0004,+0.0129]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "ET utility predictor",
+      "paradigm": "cost-sensitive utility prediction",
+      "visible_tier": "B1",
+      "route_menu": "S/PQ/F",
+      "utility": 0.35818856954574585,
+      "regret": 0.07270602136850357,
+      "gap_closed": 0.08205488649988364,
+      "buy_rate": 0.979982593559617,
+      "full_buy_rate": 0.6231505657093125,
+      "ci_vs_best_fixed": "+0.0065 [+0.0011,+0.0119]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "B0 RF feature ablation",
+      "paradigm": "legal feature ablation",
+      "visible_tier": "B0",
+      "route_menu": "S/PQ/F",
+      "utility": 0.35645216703414917,
+      "regret": 0.07444240152835846,
+      "gap_closed": 0.06013204351381814,
+      "buy_rate": 0.9895561357702349,
+      "full_buy_rate": 0.6919060052219321,
+      "ci_vs_best_fixed": "+0.0048 [-0.0003,+0.0099]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "Ridge visible predictor",
+      "paradigm": "linear utility prediction",
+      "visible_tier": "B1",
+      "route_menu": "S/PQ/F",
+      "utility": 0.3549996614456177,
+      "regret": 0.07589490711688995,
+      "gap_closed": 0.04179352364812302,
+      "buy_rate": 0.9321148825065274,
+      "full_buy_rate": 0.6127067014795474,
+      "ci_vs_best_fixed": "+0.0033 [-0.0030,+0.0095]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "Fixed full",
+      "paradigm": "fixed richest view",
+      "visible_tier": "paid",
+      "route_menu": "F",
+      "utility": 0.3516893982887268,
+      "regret": 0.07920517027378082,
+      "gap_closed": 0.0,
+      "buy_rate": 1.0,
+      "full_buy_rate": 1.0,
+      "ci_vs_best_fixed": "--",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "HistGBR utility predictor",
+      "paradigm": "cost-sensitive utility prediction",
+      "visible_tier": "B1",
+      "route_menu": "S/PQ/F",
+      "utility": 0.3503679633140564,
+      "regret": 0.08052662760019302,
+      "gap_closed": -0.016683695901451058,
+      "buy_rate": 0.9129677980852916,
+      "full_buy_rate": 0.5300261096605744,
+      "ci_vs_best_fixed": "-0.0013 [-0.0093,+0.0064]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "Cascade exit gate",
+      "paradigm": "cascade",
+      "visible_tier": "B1",
+      "route_menu": "S/PQ/F",
+      "utility": 0.34937015175819397,
+      "regret": 0.08152444660663605,
+      "gap_closed": -0.029281504256807006,
+      "buy_rate": 0.9460400348128808,
+      "full_buy_rate": 0.8859878154917319,
+      "ci_vs_best_fixed": "-0.0023 [-0.0059,+0.0013]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "QPP uncertainty gate",
+      "paradigm": "QPP/uncertainty",
+      "visible_tier": "B0",
+      "route_menu": "S/F",
+      "utility": 0.3467704883228196,
+      "regret": 0.0732033095397185,
+      "gap_closed": -0.062103394878194135,
+      "buy_rate": 0.9982578397212544,
+      "full_buy_rate": 0.5087108013937283,
+      "ci_vs_best_fixed": "--",
+      "source": "per-dataset held-out qrels"
+    },
+    {
+      "solver": "ANN-depth agreement gate",
+      "paradigm": "ANN-depth routing",
+      "visible_tier": "B1",
+      "route_menu": "H16/H64",
+      "utility": 0.3420874774456024,
+      "regret": 0.004839041270315647,
+      "gap_closed": 0.5870204616336322,
+      "buy_rate": 1.0,
+      "full_buy_rate": 0.0,
+      "ci_vs_best_fixed": "+.0069 (FiQA HNSW)",
+      "source": "HNSW-depth FiQA"
+    },
+    {
+      "solver": "Learning-to-defer classifier",
+      "paradigm": "deferral classifier",
+      "visible_tier": "B1",
+      "route_menu": "PQ/F",
+      "utility": 0.33665746450424194,
+      "regret": 0.09423711150884628,
+      "gap_closed": -0.18978475436042164,
+      "buy_rate": 1.0,
+      "full_buy_rate": 0.15926892950391644,
+      "ci_vs_best_fixed": "-0.0150 [-0.0248,-0.0056]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "Fixed PQ",
+      "paradigm": "fixed compressed view",
+      "visible_tier": "B1",
+      "route_menu": "PQ",
+      "utility": 0.32396042346954346,
+      "regret": 0.10693413019180298,
+      "gap_closed": -0.3500904640863127,
+      "buy_rate": 1.0,
+      "full_buy_rate": 0.0,
+      "ci_vs_best_fixed": "-0.0277 [-0.0387,-0.0171]",
+      "source": "pooled standard qrels"
+    },
+    {
+      "solver": "Fixed summary",
+      "paradigm": "fixed view",
+      "visible_tier": "B0",
+      "route_menu": "S",
+      "utility": 0.1389189064502716,
+      "regret": 0.2919756770133972,
+      "gap_closed": -2.6863207427367697,
+      "buy_rate": 0.0,
+      "full_buy_rate": 0.0,
+      "ci_vs_best_fixed": "-0.2128 [-0.2330,-0.1930]",
+      "source": "pooled standard qrels"
+    }
+  ],
+  "hidden_test_dry_run": {
+    "random_split": {
+      "reps": 30,
+      "mean_adaptive_minus_best_fixed": 0.006610065698623657,
+      "lo": 0.0024866141378879552,
+      "hi": 0.010084949433803557,
+      "positive_share": 0.9666666666666667
+    },
+    "leave_one_dataset_out": [
+      {
+        "heldout_dataset": "beir/fiqa/test",
+        "train_queries": 2224,
+        "test_queries": 648,
+        "best_fixed": "fixed_full",
+        "best_fixed_utility": 0.3222713768482208,
+        "best_adaptive": "rf_evidence_cascade",
+        "best_adaptive_utility": 0.32256409525871277,
+        "adaptive_minus_best_fixed": 0.00029271841049194336,
+        "best_adaptive_choices": {
+          "summary": 0.0,
+          "pq": 0.016975308641975308,
+          "full": 0.9830246913580247
+        }
+      },
+      {
+        "heldout_dataset": "beir/scifact/test",
+        "train_queries": 2572,
+        "test_queries": 300,
+        "best_fixed": "fixed_full",
+        "best_fixed_utility": 0.598681628704071,
+        "best_adaptive": "et_evidence_cascade",
+        "best_adaptive_utility": 0.6037014126777649,
+        "adaptive_minus_best_fixed": 0.005019783973693848,
+        "best_adaptive_choices": {
+          "summary": 0.0,
+          "pq": 0.14,
+          "full": 0.86
+        }
+      },
+      {
+        "heldout_dataset": "beir/nfcorpus/test",
+        "train_queries": 2549,
+        "test_queries": 323,
+        "best_fixed": "fixed_full",
+        "best_fixed_utility": 0.2708171308040619,
+        "best_adaptive": "ridge_evidence_cascade",
+        "best_adaptive_utility": 0.2721436023712158,
+        "adaptive_minus_best_fixed": 0.0013264715671539307,
+        "best_adaptive_choices": {
+          "summary": 0.021671826625386997,
+          "pq": 0.08359133126934984,
+          "full": 0.8947368421052632
+        }
+      },
+      {
+        "heldout_dataset": "beir/arguana",
+        "train_queries": 1471,
+        "test_queries": 1401,
+        "best_fixed": "fixed_pq",
+        "best_fixed_utility": 0.3335798382759094,
+        "best_adaptive": "rf_evidence_cascade",
+        "best_adaptive_utility": 0.3348025679588318,
+        "adaptive_minus_best_fixed": 0.0012227296829223633,
+        "best_adaptive_choices": {
+          "summary": 0.0,
+          "pq": 0.7009279086366881,
+          "full": 0.2990720913633119
+        }
+      },
+      {
+        "heldout_dataset": "antique/test",
+        "train_queries": 2672,
+        "test_queries": 200,
+        "best_fixed": "fixed_full",
+        "best_fixed_utility": 0.3522760272026062,
+        "best_adaptive": "two_threshold_cascade",
+        "best_adaptive_utility": 0.34916186332702637,
+        "adaptive_minus_best_fixed": -0.003114163875579834,
+        "best_adaptive_choices": {
+          "summary": 0.0,
+          "pq": 0.01,
+          "full": 0.99
+        }
+      }
+    ],
+    "readout": "Repeated 60/40 split is the public-dev/private-test proxy; LODO is a harder hidden-domain proxy."
+  },
+  "lambda_sweep": [
+    {
+      "lambda": 0.0,
+      "fixed_summary": 0.1352998912334442,
+      "fixed_pq": 0.3344440162181854,
+      "fixed_full": 0.3950558304786682,
+      "oracle": 0.444853812456131,
+      "rf_router": 0.3939424157142639,
+      "cascade_gate": 0.39144080877304077,
+      "histgbr_router": 0.3810882568359375,
+      "selective_rerank_rf": 0.38827237486839294
+    },
+    {
+      "lambda": 0.02,
+      "fixed_summary": 0.1352998912334442,
+      "fixed_pq": 0.33044663071632385,
+      "fixed_full": 0.3834577798843384,
+      "oracle": 0.4394840598106384,
+      "rf_router": 0.3854083865880966,
+      "cascade_gate": 0.3809231412410736,
+      "histgbr_router": 0.3734081870317459,
+      "selective_rerank_rf": 0.3807865613698959
+    },
+    {
+      "lambda": 0.05,
+      "fixed_summary": 0.1352998912334442,
+      "fixed_pq": 0.3244400918483734,
+      "fixed_full": 0.3660590648651123,
+      "oracle": 0.4315345287322998,
+      "rf_router": 0.3726073428988457,
+      "cascade_gate": 0.36514663994312285,
+      "histgbr_router": 0.36188808232545855,
+      "selective_rerank_rf": 0.3695578411221504
+    },
+    {
+      "lambda": 0.08,
+      "fixed_summary": 0.1352998912334442,
+      "fixed_pq": 0.31844791769981384,
+      "fixed_full": 0.3486625850200653,
+      "oracle": 0.42378202080726624,
+      "rf_router": 0.3598062992095947,
+      "cascade_gate": 0.34937013864517213,
+      "histgbr_router": 0.35036797761917116,
+      "selective_rerank_rf": 0.3583291208744049
+    },
+    {
+      "lambda": 0.12,
+      "fixed_summary": 0.1352998912334442,
+      "fixed_pq": 0.31045064330101013,
+      "fixed_full": 0.32546311616897583,
+      "oracle": 0.41381096839904785,
+      "rf_router": 0.34273824095726013,
+      "cascade_gate": 0.3283348035812378,
+      "histgbr_router": 0.335007838010788,
+      "selective_rerank_rf": 0.3433574938774109
+    },
+    {
+      "lambda": 0.2,
+      "fixed_summary": 0.1352998912334442,
+      "fixed_pq": 0.29445090889930725,
+      "fixed_full": 0.2790585458278656,
+      "oracle": 0.39499399065971375,
+      "rf_router": 0.30860212445259094,
+      "cascade_gate": 0.28626413345336915,
+      "histgbr_router": 0.3042875587940216,
+      "selective_rerank_rf": 0.3134142398834229
+    }
+  ]
+}

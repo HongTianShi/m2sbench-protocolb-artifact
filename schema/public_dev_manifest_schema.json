@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2S-Bench public-dev manifest row",
+  "type": "object",
+  "required": ["query_id", "cell_id", "slice_id", "tier", "cost_menu", "declared_views", "visible_features"],
+  "properties": {
+    "query_id": {"type": "string"},
+    "cell_id": {"type": "string"},
+    "slice_id": {"type": "string"},
+    "split": {"type": "string"},
+    "tier": {"type": "string"},
+    "cost_menu": {"type": "string"},
+    "declared_views": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "visible_features": {
+      "type": "object",
+      "description": "Method-visible B0/B1 summary or context sketch. Must not include evaluator-held targets, qrels, support facts, CE/full scores, oracle utilities, or answers. Use scripts/validate_public_dev_pack.py for recursive hidden-field checks because JSON Schema alone is not the full leakage validator."
+    }
+  },
+  "additionalProperties": true
+}

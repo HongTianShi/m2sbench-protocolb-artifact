@@ -1,0 +1,22 @@
+name: m2sbench-systems
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - pytest
+  - pytorch=2.5.1
+  - pytorch-cuda=12.1
+  - pip
+  - pip:
+      - faiss-gpu==1.11.0
+      - sentence-transformers
+      - ir-datasets
+      - xgboost
+      - lightgbm

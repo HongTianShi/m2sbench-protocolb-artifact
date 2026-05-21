@@ -1,0 +1,2 @@
+row,train_cells,cells,valid,violation,med_v,cov,norm_cd,iou,coverage,runtime_s,train_seconds,context_dim,scope
+Log-proxy context + transf. flow + proj.,270,50,1.0,0.0,8.326672684688674e-14,9.817102917323331e-16,0.2619222693543566,0.1253934100659127,0.6634375,0.06712468400102807,140.01718300000357,28,270 held-in phase-map cells train; 50 FM-probe cells eval; summary plus continuous log-derived proxy context; exact moment projection

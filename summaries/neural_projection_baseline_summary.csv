@@ -1,0 +1,2 @@
+row,train_cells,cells,valid,violation,med_v,cov,norm_cd,iou,norm_cd_median,iou_median,scope
+Neural proposal + proj.,270,50,1.0,0.0,6.38378239159465e-14,8.590558476755692e-16,0.3119572628032207,0.044649758177869474,0.30996064239268717,0.04093878752911716,270 held-in phase-map cells train; 50 FM-probe cells eval; exact moment projection

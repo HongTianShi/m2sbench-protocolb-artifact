@@ -1,0 +1,7 @@
+method,mean_rank,median_rank,top1_probability,top2_probability
+evolutionary-blind,1.21,1.0,0.79,1.0
+blind-sa,1.79,2.0,0.21,1.0
+ambiguity-set-sampler,3.31,3.0,0.0,0.0
+best-of-k-restart-blind,3.69,4.0,0.0,0.0
+subset-affine-blind,5.0,5.0,0.0,0.0
+projected-gradient-blind,6.0,6.0,0.0,0.0

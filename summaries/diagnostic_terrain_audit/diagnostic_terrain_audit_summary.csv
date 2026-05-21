@@ -1,0 +1,25 @@
+audit,metric,value,interpretation
+continuous terrain axes,label silhouette on 3 axes,0.1448067192203813,"low-to-moderate values mean diagnostic names summarize dense regions, not separated ground-truth mechanisms"
+continuous terrain axes,"rho(task sensitivity, |access gain|)",0.6230602715967433,marginal access value aligns with the continuous sensitivity coordinate
+continuous terrain axes,"rho(feasible divergence, downstream fragility)",0.5271437047995432,target-blind feasible-set spread is associated with downstream action sensitivity
+continuous terrain axes,"rho(blind barrier, blind Norm. CD)",0.9705350748816903,the reachability axis recovers blind-search difficulty
+multi-task fragility,mean action disagreement@5,0.5137499999999999,benchmark downstream-action sensitivity among matched-summary neighbors
+multi-task fragility,mean topology disagreement@5,0.12250000000000001,hole/component task sensitivity under the same summary-neighbor audit
+multi-task fragility,mean geometry high-shift@5,0.29375,bbox/curvature/density/symmetry regression sensitivity
+multi-task fragility,mean random-label disagreement@5,0.5118750000000001,negative-control task; it should not localize a meaningful diagnostic region
+multi-task fragility,Jaccard high action vs topology,0.3088235294117647,partial overlap means decision fragility is task-conditioned rather than universal
+multi-task fragility,Jaccard high action vs geometry,0.3004484304932735,partial overlap means different downstream tasks expose different boundaries
+multi-task fragility,Jaccard high action vs random,0.25,random control overlap is reported as a sanity check
+internal divergence proxy,"rho(internal divergence, action_fragility)",0.13375928389150135,task-independent feasible-set spread versus multi-task fragility
+internal divergence proxy,AUC internal divergence predicts high action_fragility,0.5712606171121455,0.5 is random; values above 0.5 indicate structural spread localizes fragile cells
+internal divergence proxy,"rho(internal divergence, topology_fragility)",0.18774772270477127,task-independent feasible-set spread versus multi-task fragility
+internal divergence proxy,AUC internal divergence predicts high topology_fragility,0.6640027625672141,0.5 is random; values above 0.5 indicate structural spread localizes fragile cells
+internal divergence proxy,"rho(internal divergence, geometry_fragility)",0.1954201678630278,task-independent feasible-set spread versus multi-task fragility
+internal divergence proxy,AUC internal divergence predicts high geometry_fragility,0.6585198720877112,0.5 is random; values above 0.5 indicate structural spread localizes fragile cells
+internal divergence proxy,"rho(internal divergence, random_fragility)",-0.04813777515585429,task-independent feasible-set spread versus multi-task fragility
+internal divergence proxy,AUC internal divergence predicts high random_fragility,0.4477840040753948,0.5 is random; values above 0.5 indicate structural spread localizes fragile cells
+sampled candidate-set divergence,"rho(mean pairwise candidate CD, action coverage)",-0.25928688566610647,direct sampled-candidate check on 50 Protocol B probe cells
+sampled candidate-set divergence,"rho(mean pairwise candidate CD, distinct actions)",-0.2714390251696074,direct sampled-candidate check on 50 Protocol B probe cells
+sampled candidate-set divergence,"rho(mean pairwise candidate CD, set regret)",0.31160350540419957,direct sampled-candidate check on 50 Protocol B probe cells
+sampled candidate-set divergence,high-divergence action coverage mean,0.15384615384615385,top quartile by sampled candidate CD
+sampled candidate-set divergence,low-divergence action coverage mean,0.38461538461538464,bottom quartile by sampled candidate CD

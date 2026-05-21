@@ -1,0 +1,5 @@
+model_class,status,valid,violation,norm_cd,iou
+GMM prior + exact projection,Classical mixture reconstruction baseline,1.0,0.0,0.3074008428275819,0.1105935385278306
+Gaussian + projection,Existing shared-probe baseline,1.0,0.0,0.3110172323900143,0.1191413894379561
+Conditional flow + projection,Existing shared-probe baseline,1.0,0.0,0.2979792354104126,0.1287650970892174
+Transformer flow + projection,Existing shared-probe baseline,1.0,0.0,0.2673836740656187,0.1180336048734557

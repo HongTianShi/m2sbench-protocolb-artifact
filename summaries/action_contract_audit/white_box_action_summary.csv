@@ -1,0 +1,6 @@
+audit_item,white_box_definition,positive_share,matched_summary_disagree_at5,paper_reading
+topology_action,hole-rich support indicator 1[hole_proxy >= 40],0.5,0.3053125,tests whether matched summaries can hide support/topology differences
+geometry_action,elongated support indicator 1[bbox_aspect_ratio >= 1.5],0.4,0.288125,tests whether matched summaries can hide geometry-scale decisions
+routing_action,escalate to structural view if cost-adjusted access_value_gain > 0,0.28125,0.2940625,turns the access menu into a summary-only versus structural-view routing decision
+continuous_fidelity_utility,A_fid=-NormCD; reported gain is blind_cd - point_cd - 0.08*0.58,0.003125,0.63296875,removes discrete labels and scores the value of access as structure-error reduction under cost
+grouped_policy_context,balanced action accuracy over deterministic access/interface choices,,,"synthetic held-out: occupancy utility 0.728, moments 0.667, point 0.631"

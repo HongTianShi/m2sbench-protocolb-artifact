@@ -1,0 +1,937 @@
+{
+  "task": "musique_structured_evidence",
+  "dataset": "MuSiQue",
+  "status": "candidate_structured_replication_check",
+  "scope_note": "Supporting structured-evidence replication over MuSiQue, not a separate official leaderboard core.",
+  "n_rows": 100,
+  "split": "train",
+  "split_sizes": {
+    "train": 60,
+    "dev": 20,
+    "test": 20
+  },
+  "lambda_cost": 0.08,
+  "topk": 4,
+  "view_costs": {
+    "summary": 0.0,
+    "decomp_title": 0.04,
+    "paragraph": 0.16,
+    "support_set": 0.3,
+    "full_context": 0.55
+  },
+  "views": {
+    "summary": "question plus paragraph-title sketch only",
+    "decomp_title": "question plus decomposition-question text and paragraph titles",
+    "paragraph": "paragraph text evidence scored by the original question",
+    "support_set": "multi-paragraph evidence scored by question-decomposition queries",
+    "full_context": "all local paragraphs for the example",
+    "ce": "cross-encoder rerank over purchased paragraph evidence"
+  },
+  "hidden_fields": [
+    "is_supporting",
+    "answer",
+    "answer_aliases",
+    "question_decomposition.answer",
+    "question_decomposition.paragraph_support_idx",
+    "unpaid CE/full scores"
+  ],
+  "policy_rows": [
+    {
+      "policy": "fixed_summary",
+      "utility": 0.6229988599764539,
+      "raw_ndcg": 0.6229988599764539,
+      "support_recall": 0.6583333333333333,
+      "support_f1": 0.44523809523809527,
+      "support_title_recall": 0.6583333333333333,
+      "cost": 0.0,
+      "regret": 0.10299422755929562,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 1.0
+      },
+      "diff_vs_best_fixed": -0.008114719276545945,
+      "gap_closed": -0.08552657389795193
+    },
+    {
+      "policy": "fixed_decomp_title",
+      "utility": 0.6311135792529998,
+      "raw_ndcg": 0.6343135792529997,
+      "support_recall": 0.6583333333333333,
+      "support_f1": 0.44523809523809527,
+      "support_title_recall": 0.6583333333333333,
+      "cost": 0.04000000000000001,
+      "regret": 0.09487950828274978,
+      "ce_buy": 0.0,
+      "view_share": {
+        "decomp_title": 1.0
+      },
+      "diff_vs_best_fixed": 0.0,
+      "gap_closed": 0.0
+    },
+    {
+      "policy": "fixed_paragraph",
+      "utility": 0.5525353396848423,
+      "raw_ndcg": 0.565335339684842,
+      "support_recall": 0.6291666666666667,
+      "support_f1": 0.4267857142857142,
+      "support_title_recall": 0.6541666666666666,
+      "cost": 0.16000000000000003,
+      "regret": 0.17345774785090748,
+      "ce_buy": 0.0,
+      "view_share": {
+        "paragraph": 1.0
+      },
+      "diff_vs_best_fixed": -0.07857823956815757,
+      "gap_closed": -0.828189785026995
+    },
+    {
+      "policy": "fixed_support_set",
+      "utility": 0.44232215973274264,
+      "raw_ndcg": 0.46632215973274266,
+      "support_recall": 0.5041666666666667,
+      "support_f1": 0.3434523809523809,
+      "support_title_recall": 0.5041666666666667,
+      "cost": 0.29999999999999993,
+      "regret": 0.283670927803007,
+      "ce_buy": 0.0,
+      "view_share": {
+        "support_set": 1.0
+      },
+      "diff_vs_best_fixed": -0.1887914195202572,
+      "gap_closed": -1.9898018332645766
+    },
+    {
+      "policy": "fixed_full_context",
+      "utility": 0.40911875360411304,
+      "raw_ndcg": 0.4531187536041131,
+      "support_recall": 0.47916666666666663,
+      "support_f1": 0.3267857142857142,
+      "support_title_recall": 0.47916666666666663,
+      "cost": 0.5500000000000002,
+      "regret": 0.31687433393163655,
+      "ce_buy": 0.0,
+      "view_share": {
+        "full_context": 1.0
+      },
+      "diff_vs_best_fixed": -0.22199482564888678,
+      "gap_closed": -2.3397552292041968
+    },
+    {
+      "policy": "threshold_gate(summary,support_set)",
+      "utility": 0.5180245563728436,
+      "raw_ndcg": 0.5312245563728437,
+      "support_recall": 0.5833333333333333,
+      "support_f1": 0.39523809523809517,
+      "support_title_recall": 0.5833333333333333,
+      "cost": 0.16499999999999998,
+      "regret": 0.20796853116290595,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.45,
+        "support_set": 0.55
+      },
+      "gate_threshold": 1.8066969633102412,
+      "gate_direction": "high_summary",
+      "rich_view": "support_set",
+      "dev_utility": 0.6142367607502187,
+      "diff_vs_best_fixed": -0.11308902288015621,
+      "gap_closed": -1.1919225228606827
+    },
+    {
+      "policy": "best_legal_router(et_B1_paragraph_meta)",
+      "utility": 0.5878924323064101,
+      "raw_ndcg": 0.59237243230641,
+      "support_recall": 0.6416666666666666,
+      "support_f1": 0.4309523809523809,
+      "support_title_recall": 0.6416666666666666,
+      "cost": 0.05600000000000001,
+      "regret": 0.13810065522933954,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.35,
+        "decomp_title": 0.4,
+        "paragraph": 0.25
+      },
+      "feature_tier": "B1_paragraph_meta",
+      "dev_utility": 0.6188844821725004,
+      "routes": [
+        "paragraph",
+        "summary",
+        "decomp_title",
+        "summary",
+        "summary",
+        "paragraph",
+        "decomp_title",
+        "summary",
+        "decomp_title",
+        "decomp_title",
+        "paragraph",
+        "summary",
+        "decomp_title",
+        "summary",
+        "summary",
+        "paragraph",
+        "decomp_title",
+        "decomp_title",
+        "paragraph",
+        "decomp_title"
+      ],
+      "diff_vs_best_fixed": -0.04322114694658974,
+      "gap_closed": -0.455537214819734
+    },
+    {
+      "policy": "best_legal_adaptive",
+      "utility": 0.5878924323064101,
+      "raw_ndcg": 0.59237243230641,
+      "support_recall": 0.6416666666666666,
+      "support_f1": 0.4309523809523809,
+      "support_title_recall": 0.6416666666666666,
+      "cost": 0.05600000000000001,
+      "regret": 0.13810065522933954,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.35,
+        "decomp_title": 0.4,
+        "paragraph": 0.25
+      },
+      "feature_tier": "B1_paragraph_meta",
+      "dev_utility": 0.6188844821725004,
+      "routes": [
+        "paragraph",
+        "summary",
+        "decomp_title",
+        "summary",
+        "summary",
+        "paragraph",
+        "decomp_title",
+        "summary",
+        "decomp_title",
+        "decomp_title",
+        "paragraph",
+        "summary",
+        "decomp_title",
+        "summary",
+        "summary",
+        "paragraph",
+        "decomp_title",
+        "decomp_title",
+        "paragraph",
+        "decomp_title"
+      ],
+      "diff_vs_best_fixed": -0.04322114694658974,
+      "gap_closed": -0.455537214819734
+    },
+    {
+      "policy": "oracle_route",
+      "utility": 0.7259930875357496,
+      "raw_ndcg": 0.7306330875357495,
+      "support_recall": 0.7708333333333333,
+      "support_f1": 0.5244047619047618,
+      "support_title_recall": 0.7708333333333333,
+      "cost": 0.057999999999999996,
+      "regret": 0.0,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.6,
+        "decomp_title": 0.05,
+        "paragraph": 0.35
+      },
+      "diff_vs_best_fixed": 0.09487950828274982,
+      "gap_closed": 1.0
+    }
+  ],
+  "best_fixed": "fixed_decomp_title",
+  "feature_tier_rows": [
+    {
+      "policy": "et_B1_context_sketch",
+      "utility": 0.6479584647308723,
+      "raw_ndcg": 0.6517984647308721,
+      "support_recall": 0.6916666666666667,
+      "support_f1": 0.4642857142857143,
+      "support_title_recall": 0.6916666666666667,
+      "cost": 0.04800000000000001,
+      "regret": 0.07803462280487743,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.4,
+        "decomp_title": 0.4,
+        "paragraph": 0.2
+      },
+      "feature_tier": "B1_context_sketch",
+      "dev_utility": 0.5712779779959726,
+      "diff_vs_best_fixed": 0.01684488547787244,
+      "gap_closed": 0.1775397636723949
+    },
+    {
+      "policy": "rf_B1_paragraph_meta",
+      "utility": 0.6424629796874239,
+      "raw_ndcg": 0.6466229796874239,
+      "support_recall": 0.6916666666666667,
+      "support_f1": 0.4642857142857143,
+      "support_title_recall": 0.6916666666666667,
+      "cost": 0.052000000000000005,
+      "regret": 0.08353010784832574,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.45,
+        "decomp_title": 0.3,
+        "paragraph": 0.25
+      },
+      "feature_tier": "B1_paragraph_meta",
+      "dev_utility": 0.5831409894422976,
+      "diff_vs_best_fixed": 0.011349400434424117,
+      "gap_closed": 0.11961908993669992
+    },
+    {
+      "policy": "rf_B0_title_decomp",
+      "utility": 0.6295583612262564,
+      "raw_ndcg": 0.6327583612262564,
+      "support_recall": 0.6708333333333333,
+      "support_f1": 0.4577380952380953,
+      "support_title_recall": 0.6708333333333333,
+      "cost": 0.04,
+      "regret": 0.09643472630949308,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.6,
+        "decomp_title": 0.2,
+        "paragraph": 0.2
+      },
+      "feature_tier": "B0_title_decomp",
+      "dev_utility": 0.550789669261434,
+      "diff_vs_best_fixed": -0.0015552180267434101,
+      "gap_closed": -0.016391505973120293
+    },
+    {
+      "policy": "hgb_B1_context_sketch",
+      "utility": 0.6291130423841347,
+      "raw_ndcg": 0.6337530423841348,
+      "support_recall": 0.6791666666666666,
+      "support_f1": 0.46011904761904765,
+      "support_title_recall": 0.6791666666666666,
+      "cost": 0.057999999999999996,
+      "regret": 0.09688004515161486,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.45,
+        "decomp_title": 0.25,
+        "paragraph": 0.3
+      },
+      "feature_tier": "B1_context_sketch",
+      "dev_utility": 0.5719179779959725,
+      "diff_vs_best_fixed": -0.0020005368688651437,
+      "gap_closed": -0.02108502568229334
+    },
+    {
+      "policy": "ridge_B0_title_decomp",
+      "utility": 0.622998859976454,
+      "raw_ndcg": 0.622998859976454,
+      "support_recall": 0.6583333333333333,
+      "support_f1": 0.44523809523809527,
+      "support_title_recall": 0.6583333333333333,
+      "cost": 0.0,
+      "regret": 0.10299422755929562,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 1.0
+      },
+      "feature_tier": "B0_title_decomp",
+      "dev_utility": 0.5439314254957842,
+      "diff_vs_best_fixed": -0.008114719276545834,
+      "gap_closed": -0.08552657389795076
+    },
+    {
+      "policy": "ridge_B1_paragraph_meta",
+      "utility": 0.622998859976454,
+      "raw_ndcg": 0.622998859976454,
+      "support_recall": 0.6583333333333333,
+      "support_f1": 0.44523809523809527,
+      "support_title_recall": 0.6583333333333333,
+      "cost": 0.0,
+      "regret": 0.10299422755929562,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 1.0
+      },
+      "feature_tier": "B1_paragraph_meta",
+      "dev_utility": 0.5439314254957842,
+      "diff_vs_best_fixed": -0.008114719276545834,
+      "gap_closed": -0.08552657389795076
+    },
+    {
+      "policy": "ridge_B1_decomp_meta",
+      "utility": 0.622998859976454,
+      "raw_ndcg": 0.622998859976454,
+      "support_recall": 0.6583333333333333,
+      "support_f1": 0.44523809523809527,
+      "support_title_recall": 0.6583333333333333,
+      "cost": 0.0,
+      "regret": 0.10299422755929562,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 1.0
+      },
+      "feature_tier": "B1_decomp_meta",
+      "dev_utility": 0.5439314254957842,
+      "diff_vs_best_fixed": -0.008114719276545834,
+      "gap_closed": -0.08552657389795076
+    },
+    {
+      "policy": "ridge_B1_context_sketch",
+      "utility": 0.622998859976454,
+      "raw_ndcg": 0.622998859976454,
+      "support_recall": 0.6583333333333333,
+      "support_f1": 0.44523809523809527,
+      "support_title_recall": 0.6583333333333333,
+      "cost": 0.0,
+      "regret": 0.10299422755929562,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 1.0
+      },
+      "feature_tier": "B1_context_sketch",
+      "dev_utility": 0.5439314254957842,
+      "diff_vs_best_fixed": -0.008114719276545834,
+      "gap_closed": -0.08552657389795076
+    }
+  ],
+  "control_rows": [
+    {
+      "control": "title_only",
+      "utility": 0.6229988599764539,
+      "raw_ndcg": 0.6229988599764539,
+      "support_recall": 0.6583333333333333,
+      "support_f1": 0.44523809523809527,
+      "support_title_recall": 0.6583333333333333,
+      "cost": 0.0,
+      "regret": 0.10299422755929562,
+      "diff_vs_best_control": -0.008114719276545945
+    },
+    {
+      "control": "decomposition_title",
+      "utility": 0.6311135792529998,
+      "raw_ndcg": 0.6343135792529997,
+      "support_recall": 0.6583333333333333,
+      "support_f1": 0.44523809523809527,
+      "support_title_recall": 0.6583333333333333,
+      "cost": 0.04000000000000001,
+      "regret": 0.09487950828274978,
+      "diff_vs_best_control": 0.0
+    },
+    {
+      "control": "real_paragraph",
+      "utility": 0.5525353396848423,
+      "raw_ndcg": 0.565335339684842,
+      "support_recall": 0.6291666666666667,
+      "support_f1": 0.4267857142857142,
+      "support_title_recall": 0.6541666666666666,
+      "cost": 0.16000000000000003,
+      "regret": 0.17345774785090748,
+      "diff_vs_best_control": -0.07857823956815757
+    },
+    {
+      "control": "real_support_set",
+      "utility": 0.44232215973274264,
+      "raw_ndcg": 0.46632215973274266,
+      "support_recall": 0.5041666666666667,
+      "support_f1": 0.3434523809523809,
+      "support_title_recall": 0.5041666666666667,
+      "cost": 0.29999999999999993,
+      "regret": 0.283670927803007,
+      "diff_vs_best_control": -0.1887914195202572
+    },
+    {
+      "control": "shuffled_paragraph",
+      "utility": 0.1877332063580967,
+      "raw_ndcg": 0.20053320635809668,
+      "support_recall": 0.2458333333333333,
+      "support_f1": 0.17440476190476192,
+      "support_title_recall": 0.2958333333333333,
+      "cost": 0.16000000000000003,
+      "regret": 0.5382598811776529,
+      "diff_vs_best_control": -0.4433803728949031
+    },
+    {
+      "control": "same_title_shuffled_mapping",
+      "utility": 0.15513140870264536,
+      "raw_ndcg": 0.1679314087026453,
+      "support_recall": 0.19166666666666665,
+      "support_f1": 0.1392857142857143,
+      "support_title_recall": 0.19166666666666665,
+      "cost": 0.16000000000000003,
+      "regret": 0.5708616788331042,
+      "diff_vs_best_control": -0.47598217055035447
+    },
+    {
+      "control": "random_paragraph",
+      "utility": 0.1955356923875772,
+      "raw_ndcg": 0.20833569238757715,
+      "support_recall": 0.2583333333333333,
+      "support_f1": 0.18690476190476193,
+      "support_title_recall": 0.2583333333333333,
+      "cost": 0.16000000000000003,
+      "regret": 0.5304573951481724,
+      "diff_vs_best_control": -0.43557788686542265
+    },
+    {
+      "control": "same_count_random",
+      "utility": 0.19413492045392894,
+      "raw_ndcg": 0.20693492045392894,
+      "support_recall": 0.26666666666666666,
+      "support_f1": 0.18095238095238098,
+      "support_title_recall": 0.26666666666666666,
+      "cost": 0.16000000000000003,
+      "regret": 0.5318581670818207,
+      "diff_vs_best_control": -0.4369786587990709
+    },
+    {
+      "control": "decomposition_shuffled",
+      "utility": 0.468350516261627,
+      "raw_ndcg": 0.4923505162616271,
+      "support_recall": 0.5666666666666667,
+      "support_f1": 0.380952380952381,
+      "support_title_recall": 0.5666666666666667,
+      "cost": 0.29999999999999993,
+      "regret": 0.2576425712741225,
+      "diff_vs_best_control": -0.16276306299137283
+    },
+    {
+      "control": "full_context",
+      "utility": 0.40911875360411304,
+      "raw_ndcg": 0.4531187536041131,
+      "support_recall": 0.47916666666666663,
+      "support_f1": 0.3267857142857142,
+      "support_title_recall": 0.47916666666666663,
+      "cost": 0.5500000000000002,
+      "regret": 0.31687433393163655,
+      "diff_vs_best_control": -0.22199482564888678
+    }
+  ],
+  "type_rows": [
+    {
+      "type": "2hop",
+      "n": 18,
+      "best_fixed": "fixed_decomp_title",
+      "fixed_utility": 0.6773291597526706,
+      "oracle_utility": 0.7722625009003896,
+      "oracle_gap": 0.09493334114771901
+    },
+    {
+      "type": "3hop1",
+      "n": 1,
+      "best_fixed": "fixed_summary",
+      "fixed_utility": 0.4367467095119258,
+      "oracle_utility": 0.4367467095119258,
+      "oracle_gap": 0.0
+    },
+    {
+      "type": "4hop2",
+      "n": 1,
+      "best_fixed": "fixed_paragraph",
+      "fixed_utility": 0.18239002499605084,
+      "oracle_utility": 0.18239002499605084,
+      "oracle_gap": 0.0
+    }
+  ],
+  "oracle_view_share": {
+    "summary": 0.6,
+    "paragraph": 0.35,
+    "decomp_title": 0.05
+  },
+  "repeat_summary": {
+    "learned_minus_best_fixed_mean": -0.01789074981995183,
+    "ci95": [
+      -0.03857478986652286,
+      0.0076907386763158826
+    ],
+    "positive_share": 0.3333333333333333,
+    "selected_policies": {
+      "threshold_gate(summary,support_set)": 1,
+      "threshold_gate(summary,paragraph)": 1,
+      "best_legal_router(hgb_B0_title_decomp)": 1
+    },
+    "repeats": 3
+  },
+  "protocol_trace": {
+    "visible_fields": {
+      "query_id": "2hop__269805_135710",
+      "question": "What is the country where Nissedal is located named after?",
+      "decomposition_questions": [
+        "Nissedal >> country",
+        "The #1 was named for whom?"
+      ],
+      "declared_views": [
+        "summary",
+        "decomp_title",
+        "paragraph",
+        "support_set",
+        "full_context"
+      ],
+      "visible_titles": [
+        "Where Dead Voices Gather",
+        "The Hireling Shepherd",
+        "The Book of Proper Names",
+        "Milton F. Pavlic"
+      ],
+      "released_state": "question, decomposition-question text, paragraph-title sketch, and coarse paragraph metadata; support labels, answers, and unpaid CE/full scores are hidden"
+    },
+    "legal_action": {
+      "submitted_jsonl": {
+        "query_id": "2hop__269805_135710",
+        "cell_id": "musique_2hop_269805_135710",
+        "tier": "B1_structured",
+        "cost_menu": "musique-structured-v0-op",
+        "ranked_views": [
+          "support_set",
+          "decomp_title",
+          "paragraph",
+          "full_context"
+        ],
+        "route": "support_set"
+      },
+      "charged_cost": 0.3,
+      "scored_utility": 0.6694264036172708
+    },
+    "hidden_evaluator_fields": {
+      "support_idx": [
+        "10",
+        "6"
+      ],
+      "support_titles": [
+        "norway",
+        "tveitsund"
+      ],
+      "answer": "north",
+      "decomposition_answers": [
+        "Norway",
+        "north"
+      ],
+      "decomposition_support_idx": [
+        10,
+        6
+      ]
+    },
+    "illegal_variant": {
+      "submitted_jsonl": {
+        "query_id": "2hop__269805_135710",
+        "cell_id": "musique_2hop_269805_135710",
+        "tier": "B1_structured",
+        "cost_menu": "musique-structured-v0-op",
+        "route": "support_set",
+        "is_supporting": [
+          "10",
+          "6"
+        ],
+        "answer": "north",
+        "decomposition_answers": [
+          "Norway",
+          "north"
+        ]
+      },
+      "rejection_reason": "support labels, answers, and decomposition answers are evaluator-only fields."
+    },
+    "scope_note": "This is structured evidence acquisition over MuSiQue paragraphs, not answer generation."
+  },
+  "examples": [
+    {
+      "id": "2hop__269805_135710",
+      "question": "What is the country where Nissedal is located named after?",
+      "type": "2hop",
+      "decomposition_questions": [
+        "Nissedal >> country",
+        "The #1 was named for whom?"
+      ],
+      "support_idx": [
+        "10",
+        "6"
+      ],
+      "support_titles": [
+        "norway",
+        "tveitsund"
+      ],
+      "oracle_view": "support_set",
+      "view_utility": {
+        "summary": 0.0,
+        "decomp_title": -0.0032,
+        "paragraph": 0.2938,
+        "support_set": 0.6694,
+        "full_context": 0.6494
+      },
+      "top_paragraphs": {
+        "summary": [
+          "5",
+          "7",
+          "14",
+          "0"
+        ],
+        "decomp_title": [
+          "7",
+          "14",
+          "5",
+          "0"
+        ],
+        "paragraph": [
+          "5",
+          "4",
+          "10",
+          "15"
+        ],
+        "support_set": [
+          "5",
+          "10",
+          "6",
+          "4"
+        ],
+        "full_context": [
+          "5",
+          "10",
+          "6",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "2hop__568389_161223",
+      "question": "What is the highest point in the country where Bugabula is found?",
+      "type": "2hop",
+      "decomposition_questions": [
+        "Bugabula >> country",
+        "What is the highest point which it can be found in #1 ?"
+      ],
+      "support_idx": [
+        "0",
+        "17"
+      ],
+      "support_titles": [
+        "bugabula",
+        "green-breasted pitta"
+      ],
+      "oracle_view": "support_set",
+      "view_utility": {
+        "summary": 0.6131,
+        "decomp_title": 0.6099,
+        "paragraph": 0.9069,
+        "support_set": 0.976,
+        "full_context": 0.956
+      },
+      "top_paragraphs": {
+        "summary": [
+          "0",
+          "3",
+          "1",
+          "10"
+        ],
+        "decomp_title": [
+          "0",
+          "3",
+          "1",
+          "10"
+        ],
+        "paragraph": [
+          "0",
+          "13",
+          "17",
+          "7"
+        ],
+        "support_set": [
+          "0",
+          "17",
+          "18",
+          "13"
+        ],
+        "full_context": [
+          "0",
+          "17",
+          "18",
+          "13"
+        ]
+      }
+    },
+    {
+      "id": "2hop__131693_45439",
+      "question": "Who from the state with the Routzahn-Miller Farmstead signed the declaration of independence?",
+      "type": "2hop",
+      "decomposition_questions": [
+        "Which state is Routzahn-Miller Farmstead located?",
+        "who signed the declaration of independence from #1"
+      ],
+      "support_idx": [
+        "12",
+        "17"
+      ],
+      "support_titles": [
+        "charles carroll of carrollton",
+        "routzahn-miller farmstead"
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 0.6131,
+        "decomp_title": 0.6099,
+        "paragraph": 0.6003,
+        "support_set": 0.5891,
+        "full_context": 0.5691
+      },
+      "top_paragraphs": {
+        "summary": [
+          "12",
+          "3",
+          "13",
+          "1"
+        ],
+        "decomp_title": [
+          "12",
+          "3",
+          "13",
+          "1"
+        ],
+        "paragraph": [
+          "12",
+          "16",
+          "10",
+          "8"
+        ],
+        "support_set": [
+          "12",
+          "10",
+          "16",
+          "8"
+        ],
+        "full_context": [
+          "12",
+          "10",
+          "16",
+          "8"
+        ]
+      }
+    },
+    {
+      "id": "2hop__66890_93263",
+      "question": "The athlete that became the highest-paid went to manchester United when?",
+      "type": "2hop",
+      "decomposition_questions": [
+        "who is the richest paid athlete in the world",
+        "when did #1 go to manchester united"
+      ],
+      "support_idx": [
+        "11",
+        "14"
+      ],
+      "support_titles": [
+        "cristiano ronaldo",
+        "forbes' list of the world's highest-paid athletes"
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 0.6131,
+        "decomp_title": 0.6099,
+        "paragraph": 0.2513,
+        "support_set": -0.024,
+        "full_context": -0.044
+      },
+      "top_paragraphs": {
+        "summary": [
+          "11",
+          "8",
+          "6",
+          "17"
+        ],
+        "decomp_title": [
+          "11",
+          "6",
+          "8",
+          "17"
+        ],
+        "paragraph": [
+          "9",
+          "2",
+          "7",
+          "11"
+        ],
+        "support_set": [
+          "9",
+          "10",
+          "4",
+          "16"
+        ],
+        "full_context": [
+          "9",
+          "4",
+          "10",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "2hop__32957_514685",
+      "question": "What group of languages includes the old version of the language that the Quran was first translated in?",
+      "type": "2hop",
+      "decomposition_questions": [
+        "In which language was the Quran first translated?",
+        "Old #1 >> part of"
+      ],
+      "support_idx": [
+        "10",
+        "5"
+      ],
+      "support_titles": [
+        "quran",
+        "western iranian languages"
+      ],
+      "oracle_view": "paragraph",
+      "view_utility": {
+        "summary": 0.3066,
+        "decomp_title": 0.3034,
+        "paragraph": 0.3741,
+        "support_set": 0.2401,
+        "full_context": -0.044
+      },
+      "top_paragraphs": {
+        "summary": [
+          "19",
+          "9",
+          "10",
+          "11"
+        ],
+        "decomp_title": [
+          "9",
+          "19",
+          "10",
+          "11"
+        ],
+        "paragraph": [
+          "19",
+          "5",
+          "4",
+          "7"
+        ],
+        "support_set": [
+          "19",
+          "7",
+          "17",
+          "5"
+        ],
+        "full_context": [
+          "19",
+          "7",
+          "17",
+          "4"
+        ]
+      }
+    }
+  ],
+  "config": {
+    "data_dir": "$M2SBENCH_MUSIQUE_DIR",
+    "split": "train",
+    "max_rows": 100,
+    "topk": 4,
+    "lambda_cost": 0.08,
+    "seed": 20260518,
+    "repeats": 3,
+    "no_ce": true,
+    "ce_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "ce_batch_size": 64,
+    "max_doc_chars": 1800,
+    "example_rows": 5
+  },
+  "created_at": "2026-05-18 13:33:23"
+}

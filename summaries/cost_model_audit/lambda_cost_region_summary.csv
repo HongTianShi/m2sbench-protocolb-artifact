@@ -1,0 +1,12 @@
+winner,grid_share,lambda_min,lambda_max,multiplier_min,multiplier_max,slice,benefit_definition
+moments_only,0.5664546587109042,0.0,0.3,0.6,1.6,semi_real,per-cell downstream action correctness
+occupancy_grid,0.0,0.0,0.3,0.6,1.6,semi_real,per-cell downstream action correctness
+raster,0.4335453412890958,0.0,0.3,0.6,1.6,semi_real,per-cell downstream action correctness
+point_cloud,0.0,0.0,0.3,0.6,1.6,semi_real,per-cell downstream action correctness
+moments_only,0.20228181758573208,0.0,0.3,0.6,1.6,synthetic_heldout,per-cell downstream action correctness
+occupancy_grid,0.22962428693200446,0.0,0.3,0.6,1.6,synthetic_heldout,per-cell downstream action correctness
+raster,0.0,0.0,0.3,0.6,1.6,synthetic_heldout,per-cell downstream action correctness
+point_cloud,0.5680938954822634,0.0,0.3,0.6,1.6,synthetic_heldout,per-cell downstream action correctness
+summary_only,0.2466723493541407,0.0,3.0,0.6,1.6,bloomberg_overall,Bloomberg action payoff before explicit access cost
+coarse_path,0.2847026424496754,0.0,3.0,0.6,1.6,bloomberg_overall,Bloomberg action payoff before explicit access cost
+cross_asset_path,0.46862500819618386,0.0,3.0,0.6,1.6,bloomberg_overall,Bloomberg action payoff before explicit access cost

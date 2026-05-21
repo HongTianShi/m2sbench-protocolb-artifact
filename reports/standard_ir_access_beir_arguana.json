@@ -1,0 +1,159 @@
+{
+  "task": "standard_ir_access_audit",
+  "dataset": "beir/arguana",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "faiss_gpus": 1,
+  "documents": 8674,
+  "queries": 1401,
+  "qrel_pairs": 1401,
+  "nlist": 433,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "nprobe": 32,
+  "lambda": 0.08,
+  "views": {
+    "summary": {
+      "ndcg@5": 0.13033807277679443,
+      "hit@5": 0.21484653818700927,
+      "recall@5": 0.21484653818700927,
+      "ndcg@10": 0.19689077138900757,
+      "hit@10": 0.4225553176302641,
+      "recall@10": 0.4225553176302641,
+      "cost": 0.0,
+      "utility@10": 0.19689077138900757,
+      "mean_us_per_query": 13.73522698072572
+    },
+    "pq": {
+      "ndcg@5": 0.28361213207244873,
+      "hit@5": 0.5281941470378301,
+      "recall@5": 0.5281941470378301,
+      "ndcg@10": 0.3495798110961914,
+      "hit@10": 0.7323340471092077,
+      "recall@10": 0.7323340471092077,
+      "cost": 0.2,
+      "utility@10": 0.3335798110961914,
+      "mean_us_per_query": 23.43099928620723
+    },
+    "full": {
+      "ndcg@5": 0.30904003977775574,
+      "hit@5": 0.5774446823697359,
+      "recall@5": 0.5774446823697359,
+      "ndcg@10": 0.3711540400981903,
+      "hit@10": 0.76802284082798,
+      "recall@10": 0.76802284082798,
+      "cost": 0.58,
+      "utility@10": 0.3247540400981903,
+      "mean_us_per_query": 1.286194147049038
+    }
+  },
+  "diagnostics": {
+    "non_full_best_share": 0.7773019271948608,
+    "pq_dominates_full_precost_share": 0.6866523911491792,
+    "summary_best_share": 0.36973590292648106,
+    "pq_best_share": 0.40756602426837973,
+    "full_best_share": 0.22269807280513917,
+    "lambda_star_summary_to_pq": 0.7634451985359192,
+    "lambda_star_pq_to_full": 0.05677428684736553,
+    "bootstrap_ci": {
+      "non_full_best_share": {
+        "mean": 0.7773019075393677,
+        "lo": 0.7551748752593994,
+        "hi": 0.7987151741981506
+      },
+      "pq_dominates_full_precost_share": {
+        "mean": 0.6866523623466492,
+        "lo": 0.6638115644454956,
+        "hi": 0.7116524204611778
+      }
+    }
+  },
+  "heldout_fixed_views": {
+    "summary": {
+      "test_queries": 560,
+      "ndcg@10": 0.18546874821186066,
+      "cost": 0.0,
+      "utility@10": 0.18546874821186066,
+      "regret": 0.2385258823633194
+    },
+    "pq": {
+      "test_queries": 560,
+      "ndcg@10": 0.3459078073501587,
+      "cost": 0.2,
+      "utility@10": 0.3299078345298767,
+      "regret": 0.09408681839704514
+    },
+    "full": {
+      "test_queries": 560,
+      "ndcg@10": 0.37403374910354614,
+      "cost": 0.58,
+      "utility@10": 0.32763370871543884,
+      "regret": 0.09636091440916061
+    }
+  },
+  "routers": {
+    "summary_qpp_b0": {
+      "test_queries": 560,
+      "ndcg@10": 0.3455450236797333,
+      "cost": 0.20810717344284058,
+      "utility@10": 0.3288964629173279,
+      "regret": 0.09509816765785217,
+      "choices": {
+        "summary": 0.0035714285714285713,
+        "pq": 0.9732142857142857,
+        "full": 0.023214285714285715
+      }
+    },
+    "query_summary_rf_b0": {
+      "test_queries": 560,
+      "ndcg@10": 0.3594468832015991,
+      "cost": 0.3090357184410095,
+      "utility@10": 0.33472397923469543,
+      "regret": 0.08927062898874283,
+      "choices": {
+        "summary": 0.02142857142857143,
+        "pq": 0.6803571428571429,
+        "full": 0.2982142857142857
+      },
+      "model": "random_forest_qpp"
+    },
+    "summary_pq_qpp_b1": {
+      "test_queries": 560,
+      "ndcg@10": 0.3560209572315216,
+      "cost": 0.29932141304016113,
+      "utility@10": 0.33207523822784424,
+      "regret": 0.09191939979791641,
+      "choices": {
+        "summary": 0.008928571428571428,
+        "pq": 0.725,
+        "full": 0.26607142857142857
+      }
+    },
+    "query_summary_pq_rf_b1": {
+      "test_queries": 560,
+      "ndcg@10": 0.354295551776886,
+      "cost": 0.30517858266830444,
+      "utility@10": 0.3298812508583069,
+      "regret": 0.09411336481571198,
+      "choices": {
+        "summary": 0.033928571428571426,
+        "pq": 0.6714285714285714,
+        "full": 0.29464285714285715
+      },
+      "model": "random_forest_qpp"
+    },
+    "selective_rerank_cascade_b1": {
+      "train_utility@10": 0.33507829904556274,
+      "test_queries": 560,
+      "ndcg@10": 0.3533440828323364,
+      "cost": 0.26610714197158813,
+      "utility@10": 0.3320555090904236,
+      "regret": 0.09193910658359528,
+      "choices": {
+        "summary": 0.10714285714285714,
+        "pq": 0.6625,
+        "full": 0.23035714285714284
+      },
+      "rule": "summary if top ge 0.8287; else PQ if range ge 0.1403; else full"
+    }
+  }
+}

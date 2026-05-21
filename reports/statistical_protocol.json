@@ -1,0 +1,37 @@
+{
+  "schema_version": "m2sbench-statistical-protocol-v1",
+  "families": [
+    {
+      "family": "standard_qrel_dense_access",
+      "unit": "query within dataset, paired by route policy",
+      "split_protocol": "raw stratified 60/20/20 train/dev/test over five public-qrel datasets",
+      "interval": "95% paired utility-delta interval under declared cost profile"
+    },
+    {
+      "family": "dense_learner_family_sweep",
+      "unit": "repeated stratified split summary",
+      "n_repeats": 20,
+      "seed": 31,
+      "interval": "95% interval over repeated split deltas",
+      "scope": "artifact-only learner sensitivity, not a proposed routing method"
+    },
+    {
+      "family": "2wiki_structured_and_hyperlink",
+      "unit": "query row paired across policies and controls",
+      "interval": "95% adaptive-minus-best-fixed utility interval",
+      "scope": "validated structured-evidence core and 7GB robustness stress"
+    },
+    {
+      "family": "hotpot_musique_supporting_checks",
+      "unit": "query row paired across policies and controls",
+      "interval": "95% adaptive-minus-best-fixed utility interval",
+      "scope": "supporting generalization only; not official leaderboard core"
+    },
+    {
+      "family": "systems_cost_profiles",
+      "unit": "view/profile row",
+      "interval": "none",
+      "scope": "deterministic profile derivation and rescoring sensitivity"
+    }
+  ]
+}

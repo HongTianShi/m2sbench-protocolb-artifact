@@ -1,0 +1,49 @@
+{
+  "config": {
+    "svd_dim": 128,
+    "n_clusters": 80,
+    "pq_subvectors": 8,
+    "pq_codewords": 16,
+    "topk": 10,
+    "lambda_cost": 0.08,
+    "cost_summary": 0.0,
+    "cost_pq": 0.2,
+    "cost_full": 0.58,
+    "random_state": 20260521,
+    "max_iter": 80,
+    "batch_size": 512
+  },
+  "datasets": [
+    {
+      "dataset": "cora",
+      "source": "\u6587\u672c\u6570\u636e\u96c6/\u77e5\u8bc6\u56fe\u8c31/Cora\u79d1\u5b66\u51fa\u7248\u7269\u6570\u636e\u96c6/cora/cora/cora.content",
+      "documents": 2708,
+      "input_features": 1433,
+      "embedding_dim": 128,
+      "ivf_cells": 80,
+      "mean_cell_size": 33.85
+    },
+    {
+      "dataset": "citeseer",
+      "source": "\u6587\u672c\u6570\u636e\u96c6/\u77e5\u8bc6\u56fe\u8c31/citeseer-doc-classification/citeseer.content",
+      "documents": 3312,
+      "input_features": 3703,
+      "embedding_dim": 128,
+      "ivf_cells": 80,
+      "mean_cell_size": 41.4
+    }
+  ],
+  "mapping": {
+    "cell": "IVF coarse cluster",
+    "summary": "cluster centroid, within-cell dispersion, and cell size",
+    "pq_view": "product-quantized subvector reconstruction used for approximate reranking",
+    "full_view": "full dense vector reranking within the selected IVF cell",
+    "utility": "NDCG@10 - lambda * access_cost, with lambda=0.08"
+  },
+  "outputs": {
+    "summary": "summaries/ivf_pq_rerank_adapter/ivf_pq_rerank_summary.csv",
+    "slices": "summaries/ivf_pq_rerank_adapter/ivf_pq_rerank_sufficiency_slices.csv",
+    "policy": "summaries/ivf_pq_rerank_adapter/ivf_pq_rerank_policy.csv",
+    "per_query": "summaries/ivf_pq_rerank_adapter/ivf_pq_rerank_per_query.csv"
+  }
+}

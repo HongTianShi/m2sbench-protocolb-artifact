@@ -1,0 +1,103 @@
+{
+  "config": {
+    "n_points": 64,
+    "cells_per_phase": 10,
+    "sample_seed": 20260426,
+    "model_seed": 20260522,
+    "epochs": 240,
+    "batch_size": 64,
+    "hidden_dim": 128,
+    "depth": 2,
+    "lr": 0.0007,
+    "weight_decay": 2e-05,
+    "ode_steps": 32,
+    "samples": 8,
+    "noise_jitter": 0.02,
+    "epsilon_mean": 0.01,
+    "epsilon_cov": 0.01,
+    "dense_support_points": 512,
+    "support_pool_size": 512,
+    "device": "auto",
+    "heads": 4,
+    "ff_dim": 384,
+    "dropout": 0.02
+  },
+  "diagnostics": {
+    "device": "cpu",
+    "epochs": 240,
+    "train_seconds": 138.20615270000417,
+    "final_loss": 0.2573644697666168,
+    "loss_trace": [
+      0.8507755875587464,
+      0.35628275871276854,
+      0.3387140452861786,
+      0.33305550217628477,
+      0.3097534775733948,
+      0.2970916986465454,
+      0.29030999541282654,
+      0.2931843936443329,
+      0.3022839844226837,
+      0.29888243675231935,
+      0.291164767742157,
+      0.2896827161312103,
+      0.27850704789161684,
+      0.2770927965641022,
+      0.26482907831668856,
+      0.272384575009346,
+      0.2698925852775574,
+      0.2682480692863464,
+      0.26671245098114016,
+      0.256784588098526,
+      0.2573644697666168
+    ],
+    "parameters": 362626
+  },
+  "context_budget": "one-hot coarse diagnostic-regime label, used as a stand-in for historical routing/cache priors",
+  "train_cells": 270,
+  "eval_cells": 50,
+  "visibility": "target remains evaluator-only; this pilot adds a method-visible context budget to the released summary, simulating side information such as historical routing logs",
+  "labels": [
+    "ambiguity zone",
+    "decision-fragile zone",
+    "effective-collapse zone",
+    "information-limited zone",
+    "optimization-limited zone"
+  ],
+  "outputs": {
+    "cells": "summaries/contextual_prior_flow_probe/contextual_prior_flow_cells.csv",
+    "results": "summaries/contextual_prior_flow_probe/contextual_prior_flow_results.csv",
+    "summary": "summaries/contextual_prior_flow_probe/contextual_prior_flow_summary.csv",
+    "by_phase": "summaries/contextual_prior_flow_probe/contextual_prior_flow_by_phase.csv",
+    "comparison": "summaries/contextual_prior_flow_probe/contextual_prior_flow_comparison.csv"
+  },
+  "comparison": [
+    {
+      "model_class": "Context prior + transf. flow + proj.",
+      "status": "Contextual budget pilot",
+      "norm_cd": 0.2667250536885955,
+      "iou": 0.12252292118217742,
+      "violation": 0.0
+    },
+    {
+      "model_class": "Transformer flow + proj.",
+      "status": "Existing zero-prior/projection comparison",
+      "norm_cd": 0.2673836740656187,
+      "iou": 0.1180336048734557,
+      "violation": 0.0
+    },
+    {
+      "model_class": "Conditional flow + proj.",
+      "status": "Existing zero-prior/projection comparison",
+      "norm_cd": 0.2979792354104126,
+      "iou": 0.1287650970892174,
+      "violation": 0.0
+    },
+    {
+      "model_class": "Gaussian + projection",
+      "status": "Existing zero-prior/projection comparison",
+      "norm_cd": 0.3110172323900143,
+      "iou": 0.1191413894379561,
+      "violation": 0.0
+    }
+  ]
+}

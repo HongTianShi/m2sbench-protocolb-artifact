@@ -1,0 +1,37 @@
+{
+  "adapter_name": "m2sbench_optional_bloomberg_protocol_b_adapter_full",
+  "host": "localhost",
+  "port": 8194,
+  "start_date": "2016-01-01",
+  "end_date": "",
+  "periodicity": "DAILY",
+  "securities": [
+    "SPX Index",
+    "INDU Index",
+    "RTY Index",
+    "SX5E Index",
+    "NKY Index",
+    "HSI Index",
+    "SHSZ300 Index",
+    "SENSEX Index",
+    "DXY Curncy",
+    "XAU Curncy",
+    "CO1 Comdty",
+    "LMCADS03 Comdty",
+    "SOFRRATE Index",
+    "TGCRRATE Index",
+    "RRPONTSYD Index"
+  ],
+  "fields": [
+    "PX_OPEN",
+    "PX_HIGH",
+    "PX_LOW",
+    "PX_LAST",
+    "PX_VOLUME"
+  ],
+  "notes": [
+    "This larger request is for local stress testing only.",
+    "Some field/security combinations may be invalid or unavailable under a Bloomberg entitlement.",
+    "The default request_spec.json is intentionally smaller and uses PX_LAST only for the optional demo path."
+  ]
+}

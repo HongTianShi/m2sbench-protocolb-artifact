@@ -1,0 +1,6 @@
+model_class,status,norm_cd,iou,violation
+Log-proxy context + transf. flow + proj.,Continuous log-derived context budget pilot,0.2619222693543566,0.1253934100659127,0.0
+One-hot context + transf. flow + proj.,Existing one-hot context pilot,0.2667250536885955,0.1225229211821774,0.0
+Transformer flow + proj.,Existing zero-prior comparison,0.2673836740656187,0.1180336048734557,0.0
+Conditional flow + proj.,Existing trained flow,0.2979792354104126,0.1287650970892174,0.0
+Gaussian + projection,Existing control,0.3110172323900143,0.1191413894379561,0.0

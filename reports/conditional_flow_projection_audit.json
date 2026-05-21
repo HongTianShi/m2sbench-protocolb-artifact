@@ -1,0 +1,62 @@
+{
+  "config": {
+    "n_points": 64,
+    "cells_per_phase": 10,
+    "sample_seed": 20260426,
+    "model_seed": 20260516,
+    "epochs": 800,
+    "batch_size": 64,
+    "hidden_dim": 384,
+    "depth": 4,
+    "lr": 0.001,
+    "weight_decay": 1e-05,
+    "ode_steps": 32,
+    "samples": 8,
+    "noise_jitter": 0.02,
+    "epsilon_mean": 0.01,
+    "epsilon_cov": 0.01,
+    "dense_support_points": 512,
+    "support_pool_size": 512,
+    "device": "auto"
+  },
+  "diagnostics": {
+    "device": "cpu",
+    "epochs": 800,
+    "train_seconds": 18.32114619999993,
+    "final_loss": 0.0034557652194052934,
+    "loss_trace": [
+      0.4014276623725891,
+      0.3043890416622162,
+      0.17487002313137054,
+      0.08572347462177277,
+      0.0463659331202507,
+      0.026738929376006127,
+      0.02023404836654663,
+      0.013690284453332424,
+      0.009381802566349507,
+      0.008360493090003729,
+      0.008392367325723172,
+      0.005592728778719902,
+      0.007044352032244206,
+      0.004294491093605757,
+      0.0033306063152849672,
+      0.0040512932930141686,
+      0.0036139921750873326,
+      0.004428943386301398,
+      0.0046600369736552235,
+      0.004012348363175988,
+      0.0034557652194052934
+    ],
+    "parameters": 558848
+  },
+  "train_cells": 270,
+  "eval_cells": 50,
+  "visibility": "test-time summary-only: held-out cells expose only released moments and N to the flow proposal; held-in training targets are supervised labels; held-out hidden targets are used only for scoring",
+  "outputs": {
+    "cells": "summaries\\conditional_flow_projection_cells.csv",
+    "results": "summaries\\conditional_flow_projection_results.csv",
+    "summary": "summaries\\conditional_flow_projection_summary.csv",
+    "by_phase": "summaries\\conditional_flow_projection_by_phase.csv",
+    "comparison": "summaries\\generative_projection_baseline_comparison.csv"
+  }
+}

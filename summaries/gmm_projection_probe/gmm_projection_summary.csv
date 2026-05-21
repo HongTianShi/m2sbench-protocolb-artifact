@@ -1,0 +1,2 @@
+row,components,restarts,cells,valid,violation,med_v,cov,norm_cd,iou,coverage,runtime_s,scope
+GMM + proj.,3,48,50,1.0,0.0,6.661338147750939e-14,8.42822606499843e-16,0.3074008428275819,0.1105935385278306,0.565625,0.026079901999910362,"equal-weight 3-component GMM prior; alpha grid [0.15, 0.35, 0.55]; target-blind proxy selection; exact moment projection"

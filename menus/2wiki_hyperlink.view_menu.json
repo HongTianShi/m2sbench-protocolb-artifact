@@ -1,0 +1,86 @@
+{
+  "menu_id": "2wiki-hyperlink-v1",
+  "slice_id": "2wiki_hyperlink_stress",
+  "schema_version": "protocol-b-route-v1",
+  "allowed_tiers": ["B0", "B1_hyperlink", "B1_context"],
+  "default_cost_menu": "2wiki-hyper-v1-op",
+  "primary_metric": "support_title_ndcg_cost_adjusted_regret",
+  "secondary_metrics": ["support_title_recall", "support_f1", "triple_endpoint_f1", "charged_cost"],
+  "metric_aliases": {"support_fact_f1": "support_f1"},
+  "public_dev_visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "declared_views", "visible_features"],
+  "hidden_evaluator_fields": [
+    "support_facts",
+    "support_titles",
+    "evidence_triples",
+    "answer",
+    "view_scores",
+    "oracle_view",
+    "view_utilities"
+  ],
+  "evaluator_only_fields": [
+    "support_facts",
+    "support_titles",
+    "evidence_triples",
+    "answer",
+    "view_scores",
+    "oracle_view",
+    "view_utilities"
+  ],
+  "views": [
+    {
+      "view_id": "summary",
+      "tier": "B0",
+      "cost_key": "summary",
+      "scorer_id": "2wiki_hyper_support_title_ndcg_summary_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "provided_context_title_sketch", "declared_view_menu"],
+      "paid_fields": [],
+      "forbidden_before_purchase": ["support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": [],
+      "description": "Question plus provided-context title sketch."
+    },
+    {
+      "view_id": "provided_context",
+      "tier": "paid",
+      "cost_key": "provided_context",
+      "scorer_id": "2wiki_hyper_support_title_ndcg_context_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "provided_context_title_sketch"],
+      "paid_fields": ["provided_context_titles", "provided_context_passages", "provided_context_scores"],
+      "forbidden_before_purchase": ["provided_context_passages", "provided_context_scores", "support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Dataset-provided local context."
+    },
+    {
+      "view_id": "hyperlink_1hop",
+      "tier": "paid",
+      "cost_key": "hyperlink_1hop",
+      "scorer_id": "2wiki_hyper_support_title_ndcg_1hop_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "provided_context_title_sketch", "hyperlink_degree_sketch"],
+      "paid_fields": ["hyperlink_1hop_titles", "hyperlink_1hop_passages", "hyperlink_1hop_edges", "hyperlink_1hop_scores"],
+      "forbidden_before_purchase": ["hyperlink_1hop_titles", "hyperlink_1hop_edges", "hyperlink_1hop_scores", "support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Query-local one-hop expansion from the hyperlink paragraph corpus."
+    },
+    {
+      "view_id": "hyperlink_2hop",
+      "tier": "paid",
+      "cost_key": "hyperlink_2hop",
+      "scorer_id": "2wiki_hyper_support_title_ndcg_2hop_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "provided_context_title_sketch", "hyperlink_path_sketch"],
+      "paid_fields": ["hyperlink_2hop_paths", "hyperlink_2hop_titles", "hyperlink_2hop_passages", "hyperlink_2hop_scores"],
+      "forbidden_before_purchase": ["hyperlink_2hop_paths", "hyperlink_2hop_titles", "hyperlink_2hop_scores", "support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": ["summary"],
+      "description": "Capped query-local two-hop expansion from the hyperlink paragraph corpus."
+    },
+    {
+      "view_id": "full_local_pool",
+      "tier": "paid",
+      "cost_key": "full_local_pool",
+      "scorer_id": "2wiki_hyper_support_title_ndcg_full_pool_v1",
+      "visible_fields": ["query_id", "cell_id", "tier", "cost_menu", "question", "provided_context_title_sketch", "local_pool_size_sketch"],
+      "paid_fields": ["local_pool_titles", "local_pool_passages", "local_pool_scores"],
+      "forbidden_before_purchase": ["local_pool_passages", "local_pool_scores", "support_facts", "support_titles", "evidence_triples", "answer", "oracle_view", "view_utilities"],
+      "parents": ["provided_context", "hyperlink_1hop", "hyperlink_2hop"],
+      "description": "Full query-local paragraph pool assembled from the hyperlink corpus."
+    }
+  ]
+}

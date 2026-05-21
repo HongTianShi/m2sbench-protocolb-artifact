@@ -1,0 +1,70 @@
+{
+  "cost_menu": "dense-semantic-v1-op",
+  "slice_id": "dense_semantic_access",
+  "profile_id": "C_op",
+  "lambda": 0.08,
+  "unit": "versioned_operation_unit",
+  "active_cost_field": "declared_cost",
+  "trace_cost_fields": [
+    "incremental_cost",
+    "cumulative_cost"
+  ],
+  "profile_note": "C_op is a frozen leaderboard profile, not a universal deployment price. C_mem and C_lat rescoring profiles are reported in reports/unified_systems_profile_audit.md.",
+  "view_costs": {
+    "summary": {
+      "declared_cost": 0.0,
+      "incremental_cost": 0.0,
+      "cumulative_cost": 0.0
+    },
+    "binary": {
+      "declared_cost": 0.08,
+      "incremental_cost": 0.08,
+      "cumulative_cost": 0.08,
+      "alias": "binary_sign"
+    },
+    "pq": {
+      "declared_cost": 0.2,
+      "incremental_cost": 0.2,
+      "cumulative_cost": 0.2,
+      "alias": "ivf_pq"
+    },
+    "int8": {
+      "declared_cost": 0.3,
+      "incremental_cost": 0.3,
+      "cumulative_cost": 0.3,
+      "alias": "int8_dense"
+    },
+    "hnsw16": {
+      "declared_cost": 0.138,
+      "incremental_cost": 0.138,
+      "cumulative_cost": 0.138,
+      "unrounded_source_cost": 0.1375,
+      "rounding_note": "Active scorer truth is declared_cost=0.138; unrounded source from the frozen systems audit is 0.1375."
+    },
+    "hnsw64": {
+      "declared_cost": 0.25,
+      "incremental_cost": 0.113,
+      "cumulative_cost": 0.25,
+      "parent": "hnsw16",
+      "unrounded_incremental_source_cost": 0.1125,
+      "rounding_note": "Active scorer truth is declared_cost=0.25 and incremental_cost=0.113; unrounded incremental source from the frozen systems audit is 0.1125."
+    },
+    "full": {
+      "declared_cost": 0.58,
+      "incremental_cost": 0.58,
+      "cumulative_cost": 0.58,
+      "alias": "full_dense"
+    },
+    "ce": {
+      "declared_cost": 1.03,
+      "incremental_cost": 0.45,
+      "cumulative_cost": 1.03,
+      "parent": "full",
+      "alias": "cross_encoder_top50",
+      "accounting_note": "0.45 is the incremental CE-purchase cost after a first-stage pool exists; 1.03 is the cumulative ladder cost when CE is treated as a full text-reranking view.",
+      "ce_accounting_context": "cumulative_dense_ladder",
+      "incremental_ce_purchase_reference": 0.45
+    }
+  },
+  "accounting_context": "cumulative_dense_ladder"
+}

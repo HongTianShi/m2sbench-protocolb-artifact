@@ -1,0 +1,2 @@
+lowrank_d128_summary_correct,lowrank_d128_local_graph_correct,lowrank_d128_non_richest_best,lowrank_d128_gaussian_proxy_cd,fullrank_control_d128_cd,fullrank_control_d128_mmd
+0.25,0.7416666666666667,0.875,0.4591595892338347,1.5028372203819604,0.003204564461012263

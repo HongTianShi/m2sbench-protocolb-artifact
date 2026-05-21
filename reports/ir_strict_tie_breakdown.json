@@ -1,0 +1,94 @@
+{
+  "task": "ir_strict_tie_breakdown",
+  "lambda": 0.08,
+  "aggregate": {
+    "queries": 2872,
+    "non_full_utility_vs_full": {
+      "strict_better": 0.6817548746518106,
+      "tie": 0.0,
+      "strict_worse": 0.31824512534818944
+    },
+    "pq_ndcg_vs_full": {
+      "strict_better": 0.1758356545961003,
+      "tie": 0.43419220055710306,
+      "strict_worse": 0.38997214484679665
+    }
+  },
+  "per_dataset": [
+    {
+      "dataset": "beir/fiqa/test",
+      "queries": 648,
+      "qrel_pairs": 1706,
+      "non_full_utility_vs_full": {
+        "strict_better": 0.5617283950617284,
+        "tie": 0.0,
+        "strict_worse": 0.4382716049382716
+      },
+      "pq_ndcg_vs_full": {
+        "strict_better": 0.12037037037037036,
+        "tie": 0.4166666666666667,
+        "strict_worse": 0.46296296296296297
+      }
+    },
+    {
+      "dataset": "beir/scifact/test",
+      "queries": 300,
+      "qrel_pairs": 339,
+      "non_full_utility_vs_full": {
+        "strict_better": 0.7166666666666667,
+        "tie": 0.0,
+        "strict_worse": 0.2833333333333333
+      },
+      "pq_ndcg_vs_full": {
+        "strict_better": 0.1,
+        "tie": 0.6033333333333334,
+        "strict_worse": 0.2966666666666667
+      }
+    },
+    {
+      "dataset": "beir/nfcorpus/test",
+      "queries": 323,
+      "qrel_pairs": 12334,
+      "non_full_utility_vs_full": {
+        "strict_better": 0.7151702786377709,
+        "tie": 0.0,
+        "strict_worse": 0.2848297213622291
+      },
+      "pq_ndcg_vs_full": {
+        "strict_better": 0.21671826625386997,
+        "tie": 0.38080495356037153,
+        "strict_worse": 0.4024767801857585
+      }
+    },
+    {
+      "dataset": "beir/arguana",
+      "queries": 1401,
+      "qrel_pairs": 1401,
+      "non_full_utility_vs_full": {
+        "strict_better": 0.7773019271948608,
+        "tie": 0.0,
+        "strict_worse": 0.22269807280513917
+      },
+      "pq_ndcg_vs_full": {
+        "strict_better": 0.21270521056388295,
+        "tie": 0.4739471805852962,
+        "strict_worse": 0.31334760885082086
+      }
+    },
+    {
+      "dataset": "antique/test",
+      "queries": 200,
+      "qrel_pairs": 6589,
+      "non_full_utility_vs_full": {
+        "strict_better": 0.295,
+        "tie": 0.0,
+        "strict_worse": 0.705
+      },
+      "pq_ndcg_vs_full": {
+        "strict_better": 0.145,
+        "tie": 0.045,
+        "strict_worse": 0.81
+      }
+    }
+  ]
+}

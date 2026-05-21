@@ -1,0 +1,38 @@
+{
+  "cost_menu": "2wiki-hyper-v1-op",
+  "slice_id": "2wiki_hyperlink_stress",
+  "profile_id": "C_op",
+  "lambda": 0.08,
+  "unit": "versioned_operation_unit",
+  "active_cost_field": "declared_cost",
+  "trace_cost_fields": ["incremental_cost", "cumulative_cost"],
+  "profile_note": "Frozen hyperlink-stress operation-unit profile. The systems-profile report records corpus materialization fields, but no C_mem/C_lat scoring menu is declared for 2Wiki.",
+  "source_report": "reports/2wiki_hyperlink_corpus_stress_10000.md",
+  "view_costs": {
+    "summary": {
+      "declared_cost": 0.0,
+      "incremental_cost": 0.0,
+      "cumulative_cost": 0.0
+    },
+    "provided_context": {
+      "declared_cost": 0.08,
+      "incremental_cost": 0.08,
+      "cumulative_cost": 0.08
+    },
+    "hyperlink_1hop": {
+      "declared_cost": 0.2,
+      "incremental_cost": 0.2,
+      "cumulative_cost": 0.2
+    },
+    "hyperlink_2hop": {
+      "declared_cost": 0.34,
+      "incremental_cost": 0.34,
+      "cumulative_cost": 0.34
+    },
+    "full_local_pool": {
+      "declared_cost": 0.55,
+      "incremental_cost": 0.55,
+      "cumulative_cost": 0.55
+    }
+  }
+}

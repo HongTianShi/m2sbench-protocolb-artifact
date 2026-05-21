@@ -1,0 +1,7 @@
+model_class,status,valid,violation,norm_cd,iou,boundary
+Transformer rectified flow + exact projection,Sequence-aware constraint-aware audit,1.0,0.0,0.26738367406561875,0.11803360487345578,Stronger summary-only rectified-flow vector field followed by exact projection.
+Conditional flow + exact projection,Existing trained flow,1.0,0.0,0.2979792354104126,0.1287650970892174,Existing Table 3 projection/proposal comparison.
+Neural proposal + exact projection,Existing lightweight baseline,1.0,0.0,0.3119572628032207,0.0446497581778694,Existing Table 3 projection/proposal comparison.
+Gaussian proposal + projection,Existing control,1.0,0.0,0.3110172323900143,0.1191413894379561,Existing Table 3 projection/proposal comparison.
+Evolutionary blind,Search baseline,1.0,0.0,0.18569121904311547,0.2243501663094294,Search-based Protocol B recovery remains stronger on this subset.
+Blind-SA,Search baseline,1.0,0.0,0.1969801379947084,0.22161852297816942,Search-based Protocol B recovery remains stronger on this subset.

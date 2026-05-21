@@ -1,0 +1,497 @@
+{
+  "task": "dense_additional_learner_family_sweep",
+  "scope": "artifact-only supplemental sweep for linear, rank-learning, and QPP/rule learner families; not a proposed routing method",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "lambda": 0.08,
+  "datasets": [
+    "beir/fiqa/test",
+    "beir/scifact/test",
+    "beir/nfcorpus/test",
+    "beir/arguana",
+    "antique/test"
+  ],
+  "views": [
+    "summary",
+    "pq",
+    "full"
+  ],
+  "costs": {
+    "summary": 0.0,
+    "pq": 0.20000000298023224,
+    "full": 0.5799999833106995
+  },
+  "feature_budget": "B1 legal compact features: dataset id, query embedding stats/head, text stats, summary/PQ score stats, qrel-free deltas",
+  "reps": 20,
+  "families": [
+    "linear",
+    "rank",
+    "rules"
+  ],
+  "summaries": [
+    {
+      "model": "oracle",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.42407292127609253,
+      "regret_mean": 0.0,
+      "cost_mean": 0.252684086561203,
+      "delta_vs_fixed_full_mean": 0.07544510066509247,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.07544510066509247,
+        "lo": 0.07312293704599142,
+        "hi": 0.07815353013575077
+      },
+      "positive_split_share": 1.0,
+      "gap_closed_mean": 1.0,
+      "choice_share": {
+        "summary": 0.33045375218150086,
+        "pq": 0.35698080279232114,
+        "full": 0.312565445026178
+      }
+    },
+    {
+      "model": "top5_rule_vote",
+      "status": "rule_pq_std_ge_0.0401_then_pq_else_full; rule_pq_std_le_0.0401_then_full_else_pq; rule_pq_std_ge_0.0372_then_pq_else_full",
+      "n_reps": 20,
+      "utility_mean": 0.3549826443195343,
+      "regret_mean": 0.06909026950597763,
+      "cost_mean": 0.4215008318424225,
+      "delta_vs_fixed_full_mean": 0.006354835815727711,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.006354835815727711,
+        "lo": 0.005084340949542821,
+        "hi": 0.007639887242112308
+      },
+      "positive_split_share": 1.0,
+      "gap_closed_mean": 0.08423125901756555,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.4171029668411868,
+        "full": 0.5828970331588132
+      }
+    },
+    {
+      "model": "top9_rule_vote",
+      "status": "rule_pq_std_ge_0.0401_then_pq_else_full; rule_pq_std_le_0.0401_then_full_else_pq; rule_pq_std_ge_0.0372_then_pq_else_full",
+      "n_reps": 20,
+      "utility_mean": 0.3545570969581604,
+      "regret_mean": 0.06951580196619034,
+      "cost_mean": 0.4216998219490051,
+      "delta_vs_fixed_full_mean": 0.0059293108060956,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.0059293108060956,
+        "lo": 0.004714537633117288,
+        "hi": 0.007190292701125144
+      },
+      "positive_split_share": 1.0,
+      "gap_closed_mean": 0.07859106494424786,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.4165794066317626,
+        "full": 0.5834205933682372
+      }
+    },
+    {
+      "model": "best_single_qpp_rule",
+      "status": "rule_pq_std_ge_0.0401_then_pq_else_full",
+      "n_reps": 20,
+      "utility_mean": 0.3544323146343231,
+      "regret_mean": 0.06964059174060822,
+      "cost_mean": 0.42564573884010315,
+      "delta_vs_fixed_full_mean": 0.00580451637506485,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.00580451637506485,
+        "lo": 0.004649222467560321,
+        "hi": 0.007006753724999724
+      },
+      "positive_split_share": 1.0,
+      "gap_closed_mean": 0.07693695579825144,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.40619546247818494,
+        "full": 0.5938045375218148
+      }
+    },
+    {
+      "model": "top3_rule_vote",
+      "status": "rule_pq_std_ge_0.0401_then_pq_else_full; rule_pq_std_le_0.0401_then_full_else_pq; rule_pq_std_ge_0.0372_then_pq_else_full",
+      "n_reps": 20,
+      "utility_mean": 0.3544323146343231,
+      "regret_mean": 0.06964059174060822,
+      "cost_mean": 0.42564573884010315,
+      "delta_vs_fixed_full_mean": 0.00580451637506485,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.00580451637506485,
+        "lo": 0.004649222467560321,
+        "hi": 0.007006753724999724
+      },
+      "positive_split_share": 1.0,
+      "gap_closed_mean": 0.07693695579825144,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.40619546247818494,
+        "full": 0.5938045375218148
+      }
+    },
+    {
+      "model": "elasticnet_multioutput_linear",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.35239478945732117,
+      "regret_mean": 0.07167810946702957,
+      "cost_mean": 0.42756372690200806,
+      "delta_vs_fixed_full_mean": 0.003766995621845126,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.003766995621845126,
+        "lo": 0.0023132175556384027,
+        "hi": 0.005124396411702037
+      },
+      "positive_split_share": 0.8,
+      "gap_closed_mean": 0.0499302882312684,
+      "choice_share": {
+        "summary": 0.036998254799301925,
+        "pq": 0.3446771378708552,
+        "full": 0.618324607329843
+      }
+    },
+    {
+      "model": "lasso_multioutput",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3521725535392761,
+      "regret_mean": 0.07190033793449402,
+      "cost_mean": 0.42789873480796814,
+      "delta_vs_fixed_full_mean": 0.0035447715781629086,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.0035447715781629086,
+        "lo": 0.0021016099490225315,
+        "hi": 0.004933018761221319
+      },
+      "positive_split_share": 0.8,
+      "gap_closed_mean": 0.04698478160826461,
+      "choice_share": {
+        "summary": 0.0349912739965096,
+        "pq": 0.34685863874345557,
+        "full": 0.618150087260035
+      }
+    },
+    {
+      "model": "ridge_multioutput_linear",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3521255552768707,
+      "regret_mean": 0.07194735109806061,
+      "cost_mean": 0.424553245306015,
+      "delta_vs_fixed_full_mean": 0.0034977674949914217,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.0034977674949914217,
+        "lo": 0.002283386536873877,
+        "hi": 0.004608072363771496
+      },
+      "positive_split_share": 0.9,
+      "gap_closed_mean": 0.046361757942617425,
+      "choice_share": {
+        "summary": 0.04127399650959861,
+        "pq": 0.3460732984293194,
+        "full": 0.612652705061082
+      }
+    },
+    {
+      "model": "best_fixed_test",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_fixed_full_mean": 0.0,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "fixed_full",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_fixed_full_mean": 0.0,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "ridge_expanded_linear",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_fixed_full_mean": 0.0,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "lasso_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_fixed_full_mean": 0.0,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "elasticnet_expanded_linear",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_fixed_full_mean": 0.0,
+      "delta_vs_fixed_full_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "meta_qpp_margin_cascade",
+      "status": "S-margin ge 0.277; PQ-margin ge 0.044",
+      "n_reps": 20,
+      "utility_mean": 0.34754127264022827,
+      "regret_mean": 0.07653161883354187,
+      "cost_mean": 0.4144328236579895,
+      "delta_vs_fixed_full_mean": -0.0010865151416510344,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.0010865151416510344,
+        "lo": -0.0029055665247142313,
+        "hi": 0.0004959320795023813
+      },
+      "positive_split_share": 0.4,
+      "gap_closed_mean": -0.014401400913681221,
+      "choice_share": {
+        "summary": 0.048603839441535776,
+        "pq": 0.3615183246073298,
+        "full": 0.5898778359511343
+      }
+    },
+    {
+      "model": "calibrated_ridge_isotonic",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34270724654197693,
+      "regret_mean": 0.08136565238237381,
+      "cost_mean": 0.49799656867980957,
+      "delta_vs_fixed_full_mean": -0.005920541472733021,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.005920541472733021,
+        "lo": -0.0077768028248101475,
+        "hi": -0.004075612698215991
+      },
+      "positive_split_share": 0.05,
+      "gap_closed_mean": -0.07847483031422853,
+      "choice_share": {
+        "summary": 0.00017452006980802793,
+        "pq": 0.21553228621291448,
+        "full": 0.7842931937172775
+      }
+    },
+    {
+      "model": "xgboost_pairwise_ranker",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.32901275157928467,
+      "regret_mean": 0.09506013989448547,
+      "cost_mean": 0.23404888808727264,
+      "delta_vs_fixed_full_mean": -0.019615044817328453,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.019615044817328453,
+        "lo": -0.022732215095311405,
+        "hi": -0.016673069819808012
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.259990968855637,
+      "choice_share": {
+        "summary": 0.07678883071553229,
+        "pq": 0.793193717277487,
+        "full": 0.1300174520069808
+      }
+    },
+    {
+      "model": "calibrated_logistic_oracle_view",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.32667532563209534,
+      "regret_mean": 0.09739754348993301,
+      "cost_mean": 0.2720157206058502,
+      "delta_vs_fixed_full_mean": -0.021952442824840546,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.021952442824840546,
+        "lo": -0.026047071209177375,
+        "hi": -0.01781133753247559
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.29097241081683217,
+      "choice_share": {
+        "summary": 0.21439790575916234,
+        "pq": 0.4832460732984293,
+        "full": 0.3023560209424084
+      }
+    },
+    {
+      "model": "lightgbm_lambdamart_ranker",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3253922760486603,
+      "regret_mean": 0.09868063032627106,
+      "cost_mean": 0.2552582919597626,
+      "delta_vs_fixed_full_mean": -0.02323552593588829,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.02323552593588829,
+        "lo": -0.02668219730257988,
+        "hi": -0.019855149975046518
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.3079792555255889,
+      "choice_share": {
+        "summary": 0.22225130890052353,
+        "pq": 0.5153577661431065,
+        "full": 0.26239092495636995
+      }
+    },
+    {
+      "model": "fixed_pq",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.32012033462524414,
+      "regret_mean": 0.1039525717496872,
+      "cost_mean": 0.20000001788139343,
+      "delta_vs_fixed_full_mean": -0.028507480397820473,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.028507480397820473,
+        "lo": -0.0314235245808959,
+        "hi": -0.025641480879858135
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.3778572782925656,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 1.0,
+        "full": 0.0
+      }
+    },
+    {
+      "model": "logistic_oracle_view",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.309291809797287,
+      "regret_mean": 0.11478108167648315,
+      "cost_mean": 0.23660382628440857,
+      "delta_vs_fixed_full_mean": -0.03933597356081009,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.03933597356081009,
+        "lo": -0.043558537121862174,
+        "hi": -0.03502755872905255
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.5213853943336358,
+      "choice_share": {
+        "summary": 0.3319371727748691,
+        "pq": 0.3970331588132635,
+        "full": 0.2710296684118674
+      }
+    },
+    {
+      "model": "pairwise_ranknet",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3070380687713623,
+      "regret_mean": 0.11703481525182724,
+      "cost_mean": 0.2775706648826599,
+      "delta_vs_fixed_full_mean": -0.04158972576260567,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.04158972576260567,
+        "lo": -0.047764971293509005,
+        "hi": -0.03576860055327416
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.5512581386460887,
+      "choice_share": {
+        "summary": 0.3253926701570681,
+        "pq": 0.29921465968586386,
+        "full": 0.37539267015706806
+      }
+    },
+    {
+      "model": "fixed_summary",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.13521233201026917,
+      "regret_mean": 0.2888605296611786,
+      "cost_mean": 0.0,
+      "delta_vs_fixed_full_mean": -0.2134154736995697,
+      "delta_vs_fixed_full_ci": {
+        "mean": -0.2134154736995697,
+        "lo": -0.21742376126348972,
+        "hi": -0.2092808809131384
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -2.82875192448798,
+      "choice_share": {
+        "summary": 1.0,
+        "pq": 0.0,
+        "full": 0.0
+      }
+    }
+  ],
+  "seed": 31,
+  "split_protocol": "20 repeated stratified 60/20/20 splits within each of five standard-qrel datasets; same legal compact feature budget as the main dense semantic-access audit",
+  "takeaway": "QPP/rule ensembles and simple multi-output linear models recover small positive signal, while rank-learning objectives and calibrated/logistic variants can underperform by over-selecting cheaper views."
+}

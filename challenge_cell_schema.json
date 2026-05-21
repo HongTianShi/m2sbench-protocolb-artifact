@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M2S-Bench Protocol B Challenge Cell",
+  "type": "object",
+  "required": ["cell_id", "protocol", "n_points", "summary", "granted_views", "cost_menu", "output_schema"],
+  "properties": {
+    "cell_id": {"type": "string"},
+    "protocol": {"const": "Protocol B"},
+    "n_points": {"type": "integer", "minimum": 1},
+    "summary": {
+      "type": "object",
+      "required": ["mean", "covariance", "n_points", "tolerance"],
+      "properties": {
+        "mean": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {"type": "number"}
+        },
+        "covariance": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {"type": "number"}
+          }
+        },
+        "n_points": {"type": "integer", "minimum": 1},
+        "tolerance": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "granted_views": {
+      "type": "object",
+      "required": ["support_pool_id", "support_points", "support_bounds", "visible_view_names"],
+      "properties": {
+        "support_pool_id": {"type": "string"},
+        "support_points": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {"type": "number"}
+          }
+        },
+        "support_bounds": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "visible_view_names": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "cost_menu": {
+      "type": "object",
+      "required": ["moments", "occupancy", "raster", "point"],
+      "additionalProperties": {"type": "number"}
+    },
+    "output_schema": {"type": "object"}
+  },
+  "additionalProperties": true
+}

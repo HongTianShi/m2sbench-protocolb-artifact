@@ -1,0 +1,75 @@
+Create a vertically oriented single-column academic comparison figure for an ACM/CIKM benchmark paper.
+
+Purpose:
+This figure explains the conceptual novelty of Protocol B by showing that M2S-Bench moves the evaluation boundary one step before ranking.
+
+Main title:
+“Moving the Evaluation Boundary Before Ranking”
+
+Subtitle:
+“Conventional benchmarks fix the evidence interface; Protocol B evaluates the access decision itself.”
+
+Layout:
+Portrait / tall single-column figure.
+Two vertically stacked panels:
+
+1. Conventional retrieval evaluation
+2. Protocol B evidence-purchase evaluation
+
+A downward arrow between them labeled:
+“boundary shift”
+
+PANEL 1 — Conventional retrieval evaluation
+Show a standard retrieval pipeline:
+
+query
+→ fixed corpus / fixed index / fixed retrieved context
+→ rank or rerank
+→ score ranking quality
+
+Small notes:
+“evidence interface is already chosen”
+“evaluation starts after access is fixed”
+
+Use neutral gray-blue colors.
+
+PANEL 2 — Protocol B evidence-purchase evaluation
+Show the Protocol B flow:
+
+cheap visible state
+→ access decision (evidence view to buy)
+→ evaluator-only scoring
+→ utility / regret
+
+Inside “access decision,” show only abstract evidence categories:
+
+* dense views
+* structured views
+
+Do NOT repeat the full detailed menu from Figure 1.
+
+Under evaluator-only scoring:
+“targets / qrels / support facts (evaluator-only)”
+
+Bottom comparison strip:
+“The evaluated object changes:
+ranked list → evidence view to buy”
+
+Lower explanatory strip:
+“Adjacent pipelines; different evaluated object.”
+
+Right-side phrase:
+from “which list is best?”
+to “which evidence view is worth buying?”
+
+Bottom takeaway:
+“The submitted object is the access decision, not another reranked list.”
+
+Style requirements:
+
+* academic benchmark comparison figure
+* clean and low-clutter
+* conceptual clarity more important than visual spectacle
+* avoid startup/AI-poster aesthetics
+* make the “evaluation boundary shift” visually obvious
+* the figure should help skeptical IR reviewers understand that Protocol B changes the evaluated object itself

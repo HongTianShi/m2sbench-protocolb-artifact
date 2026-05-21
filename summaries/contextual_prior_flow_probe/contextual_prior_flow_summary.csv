@@ -1,0 +1,2 @@
+row,train_cells,cells,valid,violation,med_v,cov,norm_cd,iou,coverage,runtime_s,train_seconds,context_labels,scope
+Context prior + transf. flow + proj.,270,50,1.0,0.0,7.216449660063518e-14,9.043922527298755e-16,0.2667250536885955,0.12252292118217742,0.665625,0.06244604800071102,138.20615270000417,ambiguity zone; decision-fragile zone; effective-collapse zone; information-limited zone; optimization-limited zone,270 held-in phase-map cells train; 50 FM-probe cells eval; summary plus coarse diagnostic-regime context; exact moment projection

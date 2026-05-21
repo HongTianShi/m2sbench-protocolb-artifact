@@ -1,0 +1,132 @@
+{
+  "task": "nested_ir_refinement_suite",
+  "datasets": [
+    "beir/fiqa/test",
+    "beir/scifact/test",
+    "beir/nfcorpus/test",
+    "beir/arguana",
+    "antique/test"
+  ],
+  "queries": 2872,
+  "qrel_pairs": 22369,
+  "candidate_pool": "full_flat_top200_fixed_for_all_views",
+  "views": {
+    "summary": {
+      "weighted_ndcg@10": 0.10060482334558304,
+      "weighted_utility@10": 0.10060482334558304,
+      "macro_ndcg@10": 0.13709693476557733,
+      "macro_utility@10": 0.13709693476557733
+    },
+    "pq": {
+      "weighted_ndcg@10": 0.34298959365088627,
+      "weighted_utility@10": 0.32698959365088626,
+      "macro_ndcg@10": 0.3622943937778473,
+      "macro_utility@10": 0.34629439377784726
+    },
+    "full": {
+      "weighted_ndcg@10": 0.39510490429849676,
+      "weighted_utility@10": 0.34870490429849677,
+      "macro_ndcg@10": 0.42029463648796084,
+      "macro_utility@10": 0.37389463648796084
+    }
+  },
+  "diagnostics": {
+    "non_full_best_share": 0.6664345403899722,
+    "pq_beats_full_precost_share": 0.6152506963788301,
+    "summary_best_share": 0.2983983286908078,
+    "pq_best_share": 0.36803621169916434,
+    "full_best_share": 0.33356545961002787
+  },
+  "per_dataset": [
+    {
+      "dataset": "beir/fiqa/test",
+      "queries": 648,
+      "qrel_pairs": 1706,
+      "ndcg@10": {
+        "summary": 0.11148976534605026,
+        "pq": 0.28700071573257446,
+        "full": 0.36867135763168335
+      },
+      "utility@10": {
+        "summary": 0.11148976534605026,
+        "pq": 0.27100071573257445,
+        "full": 0.32227135763168335
+      },
+      "non_full_best_share": 0.6450617283950617,
+      "pq_beats_full_precost_share": 0.6018518518518519,
+      "lambda_star_pq_to_full": 0.21492274183976023
+    },
+    {
+      "dataset": "beir/scifact/test",
+      "queries": 300,
+      "qrel_pairs": 339,
+      "ndcg@10": {
+        "summary": 0.28765904903411865,
+        "pq": 0.5800006985664368,
+        "full": 0.6450816988945007
+      },
+      "utility@10": {
+        "summary": 0.28765904903411865,
+        "pq": 0.5640006985664368,
+        "full": 0.5986816988945007
+      },
+      "non_full_best_share": 0.78,
+      "pq_beats_full_precost_share": 0.7366666666666667,
+      "lambda_star_pq_to_full": 0.17126579033701042
+    },
+    {
+      "dataset": "beir/nfcorpus/test",
+      "queries": 323,
+      "qrel_pairs": 12334,
+      "ndcg@10": {
+        "summary": 0.1320708841085434,
+        "pq": 0.29277458786964417,
+        "full": 0.3172171413898468
+      },
+      "utility@10": {
+        "summary": 0.1320708841085434,
+        "pq": 0.27677458786964415,
+        "full": 0.2708171413898468
+      },
+      "non_full_best_share": 0.718266253869969,
+      "pq_beats_full_precost_share": 0.628482972136223,
+      "lambda_star_pq_to_full": 0.06432250926369115
+    },
+    {
+      "dataset": "beir/arguana",
+      "queries": 1401,
+      "qrel_pairs": 1401,
+      "ndcg@10": {
+        "summary": 0.04736226424574852,
+        "pq": 0.3332090377807617,
+        "full": 0.3711540400981903
+      },
+      "utility@10": {
+        "summary": 0.04736226424574852,
+        "pq": 0.3172090377807617,
+        "full": 0.3247540400981903
+      },
+      "non_full_best_share": 0.6730906495360457,
+      "pq_beats_full_precost_share": 0.6438258386866524,
+      "lambda_star_pq_to_full": 0.09985526925639102
+    },
+    {
+      "dataset": "antique/test",
+      "queries": 200,
+      "qrel_pairs": 6589,
+      "ndcg@10": {
+        "summary": 0.10690271109342575,
+        "pq": 0.31848692893981934,
+        "full": 0.3993489444255829
+      },
+      "utility@10": {
+        "summary": 0.10690271109342575,
+        "pq": 0.3024869289398193,
+        "full": 0.3529489444255829
+      },
+      "non_full_best_share": 0.435,
+      "pq_beats_full_precost_share": 0.255,
+      "lambda_star_pq_to_full": 0.2127947775941146
+    }
+  ]
+}

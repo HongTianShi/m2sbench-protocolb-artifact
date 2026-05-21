@@ -1,0 +1,2 @@
+row,train_cells,cells,valid,violation,med_v,cov,norm_cd,iou,coverage,runtime_s,train_seconds,scope
+Transformer flow + proj.,270,50,1.0,0.0,6.661338147750939e-14,9.629490046473241e-16,0.26738367406561875,0.11803360487345578,0.6459375,0.07050952200079337,111.46358840000175,270 held-in phase-map cells train; 50 FM-probe cells eval; summary-only transformer rectified-flow vector field; exact moment projection

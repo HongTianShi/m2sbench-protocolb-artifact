@@ -1,0 +1,658 @@
+{
+  "task": "dense_legal_learner_family_sweep",
+  "scope": "artifact-only supporting dense-access learner sweep; not a proposed routing method and not a headline paper table",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "lambda": 0.08,
+  "views": [
+    "summary",
+    "pq",
+    "full"
+  ],
+  "costs": {
+    "summary": 0.0,
+    "pq": 0.20000000298023224,
+    "full": 0.5799999833106995
+  },
+  "datasets": [
+    "beir/fiqa/test",
+    "beir/scifact/test",
+    "beir/nfcorpus/test",
+    "beir/arguana",
+    "antique/test"
+  ],
+  "query_counts": {
+    "beir/fiqa/test": 648,
+    "beir/scifact/test": 300,
+    "beir/nfcorpus/test": 323,
+    "beir/arguana": 1401,
+    "antique/test": 200
+  },
+  "feature_budget": "B1 legal: dataset id, query embedding stats/head, text length stats, summary score stats, PQ score stats, score deltas",
+  "reps": 20,
+  "summaries": [
+    {
+      "model": "oracle",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.42407292127609253,
+      "utility_std": 0.009086769074201584,
+      "regret_mean": 0.0,
+      "cost_mean": 0.252684086561203,
+      "delta_vs_best_fixed_mean": 0.07544510066509247,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.07544510066509247,
+        "lo": 0.07316651158034801,
+        "hi": 0.0780526315793395
+      },
+      "positive_split_share": 1.0,
+      "gap_closed_mean": 1.0,
+      "choice_share": {
+        "summary": 0.33045375218150086,
+        "pq": 0.35698080279232114,
+        "full": 0.312565445026178
+      }
+    },
+    {
+      "model": "rf_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.355225533246994,
+      "utility_std": 0.007440419867634773,
+      "regret_mean": 0.06884734332561493,
+      "cost_mean": 0.4205968379974365,
+      "delta_vs_best_fixed_mean": 0.006597758736461401,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.006597758736461401,
+        "lo": 0.004658070835284888,
+        "hi": 0.008480515261180698
+      },
+      "positive_split_share": 0.95,
+      "gap_closed_mean": 0.08745112244928191,
+      "choice_share": {
+        "summary": 0.03237347294938918,
+        "pq": 0.37006980802792316,
+        "full": 0.5975567190226876
+      }
+    },
+    {
+      "model": "extra_trees_multioutput",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3548775911331177,
+      "utility_std": 0.006824395153671503,
+      "regret_mean": 0.06919531524181366,
+      "cost_mean": 0.43436652421951294,
+      "delta_vs_best_fixed_mean": 0.0062497807666659355,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0062497807666659355,
+        "lo": 0.0048586097313091155,
+        "hi": 0.007550414802972226
+      },
+      "positive_split_share": 0.95,
+      "gap_closed_mean": 0.0828387888884829,
+      "choice_share": {
+        "summary": 0.011605584642233855,
+        "pq": 0.36553228621291456,
+        "full": 0.6228621291448517
+      }
+    },
+    {
+      "model": "dev_best_single_model",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3547857701778412,
+      "utility_std": 0.006558634340763092,
+      "regret_mean": 0.06928711384534836,
+      "cost_mean": 0.4393211305141449,
+      "delta_vs_best_fixed_mean": 0.006157991476356983,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.006157991476356983,
+        "lo": 0.004745470418129116,
+        "hi": 0.007620191271416842
+      },
+      "positive_split_share": 1.0,
+      "gap_closed_mean": 0.08162215202936579,
+      "choice_share": {
+        "summary": 0.01684118673647469,
+        "pq": 0.344502617801047,
+        "full": 0.6386561954624781
+      }
+    },
+    {
+      "model": "rf_multioutput",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3547612726688385,
+      "utility_std": 0.006393294781446457,
+      "regret_mean": 0.06931164115667343,
+      "cost_mean": 0.44108206033706665,
+      "delta_vs_best_fixed_mean": 0.006133471615612507,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.006133471615612507,
+        "lo": 0.004823868721723556,
+        "hi": 0.007484533125534652
+      },
+      "positive_split_share": 1.0,
+      "gap_closed_mean": 0.08129714933829216,
+      "choice_share": {
+        "summary": 0.008202443280977313,
+        "pq": 0.3530541012216405,
+        "full": 0.6387434554973822
+      }
+    },
+    {
+      "model": "dev_top3_ensemble",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.35466811060905457,
+      "utility_std": 0.006416525691747665,
+      "regret_mean": 0.06940480321645737,
+      "cost_mean": 0.4464869499206543,
+      "delta_vs_best_fixed_mean": 0.006040298845618963,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.006040298845618963,
+        "lo": 0.0044371236930601295,
+        "hi": 0.007567778404336422
+      },
+      "positive_split_share": 0.9,
+      "gap_closed_mean": 0.0800621749108983,
+      "choice_share": {
+        "summary": 0.011518324607329843,
+        "pq": 0.3337696335078534,
+        "full": 0.6547120418848168
+      }
+    },
+    {
+      "model": "extra_trees_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.354238897562027,
+      "utility_std": 0.0070771509781479836,
+      "regret_mean": 0.06983400881290436,
+      "cost_mean": 0.4250820279121399,
+      "delta_vs_best_fixed_mean": 0.005611097905784845,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.005611097905784845,
+        "lo": 0.004233840527012945,
+        "hi": 0.0069489370100200175
+      },
+      "positive_split_share": 0.95,
+      "gap_closed_mean": 0.07437325759154341,
+      "choice_share": {
+        "summary": 0.02155322862129145,
+        "pq": 0.3747818499127399,
+        "full": 0.6036649214659685
+      }
+    },
+    {
+      "model": "dev_top5_ensemble",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3541009724140167,
+      "utility_std": 0.006731931585818529,
+      "regret_mean": 0.06997191160917282,
+      "cost_mean": 0.4508970379829407,
+      "delta_vs_best_fixed_mean": 0.005473189055919647,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.005473189055919647,
+        "lo": 0.003813423408428207,
+        "hi": 0.007027374021708965
+      },
+      "positive_split_share": 0.95,
+      "gap_closed_mean": 0.07254532113643299,
+      "choice_share": {
+        "summary": 0.011518324607329844,
+        "pq": 0.32216404886561956,
+        "full": 0.6663176265270507
+      }
+    },
+    {
+      "model": "knn_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.35345545411109924,
+      "utility_std": 0.007357001304626465,
+      "regret_mean": 0.07061745971441269,
+      "cost_mean": 0.462792307138443,
+      "delta_vs_best_fixed_mean": 0.004827643744647503,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.004827643744647503,
+        "lo": 0.003047102561686188,
+        "hi": 0.006692727154586463
+      },
+      "positive_split_share": 0.85,
+      "gap_closed_mean": 0.06398883031620362,
+      "choice_share": {
+        "summary": 0.0356020942408377,
+        "pq": 0.2541012216404886,
+        "full": 0.7102966841186736
+      }
+    },
+    {
+      "model": "gbdt_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3518680930137634,
+      "utility_std": 0.008094326592981815,
+      "regret_mean": 0.07220479846000671,
+      "cost_mean": 0.4922495484352112,
+      "delta_vs_best_fixed_mean": 0.0032403082586824894,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0032403082586824894,
+        "lo": 0.002021152729867026,
+        "hi": 0.004404753108974546
+      },
+      "positive_split_share": 0.75,
+      "gap_closed_mean": 0.04294922042806341,
+      "choice_share": {
+        "summary": 0.0028795811518324606,
+        "pq": 0.22652705061082026,
+        "full": 0.7705933682373474
+      }
+    },
+    {
+      "model": "lightgbm_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3515528738498688,
+      "utility_std": 0.006806820165365934,
+      "regret_mean": 0.07252006232738495,
+      "cost_mean": 0.48962822556495667,
+      "delta_vs_best_fixed_mean": 0.0029250443913042545,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0029250443913042545,
+        "lo": 0.0017246972391149029,
+        "hi": 0.004157182085327804
+      },
+      "positive_split_share": 0.9,
+      "gap_closed_mean": 0.038770501537121506,
+      "choice_share": {
+        "summary": 0.008027923211169284,
+        "pq": 0.22556719022687605,
+        "full": 0.7664048865619546
+      }
+    },
+    {
+      "model": "hist_gbdt_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3513793349266052,
+      "utility_std": 0.0076716262847185135,
+      "regret_mean": 0.07269354909658432,
+      "cost_mean": 0.46833163499832153,
+      "delta_vs_best_fixed_mean": 0.002751559019088745,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.002751559019088745,
+        "lo": 0.0015122312674066053,
+        "hi": 0.003909987513907252
+      },
+      "positive_split_share": 0.85,
+      "gap_closed_mean": 0.03647100997721722,
+      "choice_share": {
+        "summary": 0.02050610820244328,
+        "pq": 0.262565445026178,
+        "full": 0.7169284467713786
+      }
+    },
+    {
+      "model": "kernel_ridge_rbf_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.35114067792892456,
+      "utility_std": 0.006693312898278236,
+      "regret_mean": 0.07293221354484558,
+      "cost_mean": 0.42907506227493286,
+      "delta_vs_best_fixed_mean": 0.002512893173843622,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.002512893173843622,
+        "lo": 0.0011811466596554966,
+        "hi": 0.003793355158995837
+      },
+      "positive_split_share": 0.7,
+      "gap_closed_mean": 0.03330757268120801,
+      "choice_share": {
+        "summary": 0.030104712041884817,
+        "pq": 0.35122164048865623,
+        "full": 0.618673647469459
+      }
+    },
+    {
+      "model": "xgb_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.35085320472717285,
+      "utility_std": 0.007319388445466757,
+      "regret_mean": 0.07321968674659729,
+      "cost_mean": 0.5231448411941528,
+      "delta_vs_best_fixed_mean": 0.002225422766059637,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.002225422766059637,
+        "lo": 0.0015565510606393219,
+        "hi": 0.002906966145383194
+      },
+      "positive_split_share": 0.95,
+      "gap_closed_mean": 0.02949724695760547,
+      "choice_share": {
+        "summary": 0.0004363001745200698,
+        "pq": 0.1489528795811518,
+        "full": 0.8506108202443281
+      }
+    },
+    {
+      "model": "catboost_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3490973114967346,
+      "utility_std": 0.007723054848611355,
+      "regret_mean": 0.0749756246805191,
+      "cost_mean": 0.5532408952713013,
+      "delta_vs_best_fixed_mean": 0.00046949536772444844,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.00046949536772444844,
+        "lo": -7.444053881044965e-05,
+        "hi": 0.0011131412815302607
+      },
+      "positive_split_share": 0.55,
+      "gap_closed_mean": 0.00622300671064885,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.07041884816753927,
+        "full": 0.9295811518324607
+      }
+    },
+    {
+      "model": "fixed_full",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "utility_std": 0.007663451600819826,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_best_fixed_mean": 0.0,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "best_fixed_test",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "utility_std": 0.007663451600819826,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_best_fixed_mean": 0.0,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "ridge_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "utility_std": 0.007663451600819826,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_best_fixed_mean": 0.0,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "elasticnet_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34862780570983887,
+      "utility_std": 0.007663451600819826,
+      "regret_mean": 0.07544510066509247,
+      "cost_mean": 0.5799999833106995,
+      "delta_vs_best_fixed_mean": 0.0,
+      "delta_vs_best_fixed_ci": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": 0.0,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      }
+    },
+    {
+      "model": "adaboost_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34832027554512024,
+      "utility_std": 0.008108329959213734,
+      "regret_mean": 0.07575265318155289,
+      "cost_mean": 0.34320592880249023,
+      "delta_vs_best_fixed_mean": -0.0003075495478697121,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.0003075495478697121,
+        "lo": -0.0022169421019498257,
+        "hi": 0.001602176055894232
+      },
+      "positive_split_share": 0.45,
+      "gap_closed_mean": -0.004076468122628028,
+      "choice_share": {
+        "summary": 0.0006980802792321118,
+        "pq": 0.6220767888307156,
+        "full": 0.3772251308900524
+      }
+    },
+    {
+      "model": "hgb_multioutput",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3447304666042328,
+      "utility_std": 0.007723402697592974,
+      "regret_mean": 0.07934243232011795,
+      "cost_mean": 0.3979004919528961,
+      "delta_vs_best_fixed_mean": -0.003897340502589941,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.003897340502589941,
+        "lo": -0.006222015607636422,
+        "hi": -0.0015512906480580574
+      },
+      "positive_split_share": 0.25,
+      "gap_closed_mean": -0.05165796676301863,
+      "choice_share": {
+        "summary": 0.06378708551483421,
+        "pq": 0.3818499127399651,
+        "full": 0.5543630017452007
+      }
+    },
+    {
+      "model": "svr_rbf_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.34471938014030457,
+      "utility_std": 0.006904983427375555,
+      "regret_mean": 0.07935351133346558,
+      "cost_mean": 0.3931431174278259,
+      "delta_vs_best_fixed_mean": -0.003908406011760235,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.003908406011760235,
+        "lo": -0.00586864457000047,
+        "hi": -0.001734412508085372
+      },
+      "positive_split_share": 0.2,
+      "gap_closed_mean": -0.051804636448296325,
+      "choice_share": {
+        "summary": 0.07862129144851657,
+        "pq": 0.3717277486910994,
+        "full": 0.5496509598603839
+      }
+    },
+    {
+      "model": "tabnet_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.338692307472229,
+      "utility_std": 0.01287203747779131,
+      "regret_mean": 0.08538059145212173,
+      "cost_mean": 0.4522722363471985,
+      "delta_vs_best_fixed_mean": -0.009935474023222923,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.009935474023222923,
+        "lo": -0.01522246494423598,
+        "hi": -0.005566548241768035
+      },
+      "positive_split_share": 0.2,
+      "gap_closed_mean": -0.13169144100327176,
+      "choice_share": {
+        "summary": 0.016579406631762654,
+        "pq": 0.31082024432809774,
+        "full": 0.6726003490401395
+      }
+    },
+    {
+      "model": "mlp_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3362698256969452,
+      "utility_std": 0.00944723840802908,
+      "regret_mean": 0.08780308067798615,
+      "cost_mean": 0.37615010142326355,
+      "delta_vs_best_fixed_mean": -0.0123579828068614,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.0123579828068614,
+        "lo": -0.014959390694275498,
+        "hi": -0.00997811465058476
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.1638009983142522,
+      "choice_share": {
+        "summary": 0.1299301919720768,
+        "pq": 0.33813263525305415,
+        "full": 0.5319371727748692
+      }
+    },
+    {
+      "model": "mlp_multioutput",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.3360675871372223,
+      "utility_std": 0.007436802145093679,
+      "regret_mean": 0.08800531923770905,
+      "cost_mean": 0.375958114862442,
+      "delta_vs_best_fixed_mean": -0.012560206465423107,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.012560206465423107,
+        "lo": -0.014854444377124309,
+        "hi": -0.010062615131027996
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.16648140640939674,
+      "choice_share": {
+        "summary": 0.10270506108202444,
+        "pq": 0.38019197207678884,
+        "full": 0.5171029668411867
+      }
+    },
+    {
+      "model": "fixed_pq",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.32012033462524414,
+      "utility_std": 0.006921129301190376,
+      "regret_mean": 0.1039525717496872,
+      "cost_mean": 0.20000001788139343,
+      "delta_vs_best_fixed_mean": -0.028507480397820473,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.028507480397820473,
+        "lo": -0.03140161633491516,
+        "hi": -0.02558507570065558
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.3778572782925656,
+      "choice_share": {
+        "summary": 0.0,
+        "pq": 1.0,
+        "full": 0.0
+      }
+    },
+    {
+      "model": "decision_tree_expanded",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.2962203919887543,
+      "utility_std": 0.010893215425312519,
+      "regret_mean": 0.12785251438617706,
+      "cost_mean": 0.1867818385362625,
+      "delta_vs_best_fixed_mean": -0.0524074025452137,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.0524074025452137,
+        "lo": -0.05651564178988337,
+        "hi": -0.04823523573577404
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -0.6946428871220522,
+      "choice_share": {
+        "summary": 0.2557591623036649,
+        "pq": 0.6444153577661431,
+        "full": 0.09982547993019197
+      }
+    },
+    {
+      "model": "fixed_summary",
+      "status": "ok",
+      "n_reps": 20,
+      "utility_mean": 0.13521233201026917,
+      "utility_std": 0.009427162818610668,
+      "regret_mean": 0.2888605296611786,
+      "cost_mean": 0.0,
+      "delta_vs_best_fixed_mean": -0.2134154736995697,
+      "delta_vs_best_fixed_ci": {
+        "mean": -0.2134154736995697,
+        "lo": -0.21749212145805358,
+        "hi": -0.20895642079412938
+      },
+      "positive_split_share": 0.0,
+      "gap_closed_mean": -2.82875192448798,
+      "choice_share": {
+        "summary": 1.0,
+        "pq": 0.0,
+        "full": 0.0
+      }
+    }
+  ],
+  "seed": 31,
+  "split_protocol": "20 repeated stratified 60/20/20 splits within each of five standard-qrel datasets; all rows use the same B1-legal compact feature budget as the dense semantic-access audit",
+  "source_run_notes": "Compiled from two local formal sweep runs; the artifact ships the frozen aggregate JSON/Markdown report and not the local scratch directories.",
+  "takeaway": "Several legal QPP/tree/ensemble learners obtain small but stable gains over fixed full, while CatBoost is near baseline and MLP/TabNet/rank-learning alternatives can underperform; dense remains a weak-signal stress regime rather than a solved routing task.",
+  "related_reports": [
+    "reports/dense_additional_learner_sweep.md",
+    "reports/dense_additional_learner_sweep.json"
+  ]
+}

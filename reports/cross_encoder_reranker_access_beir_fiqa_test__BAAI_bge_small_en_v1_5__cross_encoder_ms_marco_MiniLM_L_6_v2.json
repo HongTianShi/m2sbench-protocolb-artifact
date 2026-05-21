@@ -1,0 +1,63 @@
+{
+  "task": "cross_encoder_reranker_access_audit",
+  "dataset": "beir/fiqa/test",
+  "bi_model": "BAAI/bge-small-en-v1.5",
+  "cross_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "documents": 57638,
+  "queries": 648,
+  "qrel_pairs": 1706,
+  "candidate_k": 50,
+  "eval_k": 10,
+  "lambda": 0.08,
+  "reranker_cost": 0.45,
+  "views": {
+    "bi_encoder": {
+      "ndcg@5": 0.3637416362762451,
+      "hit@5": 0.5787037037037037,
+      "recall@5": 0.37087256022441206,
+      "ndcg@10": 0.3848326504230499,
+      "hit@10": 0.6404320987654321,
+      "recall@10": 0.4396250825648974,
+      "cost": 0.0,
+      "utility@10": 0.3848326504230499,
+      "mean_us_per_query": 21.311540123440338
+    },
+    "cross_encoder": {
+      "ndcg@5": 0.357064813375473,
+      "hit@5": 0.5848765432098766,
+      "recall@5": 0.3782934015572904,
+      "ndcg@10": 0.38369831442832947,
+      "hit@10": 0.6682098765432098,
+      "recall@10": 0.4585482932705155,
+      "cost": 0.45,
+      "utility@10": 0.34769830107688904,
+      "mean_us_per_query": 46613.49280555557
+    },
+    "oracle": {
+      "utility@10": 0.43915557861328125,
+      "reranker_share": 0.24691358024691357
+    }
+  },
+  "diagnostics": {
+    "reranker_raw_gain@10": -0.0011343471705913544,
+    "reranker_gain_ci": {
+      "mean": -0.0011343471705913544,
+      "lo": -0.016193816065788267,
+      "hi": 0.01699737077578902
+    },
+    "reranker_cost_adjusted_win_share": 0.24691358024691357,
+    "reranker_precost_win_share": 0.26697530864197533,
+    "lambda_star_bi_to_reranker": -0.0025207714902030095
+  },
+  "router": {
+    "test_queries": 260,
+    "utility@10": 0.36845362186431885,
+    "ndcg@10": 0.37745362520217896,
+    "cost": 0.1125,
+    "regret@10": 0.06061308830976486,
+    "choice_share": {
+      "bi_encoder": 0.75,
+      "cross_encoder": 0.25
+    }
+  }
+}

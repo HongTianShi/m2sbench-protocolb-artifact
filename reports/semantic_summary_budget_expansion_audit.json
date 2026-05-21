@@ -1,0 +1,398 @@
+{
+  "task": "semantic_summary_budget_expansion_and_optimizer_audit",
+  "lambda": 0.08,
+  "datasets": [
+    {
+      "dataset": "beir/fiqa/test",
+      "queries": 648,
+      "qrel_pairs": 1706
+    },
+    {
+      "dataset": "beir/scifact/test",
+      "queries": 300,
+      "qrel_pairs": 339
+    },
+    {
+      "dataset": "beir/nfcorpus/test",
+      "queries": 323,
+      "qrel_pairs": 12334
+    },
+    {
+      "dataset": "beir/arguana",
+      "queries": 1401,
+      "qrel_pairs": 1401
+    },
+    {
+      "dataset": "antique/test",
+      "queries": 200,
+      "qrel_pairs": 6589
+    }
+  ],
+  "test_queries": 1149,
+  "views": [
+    "summary",
+    "pq",
+    "full"
+  ],
+  "costs": {
+    "summary": 0.0,
+    "pq": 0.2,
+    "full": 0.58
+  },
+  "oracle": {
+    "name": "oracle_optimizer",
+    "test_queries": 1149,
+    "utility": 0.4308946132659912,
+    "ndcg": 0.45124900341033936,
+    "cost": 0.2544299066066742,
+    "regret": 0.0,
+    "choices": {
+      "summary": 0.32811140121845084,
+      "pq": 0.35596170583115755,
+      "full": 0.31592689295039167
+    }
+  },
+  "semantic_summary_budget_rows": [
+    {
+      "name": "fixed_summary",
+      "test_queries": 1149,
+      "utility": 0.1389189064502716,
+      "ndcg": 0.1389189064502716,
+      "cost": 0.0,
+      "regret": 0.2919756770133972,
+      "choices": {
+        "summary": 1.0,
+        "pq": 0.0,
+        "full": 0.0
+      },
+      "oracle_gap_closed": 0.0
+    },
+    {
+      "name": "base_centroid_score_sketch",
+      "test_queries": 1149,
+      "utility": 0.35532331466674805,
+      "ndcg": 0.392589807510376,
+      "cost": 0.4658311605453491,
+      "regret": 0.07557126879692078,
+      "choices": {
+        "summary": 0.006962576153176675,
+        "pq": 0.2898172323759791,
+        "full": 0.7032201914708442
+      },
+      "best_view_auc": 0.5632186106305407,
+      "oracle_best_non_full_share": 0.6840731070496083,
+      "oracle_gap_closed": 0.7411726495213522
+    },
+    {
+      "name": "plus_query_or_lexical_sketch",
+      "test_queries": 1149,
+      "utility": 0.3550749719142914,
+      "ndcg": 0.3919961452484131,
+      "cost": 0.4615143835544586,
+      "regret": 0.07581961154937744,
+      "choices": {
+        "summary": 0.008703220191470844,
+        "pq": 0.29852045256744997,
+        "full": 0.6927763272410792
+      },
+      "best_view_auc": 0.5596933052795396,
+      "oracle_best_non_full_share": 0.6840731070496083,
+      "oracle_gap_closed": 0.7403220898800551
+    },
+    {
+      "name": "plus_summary_pq_score_sketch",
+      "test_queries": 1149,
+      "utility": 0.3563368320465088,
+      "ndcg": 0.39071664214134216,
+      "cost": 0.4297475814819336,
+      "regret": 0.07455776631832123,
+      "choices": {
+        "summary": 0.026979982593559618,
+        "pq": 0.35422106179286333,
+        "full": 0.618798955613577
+      },
+      "best_view_auc": 0.5440027095891004,
+      "oracle_best_non_full_share": 0.6840731070496083,
+      "oracle_gap_closed": 0.7446438882446492
+    },
+    {
+      "name": "plus_pq_agreement_sketch",
+      "test_queries": 1149,
+      "utility": 0.35875964164733887,
+      "ndcg": 0.39237499237060547,
+      "cost": 0.4201914668083191,
+      "regret": 0.07213491946458817,
+      "choices": {
+        "summary": 0.04003481288076589,
+        "pq": 0.35944299390774587,
+        "full": 0.6005221932114883
+      },
+      "best_view_auc": 0.560398946917868,
+      "oracle_best_non_full_share": 0.6840731070496083,
+      "oracle_gap_closed": 0.752941871755857
+    },
+    {
+      "name": "plus_all_declared_low_cost_context",
+      "test_queries": 1149,
+      "utility": 0.357796311378479,
+      "ndcg": 0.39209258556365967,
+      "cost": 0.4287031888961792,
+      "regret": 0.07309825718402863,
+      "choices": {
+        "summary": 0.015665796344647518,
+        "pq": 0.3742384682332463,
+        "full": 0.6100957354221062
+      },
+      "best_view_auc": 0.5690217863332725,
+      "oracle_best_non_full_share": 0.6840731070496083,
+      "oracle_gap_closed": 0.7496425210003921
+    }
+  ],
+  "cost_based_optimizer_rows": [
+    {
+      "name": "fixed_summary",
+      "test_queries": 1149,
+      "utility": 0.1389189064502716,
+      "ndcg": 0.1389189064502716,
+      "cost": 0.0,
+      "regret": 0.2919756770133972,
+      "choices": {
+        "summary": 1.0,
+        "pq": 0.0,
+        "full": 0.0
+      },
+      "oracle_gap_closed": 0.0,
+      "profiled_median_us": 0.5000001692678779
+    },
+    {
+      "name": "fixed_pq",
+      "test_queries": 1149,
+      "utility": 0.32396042346954346,
+      "ndcg": 0.3399604558944702,
+      "cost": 0.20000001788139343,
+      "regret": 0.10693413019180298,
+      "choices": {
+        "summary": 0.0,
+        "pq": 1.0,
+        "full": 0.0
+      },
+      "oracle_gap_closed": 0.6337565513149378,
+      "profiled_median_us": 24.29999949526973
+    },
+    {
+      "name": "fixed_full",
+      "test_queries": 1149,
+      "utility": 0.3516893982887268,
+      "ndcg": 0.3980894088745117,
+      "cost": 0.5799999833106995,
+      "regret": 0.07920517027378082,
+      "choices": {
+        "summary": 0.0,
+        "pq": 0.0,
+        "full": 1.0
+      },
+      "oracle_gap_closed": 0.7287266949669386,
+      "profiled_median_us": 4.100000296602957
+    },
+    {
+      "name": "two_threshold_cascade",
+      "test_queries": 1149,
+      "utility": 0.34937015175819397,
+      "ndcg": 0.39144080877304077,
+      "cost": 0.5258833765983582,
+      "regret": 0.08152444660663605,
+      "choices": {
+        "summary": 0.053959965187119235,
+        "pq": 0.06005221932114883,
+        "full": 0.8859878154917319
+      },
+      "rule": "summary if f5 ge 0.2679; else pq if f4 ge 0.2; else full",
+      "oracle_gap_closed": 0.7207834090140541,
+      "profiled_median_us": 5.118799197223699
+    },
+    {
+      "name": "cost_based_learned_optimizer",
+      "test_queries": 1149,
+      "utility": 0.35891902446746826,
+      "ndcg": 0.39269447326660156,
+      "cost": 0.4221931993961334,
+      "regret": 0.07197557389736176,
+      "choices": {
+        "summary": 0.038294168842471714,
+        "pq": 0.3568320278503046,
+        "full": 0.6048738033072236
+      },
+      "best_view_auc": 0.5617613069032625,
+      "oracle_best_non_full_share": 0.6840731070496083,
+      "oracle_gap_closed": 0.7534877487463355,
+      "profiled_median_us": 11.170147960528661
+    },
+    {
+      "name": "oracle_optimizer",
+      "test_queries": 1149,
+      "utility": 0.4308946132659912,
+      "ndcg": 0.45124900341033936,
+      "cost": 0.2544299066066742,
+      "regret": 0.0,
+      "choices": {
+        "summary": 0.32811140121845084,
+        "pq": 0.35596170583115755,
+        "full": 0.31592689295039167
+      },
+      "oracle_gap_closed": 1.0,
+      "profiled_median_us": 10.109225382981883
+    }
+  ],
+  "set_valued_access_rows": [
+    {
+      "split": "semi_real",
+      "policy": "cheapest-first",
+      "oracle_view_coverage_at_2": 0.5555555555555556,
+      "avg_set_size": 2.0,
+      "regret_at_2": 0.4273777777777778,
+      "utility_at_2": 0.2765333333333333,
+      "top1_utility": 0.2222222222222222
+    },
+    {
+      "split": "semi_real",
+      "policy": "richest-first",
+      "oracle_view_coverage_at_2": 0.4444444444444444,
+      "avg_set_size": 2.0,
+      "regret_at_2": 0.2952000000000001,
+      "utility_at_2": 0.40871111111111114,
+      "top1_utility": 0.12026666666666665
+    },
+    {
+      "split": "semi_real",
+      "policy": "uncertainty-first",
+      "oracle_view_coverage_at_2": 0.6666666666666666,
+      "avg_set_size": 2.0,
+      "regret_at_2": 0.3227555555555556,
+      "utility_at_2": 0.3811555555555555,
+      "top1_utility": 0.2222222222222222
+    },
+    {
+      "split": "semi_real",
+      "policy": "learned view ranker",
+      "oracle_view_coverage_at_2": 0.5,
+      "avg_set_size": 2.0,
+      "regret_at_2": 0.33395555555555556,
+      "utility_at_2": 0.36995555555555554,
+      "top1_utility": 0.18053333333333332
+    },
+    {
+      "split": "synthetic_heldout",
+      "policy": "cheapest-first",
+      "oracle_view_coverage_at_2": 0.8958333333333334,
+      "avg_set_size": 2.0,
+      "regret_at_2": 0.1004,
+      "utility_at_2": 0.8376833333333332,
+      "top1_utility": 0.5729166666666666
+    },
+    {
+      "split": "synthetic_heldout",
+      "policy": "richest-first",
+      "oracle_view_coverage_at_2": 0.10416666666666667,
+      "avg_set_size": 2.0,
+      "regret_at_2": 0.13073333333333334,
+      "utility_at_2": 0.8073500000000001,
+      "top1_utility": 0.6515166666666666
+    },
+    {
+      "split": "synthetic_heldout",
+      "policy": "uncertainty-first",
+      "oracle_view_coverage_at_2": 0.6458333333333334,
+      "avg_set_size": 2.0,
+      "regret_at_2": 0.05723333333333334,
+      "utility_at_2": 0.88085,
+      "top1_utility": 0.5719500000000001
+    },
+    {
+      "split": "synthetic_heldout",
+      "policy": "learned view ranker",
+      "oracle_view_coverage_at_2": 0.4166666666666667,
+      "avg_set_size": 2.0,
+      "regret_at_2": 0.04378333333333332,
+      "utility_at_2": 0.8943,
+      "top1_utility": 0.7073
+    }
+  ],
+  "graph_kg_adapter_rows": [
+    {
+      "adapter": "Citation KG topology",
+      "source": "Cora/CiteSeer",
+      "n_cells": "1810",
+      "white_box_task": "triangle",
+      "summary_bacc": "0.797",
+      "summary_ambiguous_items": "0.333",
+      "best_structural_view": "degree_view",
+      "best_view_bacc": "1.0",
+      "best_view_ambiguous_items": "0.0"
+    },
+    {
+      "adapter": "Citation KG topology",
+      "source": "Cora/CiteSeer",
+      "n_cells": "1810",
+      "white_box_task": "bridge",
+      "summary_bacc": "0.753",
+      "summary_ambiguous_items": "0.488",
+      "best_structural_view": "degree_view",
+      "best_view_bacc": "1.0",
+      "best_view_ambiguous_items": "0.001"
+    },
+    {
+      "adapter": "DocRED relation retrieval",
+      "source": "DocRED",
+      "n_cells": "3027",
+      "white_box_task": "multi-sentence evidence route",
+      "summary_bacc": "0.527",
+      "summary_ambiguous_items": "0.906",
+      "best_structural_view": "entity_type_view",
+      "best_view_bacc": "0.934",
+      "best_view_ambiguous_items": "0.063"
+    },
+    {
+      "adapter": "Recommendation preference",
+      "source": "Goodreads 10k",
+      "n_cells": "9861",
+      "white_box_task": "audience/genre route",
+      "summary_bacc": "0.123",
+      "summary_ambiguous_items": "0.999",
+      "best_structural_view": "tag_sketch_view",
+      "best_view_bacc": "0.692",
+      "best_view_ambiguous_items": "0.815"
+    }
+  ],
+  "sanity_controls": [
+    {
+      "control": "shuffled utilities in router training",
+      "expected": "route signal should lose most access-optimizer value",
+      "observed": {
+        "utility": 0.34486865997314453,
+        "regret": 0.08602593094110489,
+        "cost": 0.47724977135658264,
+        "choices": {
+          "summary": 0.006092254134029591,
+          "pq": 0.26109660574412535,
+          "full": 0.7328111401218451
+        }
+      }
+    },
+    {
+      "control": "hidden-field validator",
+      "expected": "target/canonical/reference parameters are rejected",
+      "observed": "covered by tests/test_research_protocol.py::test_blind_method_rejects_forbidden_parameter_name"
+    },
+    {
+      "control": "submission-kit validator",
+      "expected": "malformed or evaluator-only fields fail before scoring",
+      "observed": "scripts/check_submission_kit.py runs validate_submission.py before evaluate_submission.py"
+    },
+    {
+      "control": "cost perturbation",
+      "expected": "qualitative frontier should not vanish under moderate cost noise",
+      "observed": "existing cost audit: synthetic best-view flips on 0.2% of cells; IVF-PQ non-full best .764 [.759,.769]"
+    }
+  ],
+  "reading": "Richer semantic summaries improve target-blind routing, but the oracle access gap remains; the benchmark remains an access optimizer rather than a retrieval SOTA claim."
+}

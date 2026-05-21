@@ -1,0 +1,684 @@
+{
+  "task": "2wiki_hyperlink_corpus_stress",
+  "dataset": "voidful/2wikimultihopqa + para_with_hyperlink corpus",
+  "n_rows": 5000,
+  "split_sizes": {
+    "train": 3000,
+    "dev": 1000,
+    "test": 1000
+  },
+  "lambda_cost": 0.08,
+  "topk": 4,
+  "view_costs": {
+    "summary": 0.0,
+    "provided_context": 0.08,
+    "hyperlink_1hop": 0.2,
+    "hyperlink_2hop": 0.34,
+    "full_local_pool": 0.55
+  },
+  "views": {
+    "summary": "provided-context title/entity sketch only",
+    "provided_context": "10 provided context paragraphs",
+    "hyperlink_1hop": "query-local 1-hop paragraph expansion from the 7GB hyperlink corpus",
+    "hyperlink_2hop": "capped 2-hop paragraph path expansion from selected 1-hop pages",
+    "full_local_pool": "all query-local provided/1-hop/2-hop paragraphs"
+  },
+  "policy_rows": [
+    {
+      "policy": "fixed_summary",
+      "utility": 0.7688627965114812,
+      "raw_ndcg": 0.7688627965114812,
+      "recall": 0.71925,
+      "cost": 0.0,
+      "regret": 0.11221232347659821,
+      "view_share": {
+        "summary": 1.0
+      },
+      "diff_vs_best_fixed": -0.02338572010846962,
+      "gap_closed": -0.26327383038109636
+    },
+    {
+      "policy": "fixed_provided_context",
+      "utility": 0.7475628995535821,
+      "raw_ndcg": 0.753962899553582,
+      "recall": 0.749,
+      "cost": 0.08,
+      "regret": 0.1335122204344974,
+      "view_share": {
+        "provided_context": 1.0
+      },
+      "diff_vs_best_fixed": -0.044685617066368644,
+      "gap_closed": -0.5030656962213871
+    },
+    {
+      "policy": "fixed_hyperlink_1hop",
+      "utility": 0.7922485166199508,
+      "raw_ndcg": 0.8082485166199507,
+      "recall": 0.8135,
+      "cost": 0.20000000000000004,
+      "regret": 0.08882660336812873,
+      "view_share": {
+        "hyperlink_1hop": 1.0
+      },
+      "diff_vs_best_fixed": 0.0,
+      "gap_closed": 0.0
+    },
+    {
+      "policy": "fixed_hyperlink_2hop",
+      "utility": 0.7854757307129681,
+      "raw_ndcg": 0.8126757307129681,
+      "recall": 0.822,
+      "cost": 0.3399999999999999,
+      "regret": 0.09559938927511127,
+      "view_share": {
+        "hyperlink_2hop": 1.0
+      },
+      "diff_vs_best_fixed": -0.0067727859069827145,
+      "gap_closed": -0.07624726883807445
+    },
+    {
+      "policy": "fixed_full_local_pool",
+      "utility": 0.7459405071873448,
+      "raw_ndcg": 0.7899405071873449,
+      "recall": 0.8145,
+      "cost": 0.5499999999999999,
+      "regret": 0.13513461280073452,
+      "view_share": {
+        "full_local_pool": 1.0
+      },
+      "diff_vs_best_fixed": -0.046308009432605934,
+      "gap_closed": -0.5213304086467123
+    },
+    {
+      "policy": "threshold_gate(neg_entropy,hyperlink_1hop)",
+      "utility": 0.8082997982649545,
+      "raw_ndcg": 0.8180917982649545,
+      "recall": 0.80575,
+      "cost": 0.12239999999999998,
+      "regret": 0.0727753217231249,
+      "view_share": {
+        "summary": 0.388,
+        "hyperlink_1hop": 0.612
+      },
+      "gate_feature": "neg_entropy",
+      "gate_threshold": -0.8167847002673726,
+      "gate_direction": "low_summary",
+      "rich_view": "hyperlink_1hop",
+      "dev_utility": 0.8037181663291185,
+      "diff_vs_best_fixed": 0.01605128164500369,
+      "gap_closed": 0.18070353966459285
+    },
+    {
+      "policy": "best_legal_router(et_hyper)",
+      "utility": 0.81753319454911,
+      "raw_ndcg": 0.82643479454911,
+      "recall": 0.80925,
+      "cost": 0.11127000000000001,
+      "regret": 0.06354192543896946,
+      "view_share": {
+        "summary": 0.517,
+        "provided_context": 0.051,
+        "hyperlink_1hop": 0.285,
+        "hyperlink_2hop": 0.146,
+        "full_local_pool": 0.001
+      },
+      "dev_utility": 0.8178347844013262,
+      "diff_vs_best_fixed": 0.025284677929159227,
+      "gap_closed": 0.28465208586633267
+    },
+    {
+      "policy": "best_legal_adaptive",
+      "utility": 0.81753319454911,
+      "raw_ndcg": 0.82643479454911,
+      "recall": 0.80925,
+      "cost": 0.11127000000000001,
+      "regret": 0.06354192543896946,
+      "view_share": {
+        "summary": 0.517,
+        "provided_context": 0.051,
+        "hyperlink_1hop": 0.285,
+        "hyperlink_2hop": 0.146,
+        "full_local_pool": 0.001
+      },
+      "dev_utility": 0.8178347844013262,
+      "diff_vs_best_fixed": 0.025284677929159227,
+      "gap_closed": 0.28465208586633267
+    },
+    {
+      "policy": "oracle_route",
+      "utility": 0.8810751199880794,
+      "raw_ndcg": 0.8876543199880793,
+      "recall": 0.87875,
+      "cost": 0.08224000000000001,
+      "regret": 0.0,
+      "view_share": {
+        "summary": 0.555,
+        "provided_context": 0.18,
+        "hyperlink_1hop": 0.174,
+        "hyperlink_2hop": 0.081,
+        "full_local_pool": 0.01
+      },
+      "diff_vs_best_fixed": 0.08882660336812864,
+      "gap_closed": 1.0
+    }
+  ],
+  "best_fixed": "fixed_hyperlink_1hop",
+  "control_rows": [
+    {
+      "control": "title_only",
+      "utility": 0.7688627965114812,
+      "raw_ndcg": 0.7688627965114812,
+      "support_recall": 0.71925,
+      "support_f1": 0.5199166666666667,
+      "triple_endpoint_f1": 0.3611608946608947,
+      "cost": 0.0,
+      "regret": 0.11221232347659821,
+      "diff_vs_best_control": -0.02338572010846962
+    },
+    {
+      "control": "provided_context",
+      "utility": 0.7475628995535821,
+      "raw_ndcg": 0.753962899553582,
+      "support_recall": 0.749,
+      "support_f1": 0.5463333333333332,
+      "triple_endpoint_f1": 0.38665880230880223,
+      "cost": 0.08,
+      "regret": 0.1335122204344974,
+      "diff_vs_best_control": -0.044685617066368644
+    },
+    {
+      "control": "real_1hop",
+      "utility": 0.7922485166199508,
+      "raw_ndcg": 0.8082485166199507,
+      "support_recall": 0.8135,
+      "support_f1": 0.5906666666666668,
+      "triple_endpoint_f1": 0.4207882395382395,
+      "cost": 0.20000000000000004,
+      "regret": 0.08882660336812873,
+      "diff_vs_best_control": 0.0
+    },
+    {
+      "control": "shuffled_1hop",
+      "utility": 0.3340798560353775,
+      "raw_ndcg": 0.3500798560353775,
+      "support_recall": 0.418,
+      "support_f1": 0.31016666666666665,
+      "triple_endpoint_f1": 0.22667106782106783,
+      "cost": 0.20000000000000004,
+      "regret": 0.5469952639527018,
+      "diff_vs_best_control": -0.4581686605845733
+    },
+    {
+      "control": "degree_random_1hop",
+      "utility": 0.7259265537663646,
+      "raw_ndcg": 0.7419265537663647,
+      "support_recall": 0.724,
+      "support_f1": 0.5253333333333333,
+      "triple_endpoint_f1": 0.3715409812409812,
+      "cost": 0.20000000000000004,
+      "regret": 0.1551485662217147,
+      "diff_vs_best_control": -0.06632196285358616
+    },
+    {
+      "control": "real_2hop",
+      "utility": 0.7854757307129681,
+      "raw_ndcg": 0.8126757307129681,
+      "support_recall": 0.822,
+      "support_f1": 0.596,
+      "triple_endpoint_f1": 0.4240660894660895,
+      "cost": 0.3399999999999999,
+      "regret": 0.09559938927511127,
+      "diff_vs_best_control": -0.0067727859069827145
+    },
+    {
+      "control": "random_2hop",
+      "utility": 0.7180658815849258,
+      "raw_ndcg": 0.7452658815849259,
+      "support_recall": 0.7355,
+      "support_f1": 0.533,
+      "triple_endpoint_f1": 0.37745750360750363,
+      "cost": 0.3399999999999999,
+      "regret": 0.16300923840315357,
+      "diff_vs_best_control": -0.07418263503502498
+    },
+    {
+      "control": "full_local_pool",
+      "utility": 0.7459405071873448,
+      "raw_ndcg": 0.7899405071873449,
+      "support_recall": 0.8145,
+      "support_f1": 0.5905,
+      "triple_endpoint_f1": 0.42069862914862916,
+      "cost": 0.5499999999999999,
+      "regret": 0.13513461280073452,
+      "diff_vs_best_control": -0.046308009432605934
+    }
+  ],
+  "type_rows": [
+    {
+      "type": "bridge_comparison",
+      "n": 219,
+      "best_fixed": "fixed_hyperlink_1hop",
+      "fixed_utility": 0.7144154923321925,
+      "oracle_utility": 0.7934685395919264,
+      "oracle_gap": 0.07905304725973394
+    },
+    {
+      "type": "comparison",
+      "n": 287,
+      "best_fixed": "fixed_summary",
+      "fixed_utility": 0.9857928642094389,
+      "oracle_utility": 0.9952178851858808,
+      "oracle_gap": 0.009425020976441933
+    },
+    {
+      "type": "compositional",
+      "n": 472,
+      "best_fixed": "fixed_hyperlink_1hop",
+      "fixed_utility": 0.7626512729467714,
+      "oracle_utility": 0.8516890289933312,
+      "oracle_gap": 0.08903775604655983
+    },
+    {
+      "type": "inference",
+      "n": 22,
+      "best_fixed": "fixed_summary",
+      "fixed_utility": 0.8365557860554458,
+      "oracle_utility": 0.8945797765566968,
+      "oracle_gap": 0.058023990501251066
+    }
+  ],
+  "oracle_view_share": {
+    "summary": 0.555,
+    "hyperlink_1hop": 0.174,
+    "hyperlink_2hop": 0.081,
+    "provided_context": 0.18,
+    "full_local_pool": 0.01
+  },
+  "repeat_summary": {
+    "learned_minus_best_fixed_mean": 0.028608992756260658,
+    "ci95": [
+      0.024710132610070015,
+      0.03563770142734867
+    ],
+    "positive_share": 1.0,
+    "repeats": 20
+  },
+  "corpus_profile": {
+    "corpus": "<local-data-root>/2WikiMultiHopQA/para_with_hyperlink/para_with_hyperlink.jsonl",
+    "seed_pass": {
+      "pass": "seed_context_titles",
+      "needed": 24795,
+      "found": 24795,
+      "seconds": 207.959,
+      "lines_scanned": 5989261,
+      "bytes_scanned": 7011530548,
+      "scan_mb_per_s": 33.716
+    },
+    "first_hop_pass": {
+      "pass": "selected_1hop_titles",
+      "needed": 36624,
+      "found": 30434,
+      "seconds": 206.066,
+      "lines_scanned": 5989847,
+      "bytes_scanned": 7012188729,
+      "scan_mb_per_s": 34.029
+    },
+    "second_hop_pass": {
+      "pass": "selected_2hop_titles",
+      "needed": 19311,
+      "found": 17013,
+      "seconds": 211.975,
+      "lines_scanned": 5989847,
+      "bytes_scanned": 7012188729,
+      "scan_mb_per_s": 33.08
+    },
+    "selected_1hop_unique": 36624,
+    "selected_2hop_unique": 19311,
+    "doc_map_size": 66691,
+    "mean_1hop_per_query": 15.895,
+    "mean_2hop_per_query": 16.0
+  },
+  "protocol_trace": {
+    "visible_fields": {
+      "query_id": "61df8a820bdc11eba7f7acde48001122",
+      "question": "When is the composer of film Sruthilayalu 's birthday?",
+      "declared_views": [
+        "summary",
+        "provided_context",
+        "hyperlink_1hop",
+        "hyperlink_2hop",
+        "full_local_pool"
+      ],
+      "visible_titles": [
+        "Sruthilayalu",
+        "Theodred II (Bishop of Elmham)",
+        "Abe Meyer",
+        "Alonso Mudarra"
+      ],
+      "released_corpus_view": "title sketch plus declared hyperlink-expansion budget; support labels are hidden"
+    },
+    "legal_action": {
+      "submitted_jsonl": {
+        "query_id": "61df8a820bdc11eba7f7acde48001122",
+        "cell_id": "2wiki_hyper_61df8a820bdc11eba7f7acde48001122",
+        "tier": "B1_hyperlink",
+        "cost_menu": "2wiki-hyper-v1-op",
+        "ranked_views": [
+          "hyperlink_1hop",
+          "provided_context",
+          "hyperlink_2hop"
+        ],
+        "route": "hyperlink_1hop"
+      },
+      "charged_cost": 0.2,
+      "scored_utility": 0.984
+    },
+    "hidden_evaluator_fields": {
+      "support_titles": [
+        "k. v. mahadevan",
+        "sruthilayalu"
+      ],
+      "evidence_triples": [
+        [
+          "Sruthilayalu",
+          "composer",
+          "K. V. Mahadevan"
+        ],
+        [
+          "K. V. Mahadevan",
+          "date of birth",
+          "14 March 1918"
+        ]
+      ],
+      "answer": "14 March 1918"
+    },
+    "illegal_variant": {
+      "submitted_jsonl": {
+        "query_id": "61df8a820bdc11eba7f7acde48001122",
+        "cell_id": "2wiki_hyper_61df8a820bdc11eba7f7acde48001122",
+        "tier": "B1_hyperlink",
+        "cost_menu": "2wiki-hyper-v1-op",
+        "route": "hyperlink_2hop",
+        "support_titles": [
+          "k. v. mahadevan",
+          "sruthilayalu"
+        ],
+        "answer": "14 March 1918"
+      },
+      "rejection_reason": "support titles and answers are evaluator-only fields, even when hyperlink expansion is legal."
+    },
+    "scope_note": "This is a hyperlink-corpus evidence-acquisition trace, not a generated-answer RAG transcript."
+  },
+  "examples": [
+    {
+      "id": "13f5ad2c088c11ebbd6fac1f6bf848b6",
+      "question": "Are director of film Move (1970 Film) and director of film M\u00e9diterran\u00e9e (1963 Film) from the same country?",
+      "support_titles": [
+        "jean-daniel pollet",
+        "move (1970 film)",
+        "m\u00e9diterran\u00e9e (1963 film)",
+        "stuart rosenberg"
+      ],
+      "oracle_view": "provided_context",
+      "n_1hop": 12,
+      "n_2hop": 14,
+      "view_ndcg": {
+        "summary": 0.6367,
+        "provided_context": 0.8319,
+        "hyperlink_1hop": 0.8048,
+        "hyperlink_2hop": 0.8048,
+        "full_local_pool": 0.8048
+      },
+      "top_titles": {
+        "summary": [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Move (1970 film)",
+          "Ian Barry (director)",
+          "Brian Johnson (special effects artist)"
+        ],
+        "provided_context": [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Move (1970 film)",
+          "Stuart Rosenberg",
+          "Ian Barry (director)"
+        ],
+        "hyperlink_1hop": [
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Move (1970 film)",
+          "Hanro Smitsman",
+          "Stuart Rosenberg"
+        ],
+        "hyperlink_2hop": [
+          "Move (1970 film)",
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Hanro Smitsman",
+          "Stuart Rosenberg"
+        ],
+        "full_local_pool": [
+          "Move (1970 film)",
+          "M\u00e9diterran\u00e9e (1963 film)",
+          "Hanro Smitsman",
+          "Stuart Rosenberg"
+        ]
+      }
+    },
+    {
+      "id": "3057c6c4086111ebbd5dac1f6bf848b6",
+      "question": "Do both films The Falcon (Film) and Valentin The Good have the directors from the same country?",
+      "support_titles": [
+        "martin fri\u010d",
+        "the falcon (film)",
+        "valentin the good",
+        "vatroslav mimica"
+      ],
+      "oracle_view": "summary",
+      "n_1hop": 13,
+      "n_2hop": 11,
+      "view_ndcg": {
+        "summary": 0.6367,
+        "provided_context": 0.5856,
+        "hyperlink_1hop": 0.3904,
+        "hyperlink_2hop": 0.2463,
+        "full_local_pool": 0.2463
+      },
+      "top_titles": {
+        "summary": [
+          "Valentin the Good",
+          "The Falcon (film)",
+          "The Falcon and the Co-eds",
+          "The Falcon Out West"
+        ],
+        "provided_context": [
+          "Valentin the Good",
+          "The Falcon and the Co-eds",
+          "Vatroslav Mimica",
+          "The Falcon Out West"
+        ],
+        "hyperlink_1hop": [
+          "Valentin the Good",
+          "The Falcon and the Co-eds",
+          "The Falcon's Adventure",
+          "The Falcon Takes Over"
+        ],
+        "hyperlink_2hop": [
+          "The Falcon and the Co-eds",
+          "Valentin the Good",
+          "The Falcon Out West",
+          "The Falcon Takes Over"
+        ],
+        "full_local_pool": [
+          "The Falcon and the Co-eds",
+          "Valentin the Good",
+          "The Falcon Out West",
+          "The Falcon's Adventure"
+        ]
+      }
+    },
+    {
+      "id": "89bc944808a111ebbd79ac1f6bf848b6",
+      "question": "Which film whose director is younger, Charge It To Me or Danger: Diabolik?",
+      "support_titles": [
+        "charge it to me",
+        "danger: diabolik",
+        "mario bava",
+        "roy william neill"
+      ],
+      "oracle_view": "full_local_pool",
+      "n_1hop": 15,
+      "n_2hop": 15,
+      "view_ndcg": {
+        "summary": 0.6367,
+        "provided_context": 0.6367,
+        "hyperlink_1hop": 0.6367,
+        "hyperlink_2hop": 0.5856,
+        "full_local_pool": 0.7537
+      },
+      "top_titles": {
+        "summary": [
+          "Danger: Diabolik",
+          "Charge It to Me",
+          "Leave It to Me (1955 film)",
+          "Charge It"
+        ],
+        "provided_context": [
+          "Danger: Diabolik",
+          "Charge It to Me",
+          "Charge It",
+          "Leave It to Me (1955 film)"
+        ],
+        "hyperlink_1hop": [
+          "Danger: Diabolik",
+          "Charge It to Me",
+          "Leave It to Me (1955 film)",
+          "Charge It"
+        ],
+        "hyperlink_2hop": [
+          "Danger: Diabolik",
+          "Charge It",
+          "Charge It to Me",
+          "Leave It to Me (1955 film)"
+        ],
+        "full_local_pool": [
+          "Danger: Diabolik",
+          "Charge It",
+          "Charge It to Me",
+          "Mario Bava"
+        ]
+      }
+    },
+    {
+      "id": "633f80660bdd11eba7f7acde48001122",
+      "question": "What is the date of birth of Mina Gerhardsen's father?",
+      "support_titles": [
+        "mina gerhardsen",
+        "rune gerhardsen"
+      ],
+      "oracle_view": "summary",
+      "n_1hop": 13,
+      "n_2hop": 14,
+      "view_ndcg": {
+        "summary": 0.9197,
+        "provided_context": 0.6934,
+        "hyperlink_1hop": 0.6934,
+        "hyperlink_2hop": 0.6934,
+        "full_local_pool": 0.6934
+      },
+      "top_titles": {
+        "summary": [
+          "Mina Gerhardsen",
+          "Theodred II (Bishop of Elmham)",
+          "Rune Gerhardsen",
+          "Brian Saunders (weightlifter)"
+        ],
+        "provided_context": [
+          "Etan Boritzer",
+          "Mina Gerhardsen",
+          "Rune Gerhardsen",
+          "Moffat Sinkala"
+        ],
+        "hyperlink_1hop": [
+          "Etan Boritzer",
+          "Rune Gerhardsen",
+          "Mina Gerhardsen",
+          "Moffat Sinkala"
+        ],
+        "hyperlink_2hop": [
+          "Etan Boritzer",
+          "Rune Gerhardsen",
+          "Mina Gerhardsen",
+          "Theodred II (Bishop of Elmham)"
+        ],
+        "full_local_pool": [
+          "Etan Boritzer",
+          "Rune Gerhardsen",
+          "Mina Gerhardsen",
+          "Moffat Sinkala"
+        ]
+      }
+    },
+    {
+      "id": "2dc3f9740bda11eba7f7acde48001122",
+      "question": "What nationality is the director of film Wedding Night In Paradise (1950 Film)?",
+      "support_titles": [
+        "g\u00e9za von bolv\u00e1ry",
+        "wedding night in paradise (1950 film)"
+      ],
+      "oracle_view": "summary",
+      "n_1hop": 12,
+      "n_2hop": 12,
+      "view_ndcg": {
+        "summary": 0.6131,
+        "provided_context": 0.6131,
+        "hyperlink_1hop": 0.6131,
+        "hyperlink_2hop": 0.6131,
+        "full_local_pool": 0.6131
+      },
+      "top_titles": {
+        "summary": [
+          "Wedding Night in Paradise (1950 film)",
+          "Wedding Night in Paradise (1962 film)",
+          "Weekend in Paradise (1931 film)",
+          "Ian Barry (director)"
+        ],
+        "provided_context": [
+          "Wedding Night in Paradise (1950 film)",
+          "Wedding Night in Paradise (1962 film)",
+          "Weekend in Paradise (1931 film)",
+          "Dana Blankstein"
+        ],
+        "hyperlink_1hop": [
+          "Wedding Night in Paradise (1950 film)",
+          "Wedding Night in Paradise (1962 film)",
+          "Weekend in Paradise (1931 film)",
+          "Dana Blankstein"
+        ],
+        "hyperlink_2hop": [
+          "Wedding Night in Paradise (1950 film)",
+          "Wedding Night in Paradise (1962 film)",
+          "Weekend in Paradise (1931 film)",
+          "Dana Blankstein"
+        ],
+        "full_local_pool": [
+          "Wedding Night in Paradise (1950 film)",
+          "Wedding Night in Paradise (1962 film)",
+          "Weekend in Paradise (1931 film)",
+          "Dana Blankstein"
+        ]
+      }
+    }
+  ],
+  "config": {
+    "max_rows": 5000,
+    "topk": 4,
+    "lambda_cost": 0.08,
+    "seed": 20260517,
+    "repeats": 20,
+    "hf_cache": "<HF_DATASETS_CACHE>",
+    "hyperlink_corpus": "<local-data-root>/2WikiMultiHopQA/para_with_hyperlink/para_with_hyperlink.jsonl",
+    "max_1hop": 16,
+    "max_2hop": 16,
+    "evidence_per_context": 6,
+    "random_evidence_per_context": 6,
+    "example_rows": 5
+  }
+}

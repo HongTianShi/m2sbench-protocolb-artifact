@@ -1,0 +1,106 @@
+Create a vertically oriented single-column academic benchmark overview figure for an ACM/CIKM paper.
+
+Purpose:
+This is the flagship Figure 1 of M2S-Bench. The figure should explain the Protocol B (“Buy-Before-Score”) benchmark contract clearly and memorably.
+
+Main title:
+“Protocol B (“Buy-Before-Score”): Cost-Aware Evidence Purchase Before Ranking”
+
+Subtitle:
+“From cheap summaries, decide which evidence is worth buying before ranking.”
+
+Layout:
+Portrait / tall single-column layout suitable for ACM double-column format.
+The figure should read top-to-bottom with four numbered stacked sections.
+
+SECTION 1 — Cheap visible state
+Header:
+“Cheap visible state (method-visible only)”
+
+Show two compact examples side-by-side:
+
+Dense retrieval:
+
+* query
+* summary / PQ / shallow ANN
+
+Structured evidence:
+
+* question
+* title sketch / entity hints
+
+Small note:
+“compact summaries only”
+
+Use restrained blue-gray colors.
+
+SECTION 2 — Declared evidence views
+Header:
+“Declared evidence views”
+
+Show two evidence families:
+
+Dense semantic access:
+summary → compressed vector (PQ) → HNSW depth → full vector → cross-encoder (CE)
+
+Structured evidence access:
+title sketch → hyperlink path → full context → reranker
+
+At the center:
+“SELECT ONE VIEW before scoring”
+
+Below:
+“one paid view only”
+
+Lock note:
+“unpurchased views remain evaluator-only”
+
+This central selection block should be the main visual anchor of the figure.
+
+SECTION 3 — Evaluator-only scoring
+Header:
+“Evaluator-only scoring”
+Small subtitle:
+“targets / qrels / support facts”
+
+Include:
+utility = quality − λ × cost
+regret = oracle utility − chosen utility
+
+Add a small illustrative frontier mini-plot:
+raw-best view ≠ utility-best view
+
+Use restrained gold accent colors.
+
+SECTION 4 — Validated benchmark hierarchy
+Header:
+“Validated benchmark hierarchy”
+
+Three vertically stacked rows:
+
+1. Dense semantic access
+   small note:
+   “modest weak-signal stress case”
+
+2. 2Wiki structured evidence
+   badge:
+   “PRIMARY VALIDATION”
+   small note:
+   “stronger structured-evidence validation”
+
+3. IVF–PQ / diagnostics / portability adapters
+   small note:
+   “supporting stress and portability checks”
+
+Bottom takeaway:
+“Protocol B evaluates when richer evidence is worth buying before ranking.”
+
+Style requirements:
+
+* academic schematic figure, not marketing art
+* clean vector infographic style
+* high readability at single-column scale
+* no excessive gradients or decorative effects
+* benchmark/protocol identity should dominate
+* typography should resemble mature ACM/CIKM benchmark papers
+* the figure should feel operational and reusable rather than philosophical

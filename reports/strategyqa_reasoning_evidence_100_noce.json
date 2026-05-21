@@ -1,0 +1,636 @@
+{
+  "task": "strategyqa_reasoning_evidence",
+  "dataset": "StrategyQA",
+  "status": "candidate_reasoning_slice",
+  "scope_note": "Exploratory reasoning-evidence slice over StrategyQA, not an official leaderboard core.",
+  "n_rows": 100,
+  "split": "train",
+  "split_sizes": {
+    "train": 60,
+    "dev": 20,
+    "test": 20
+  },
+  "lambda_cost": 0.08,
+  "topk": 4,
+  "candidate_pool": 24,
+  "view_costs": {
+    "summary": 0.0,
+    "decomposition": 0.04,
+    "fact_snippets": 0.22,
+    "full_fact_set": 0.95
+  },
+  "views": {
+    "summary": "question, term, and description sketch",
+    "decomposition": "question plus decomposition-question sketch",
+    "fact_snippets": "paid supporting-fact snippet evidence over a mixed fact pool",
+    "full_fact_set": "expensive full supporting-fact-set evidence"
+  },
+  "hidden_fields": [
+    "facts as evaluator support labels",
+    "answer",
+    "unpaid fact/full scores"
+  ],
+  "policy_rows": [
+    {
+      "policy": "fixed_summary",
+      "utility": 0.9011507922657197,
+      "raw_ndcg": 0.9011507922657197,
+      "support_recall": 0.8675,
+      "support_f1": 0.6577380952380952,
+      "cost": 0.0,
+      "regret": 0.07590359668762678,
+      "view_share": {
+        "summary": 1.0
+      },
+      "diff_vs_best_fixed": -0.00786721291989989,
+      "gap_closed": -0.11563243788438542
+    },
+    {
+      "policy": "fixed_decomposition",
+      "utility": 0.9090180051856196,
+      "raw_ndcg": 0.9122180051856196,
+      "support_recall": 0.89,
+      "support_f1": 0.698015873015873,
+      "cost": 0.04000000000000001,
+      "regret": 0.06803638376772696,
+      "view_share": {
+        "decomposition": 1.0
+      },
+      "diff_vs_best_fixed": 0.0,
+      "gap_closed": 0.0
+    },
+    {
+      "policy": "fixed_fact_snippets",
+      "utility": 0.8932648807493727,
+      "raw_ndcg": 0.9108648807493729,
+      "support_recall": 0.89,
+      "support_f1": 0.698015873015873,
+      "cost": 0.22000000000000003,
+      "regret": 0.08378950820397359,
+      "view_share": {
+        "fact_snippets": 1.0
+      },
+      "diff_vs_best_fixed": -0.01575312443624688,
+      "gap_closed": -0.23153970807777383
+    },
+    {
+      "policy": "fixed_full_fact_set",
+      "utility": 0.888485147766078,
+      "raw_ndcg": 0.964485147766078,
+      "support_recall": 0.9525,
+      "support_f1": 0.7438492063492064,
+      "cost": 0.9499999999999998,
+      "regret": 0.08856924118726858,
+      "view_share": {
+        "full_fact_set": 1.0
+      },
+      "diff_vs_best_fixed": -0.020532857419541584,
+      "gap_closed": -0.3017923099740253
+    },
+    {
+      "policy": "threshold_gate(summary,decomposition)",
+      "utility": 0.9293370076852249,
+      "raw_ndcg": 0.9317370076852247,
+      "support_recall": 0.9025000000000001,
+      "support_f1": 0.6938492063492063,
+      "cost": 0.030000000000000006,
+      "regret": 0.04771738126812187,
+      "view_share": {
+        "summary": 0.25,
+        "decomposition": 0.75
+      },
+      "gate_threshold": 3.043253135681152,
+      "gate_direction": "low_summary",
+      "rich_view": "decomposition",
+      "dev_utility": 0.9510994627945445,
+      "diff_vs_best_fixed": 0.020319002499605276,
+      "gap_closed": 0.2986490664902682
+    },
+    {
+      "policy": "best_legal_router(hgb_B0_sketch)",
+      "utility": 0.8694106308716689,
+      "raw_ndcg": 0.8733306308716688,
+      "support_recall": 0.8425,
+      "support_f1": 0.6494047619047618,
+      "cost": 0.049,
+      "regret": 0.10764375808167777,
+      "view_share": {
+        "summary": 0.45,
+        "decomposition": 0.4,
+        "fact_snippets": 0.15
+      },
+      "feature_tier": "B0_sketch",
+      "dev_utility": 0.9438855022519539,
+      "routes": [
+        "summary",
+        "decomposition",
+        "summary",
+        "summary",
+        "fact_snippets",
+        "decomposition",
+        "decomposition",
+        "decomposition",
+        "summary",
+        "summary",
+        "decomposition",
+        "summary",
+        "fact_snippets",
+        "summary",
+        "decomposition",
+        "summary",
+        "summary",
+        "decomposition",
+        "decomposition",
+        "fact_snippets"
+      ],
+      "diff_vs_best_fixed": -0.03960737431395067,
+      "gap_closed": -0.5821499045153314
+    },
+    {
+      "policy": "best_legal_adaptive",
+      "utility": 0.9293370076852249,
+      "raw_ndcg": 0.9317370076852247,
+      "support_recall": 0.9025000000000001,
+      "support_f1": 0.6938492063492063,
+      "cost": 0.030000000000000006,
+      "regret": 0.04771738126812187,
+      "view_share": {
+        "summary": 0.25,
+        "decomposition": 0.75
+      },
+      "gate_threshold": 3.043253135681152,
+      "gate_direction": "low_summary",
+      "rich_view": "decomposition",
+      "dev_utility": 0.9510994627945445,
+      "diff_vs_best_fixed": 0.020319002499605276,
+      "gap_closed": 0.2986490664902682
+    },
+    {
+      "policy": "oracle_route",
+      "utility": 0.9770543889533465,
+      "raw_ndcg": 0.9854543889533467,
+      "support_recall": 0.9775,
+      "support_f1": 0.760515873015873,
+      "cost": 0.10500000000000001,
+      "regret": 0.0,
+      "view_share": {
+        "summary": 0.65,
+        "decomposition": 0.25,
+        "full_fact_set": 0.1
+      },
+      "diff_vs_best_fixed": 0.06803638376772692,
+      "gap_closed": 1.0
+    }
+  ],
+  "best_fixed": "fixed_decomposition",
+  "feature_tier_rows": [
+    {
+      "policy": "rf_B0_sketch",
+      "utility": 0.9553043819991756,
+      "raw_ndcg": 0.9706243819991756,
+      "support_recall": 0.9525,
+      "support_f1": 0.7438492063492064,
+      "cost": 0.19150000000000003,
+      "regret": 0.02175000695417107,
+      "view_share": {
+        "summary": 0.3,
+        "decomposition": 0.4,
+        "fact_snippets": 0.15,
+        "full_fact_set": 0.15
+      },
+      "feature_tier": "B0_sketch",
+      "dev_utility": 0.9355915417093634,
+      "diff_vs_best_fixed": 0.04628637681355596,
+      "gap_closed": 0.680318004136956
+    },
+    {
+      "policy": "hgb_B1_context_sketch",
+      "utility": 0.9261370076852247,
+      "raw_ndcg": 0.9317370076852246,
+      "support_recall": 0.9025000000000001,
+      "support_f1": 0.6938492063492063,
+      "cost": 0.07,
+      "regret": 0.05091738126812186,
+      "view_share": {
+        "summary": 0.15,
+        "decomposition": 0.65,
+        "fact_snippets": 0.2
+      },
+      "feature_tier": "B1_context_sketch",
+      "dev_utility": 0.9284251648958074,
+      "diff_vs_best_fixed": 0.017119002499605074,
+      "gap_closed": 0.25161540857386777
+    },
+    {
+      "policy": "hgb_B1_fact_meta",
+      "utility": 0.9170772316972103,
+      "raw_ndcg": 0.9249572316972102,
+      "support_recall": 0.8925000000000001,
+      "support_f1": 0.6827380952380951,
+      "cost": 0.0985,
+      "regret": 0.05997715725613619,
+      "view_share": {
+        "summary": 0.35,
+        "decomposition": 0.45,
+        "fact_snippets": 0.15,
+        "full_fact_set": 0.05
+      },
+      "feature_tier": "B1_fact_meta",
+      "dev_utility": 0.9309051648958073,
+      "diff_vs_best_fixed": 0.008059226511590745,
+      "gap_closed": 0.11845465713028742
+    },
+    {
+      "policy": "et_B0_sketch",
+      "utility": 0.911930982824717,
+      "raw_ndcg": 0.922250982824717,
+      "support_recall": 0.9025000000000001,
+      "support_f1": 0.710515873015873,
+      "cost": 0.129,
+      "regret": 0.06512340612862956,
+      "view_share": {
+        "summary": 0.05,
+        "decomposition": 0.85,
+        "full_fact_set": 0.1
+      },
+      "feature_tier": "B0_sketch",
+      "dev_utility": 0.9406715417093633,
+      "diff_vs_best_fixed": 0.0029129776390973694,
+      "gap_closed": 0.04281499806106893
+    },
+    {
+      "policy": "et_B1_context_sketch",
+      "utility": 0.9066643819991755,
+      "raw_ndcg": 0.9206243819991755,
+      "support_recall": 0.9025000000000001,
+      "support_f1": 0.710515873015873,
+      "cost": 0.17450000000000002,
+      "regret": 0.0703900069541711,
+      "view_share": {
+        "summary": 0.05,
+        "decomposition": 0.8,
+        "full_fact_set": 0.15
+      },
+      "feature_tier": "B1_context_sketch",
+      "dev_utility": 0.9421115417093633,
+      "diff_vs_best_fixed": -0.0023536231864440538,
+      "gap_closed": -0.03459359619228463
+    },
+    {
+      "policy": "et_B1_fact_meta",
+      "utility": 0.9066643819991753,
+      "raw_ndcg": 0.9206243819991755,
+      "support_recall": 0.9025000000000001,
+      "support_f1": 0.710515873015873,
+      "cost": 0.17450000000000002,
+      "regret": 0.0703900069541711,
+      "view_share": {
+        "summary": 0.05,
+        "decomposition": 0.8,
+        "full_fact_set": 0.15
+      },
+      "feature_tier": "B1_fact_meta",
+      "dev_utility": 0.9384715417093632,
+      "diff_vs_best_fixed": -0.002353623186444276,
+      "gap_closed": -0.0345935961922879
+    },
+    {
+      "policy": "rf_B1_fact_meta",
+      "utility": 0.8962985039358171,
+      "raw_ndcg": 0.9024585039358172,
+      "support_recall": 0.8800000000000001,
+      "support_f1": 0.6869047619047619,
+      "cost": 0.077,
+      "regret": 0.0807558850175295,
+      "view_share": {
+        "summary": 0.2,
+        "decomposition": 0.55,
+        "fact_snippets": 0.25
+      },
+      "feature_tier": "B1_fact_meta",
+      "dev_utility": 0.9377915417093632,
+      "diff_vs_best_fixed": -0.012719501249802478,
+      "gap_closed": -0.18695145957824963
+    },
+    {
+      "policy": "rf_B1_context_sketch",
+      "utility": 0.8962985039358171,
+      "raw_ndcg": 0.9024585039358172,
+      "support_recall": 0.8800000000000001,
+      "support_f1": 0.6869047619047619,
+      "cost": 0.077,
+      "regret": 0.0807558850175295,
+      "view_share": {
+        "summary": 0.2,
+        "decomposition": 0.55,
+        "fact_snippets": 0.25
+      },
+      "feature_tier": "B1_context_sketch",
+      "dev_utility": 0.9344715417093632,
+      "diff_vs_best_fixed": -0.012719501249802478,
+      "gap_closed": -0.18695145957824963
+    }
+  ],
+  "control_rows": [
+    {
+      "control": "summary_only",
+      "utility": 0.9011507922657197,
+      "raw_ndcg": 0.9011507922657197,
+      "support_recall": 0.8675,
+      "support_f1": 0.6577380952380952,
+      "cost": 0.0,
+      "regret": 0.07590359668762678,
+      "diff_vs_best_control": -0.00786721291989989
+    },
+    {
+      "control": "decomposition_only",
+      "utility": 0.9090180051856196,
+      "raw_ndcg": 0.9122180051856196,
+      "support_recall": 0.89,
+      "support_f1": 0.698015873015873,
+      "cost": 0.04000000000000001,
+      "regret": 0.06803638376772696,
+      "diff_vs_best_control": 0.0
+    },
+    {
+      "control": "real_fact_snippets",
+      "utility": 0.8932648807493727,
+      "raw_ndcg": 0.9108648807493729,
+      "support_recall": 0.89,
+      "support_f1": 0.698015873015873,
+      "cost": 0.22000000000000003,
+      "regret": 0.08378950820397359,
+      "diff_vs_best_control": -0.01575312443624688
+    },
+    {
+      "control": "full_fact_set",
+      "utility": 0.888485147766078,
+      "raw_ndcg": 0.964485147766078,
+      "support_recall": 0.9525,
+      "support_f1": 0.7438492063492064,
+      "cost": 0.9499999999999998,
+      "regret": 0.08856924118726858,
+      "diff_vs_best_control": -0.020532857419541584
+    },
+    {
+      "control": "shuffled_facts",
+      "utility": 0.05518654524055407,
+      "raw_ndcg": 0.07278654524055408,
+      "support_recall": 0.08499999999999999,
+      "support_f1": 0.06944444444444445,
+      "cost": 0.22000000000000003,
+      "regret": 0.9218678437127925,
+      "diff_vs_best_control": -0.8538314599450655
+    },
+    {
+      "control": "cross_question_facts",
+      "utility": 0.08296579601124646,
+      "raw_ndcg": 0.10056579601124646,
+      "support_recall": 0.12666666666666668,
+      "support_f1": 0.1003968253968254,
+      "cost": 0.22000000000000003,
+      "regret": 0.8940885929421001,
+      "diff_vs_best_control": -0.8260522091743732
+    },
+    {
+      "control": "same_count_random",
+      "utility": 0.09361310288233815,
+      "raw_ndcg": 0.11121310288233817,
+      "support_recall": 0.13749999999999998,
+      "support_f1": 0.10535714285714286,
+      "cost": 0.22000000000000003,
+      "regret": 0.8834412860710085,
+      "diff_vs_best_control": -0.8154049023032814
+    },
+    {
+      "control": "decomposition_shuffled",
+      "utility": 0.6875650253180148,
+      "raw_ndcg": 0.7051650253180147,
+      "support_recall": 0.6966666666666665,
+      "support_f1": 0.5333333333333332,
+      "cost": 0.22000000000000003,
+      "regret": 0.2894893636353318,
+      "diff_vs_best_control": -0.22145297986760482
+    }
+  ],
+  "answer_rows": [
+    {
+      "answer": "False",
+      "n": 13,
+      "best_fixed": "fixed_decomposition",
+      "fixed_utility": 0.981364649786004,
+      "oracle_utility": 0.9934153846153847,
+      "oracle_gap": 0.012050734829380683
+    },
+    {
+      "answer": "True",
+      "n": 7,
+      "best_fixed": "fixed_summary",
+      "fixed_utility": 0.8447963655651508,
+      "oracle_utility": 0.9466696827238474,
+      "oracle_gap": 0.10187331715869663
+    }
+  ],
+  "oracle_view_share": {
+    "summary": 0.65,
+    "full_fact_set": 0.1,
+    "decomposition": 0.25
+  },
+  "repeat_summary": {
+    "learned_minus_best_fixed_mean": -0.0005025326213546899,
+    "ci95": [
+      -0.008559526187312583,
+      0.007943308216451778
+    ],
+    "positive_share": 0.3333333333333333,
+    "selected_policies": {
+      "threshold_gate(summary,decomposition)": 3
+    },
+    "repeats": 3
+  },
+  "protocol_trace": {
+    "visible_fields": {
+      "query_id": "265dd54c248f8b048851",
+      "question": "Do the anchors on Rede Globo speak Chinese?",
+      "term": "Rede Globo",
+      "description": "Brazilian commercial television network",
+      "decomposition": [
+        "What country broadcasts Rede Globo?",
+        "What is the official language of #1?",
+        "Is #2 Chinese?"
+      ],
+      "declared_views": [
+        "summary",
+        "decomposition",
+        "fact_snippets",
+        "full_fact_set"
+      ],
+      "released_state": "question, term, description, decomposition text, and coarse fact-pool metadata; support facts, answer, and unpaid fact/full scores are hidden"
+    },
+    "legal_action": {
+      "submitted_jsonl": {
+        "query_id": "265dd54c248f8b048851",
+        "cell_id": "strategyqa_265dd54c248f8b048851",
+        "tier": "B1_reasoning",
+        "cost_menu": "strategyqa-reasoning-v0-op",
+        "ranked_views": [
+          "decomposition",
+          "fact_snippets",
+          "full_fact_set"
+        ],
+        "route": "decomposition"
+      },
+      "charged_cost": 0.04,
+      "scored_utility": 0.9968
+    },
+    "hidden_evaluator_fields": {
+      "facts": [
+        "Rede Globo is a Brazilian television network.",
+        "The official language of Brazil is Portuguese."
+      ],
+      "answer": false
+    },
+    "illegal_variant": {
+      "submitted_jsonl": {
+        "query_id": "265dd54c248f8b048851",
+        "cell_id": "strategyqa_265dd54c248f8b048851",
+        "tier": "B1_reasoning",
+        "cost_menu": "strategyqa-reasoning-v0-op",
+        "route": "fact_snippets",
+        "facts": [
+          "Rede Globo is a Brazilian television network.",
+          "The official language of Brazil is Portuguese."
+        ],
+        "answer": false
+      },
+      "rejection_reason": "facts and answer are evaluator-only fields for this StrategyQA reasoning slice."
+    },
+    "scope_note": "This is exploratory reasoning-evidence acquisition, not answer generation or an official leaderboard slice."
+  },
+  "examples": [
+    {
+      "id": "b8677742616fef051f00",
+      "question": "Are more people today related to Genghis Khan than Julius Caesar?",
+      "term": "Genghis Khan",
+      "answer": true,
+      "decomposition": [
+        "How many kids did Julius Caesar have?",
+        "How many kids did Genghis Khan have?",
+        "Is #2 greater than #1?"
+      ],
+      "facts": [
+        "Julius Caesar had three children.",
+        "Genghis Khan had sixteen children.",
+        "Modern geneticists have determined that  out of every 200 men today has DNA that can be traced to Genghis Khan."
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 1.0,
+        "decomposition": 0.9968,
+        "fact_snippets": 0.9824,
+        "full_fact_set": 0.924
+      }
+    },
+    {
+      "id": "4668264df84fb7c25b39",
+      "question": "Could the members of The Police perform lawful arrests?",
+      "term": "The Police",
+      "answer": false,
+      "decomposition": [
+        "Who can perform lawful arrests?",
+        "Are members of The Police also #1?"
+      ],
+      "facts": [
+        "The members of The Police were musicians, not law enforcement officers.",
+        "Only law enforcement officers can perform lawful arrests."
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 1.0,
+        "decomposition": 0.9968,
+        "fact_snippets": 0.9824,
+        "full_fact_set": 0.924
+      }
+    },
+    {
+      "id": "41450dbd623437269f8f",
+      "question": "Would a Monoamine Oxidase candy bar cheer up a depressed friend?",
+      "term": "Depression (mood)",
+      "answer": false,
+      "decomposition": [
+        "Depression is caused by low levels of what chemicals?",
+        "Monoamine Oxidase has an effect on what chemicals?",
+        "Of the chemicals listed in both #1 and #2, does Monoamine Oxidase raise their levels?"
+      ],
+      "facts": [
+        "Depression is caused by low levels of serotonin, dopamine and norepinephrine.",
+        "Monoamine Oxidase breaks down neurotransmitters and lowers levels of serotonin, dopamine and norepinephrine."
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 1.0,
+        "decomposition": 0.9968,
+        "fact_snippets": 0.9824,
+        "full_fact_set": 0.924
+      }
+    },
+    {
+      "id": "7419826e4373eb1e83ff",
+      "question": "Would a dog respond to bell before Grey seal?",
+      "term": "Grey seal",
+      "answer": true,
+      "decomposition": [
+        "How sensitive is a grey seal's hearing on land?",
+        "How sensitive is a dog's hearing on land?",
+        "Is #2 better than #1?"
+      ],
+      "facts": [
+        "Grey seals have no ear flaps and their ears canals are filled with wax.",
+        "Grey seals hear better underwater when their ears open like a valve.",
+        "Dogs have sensitive ears that can hear as far as a quarter of a mile away."
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 0.9675,
+        "decomposition": 0.7007,
+        "fact_snippets": 0.6863,
+        "full_fact_set": 0.6894
+      }
+    },
+    {
+      "id": "1b29d402c3e17cb3b435",
+      "question": "Is a pound sterling valuable?",
+      "term": "Pound sterling",
+      "answer": false,
+      "decomposition": [
+        "What is the value of the Pound Sterling based on?",
+        "Is #1 the material used in making it?"
+      ],
+      "facts": [
+        "A pound sterling is fiat money.",
+        "Fiat money is backed by government decree and has no intrinsic value.",
+        "One pound sterling is worth about 1.24 US dollars by May of 2020."
+      ],
+      "oracle_view": "full_fact_set",
+      "view_utility": {
+        "summary": 0.7654,
+        "decomposition": 0.7622,
+        "fact_snippets": 0.7478,
+        "full_fact_set": 0.8915
+      }
+    }
+  ],
+  "config": {
+    "data_dir": "$M2SBENCH_STRATEGYQA_DIR",
+    "split": "train",
+    "max_rows": 100,
+    "topk": 4,
+    "lambda_cost": 0.08,
+    "seed": 20260518,
+    "repeats": 3,
+    "candidate_pool": 24,
+    "full_fact_boost": 3.0,
+    "example_rows": 5
+  },
+  "created_at": "2026-05-18 13:55:04"
+}

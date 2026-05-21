@@ -1,0 +1,106 @@
+{
+  "config": {
+    "svd_dim": 192,
+    "hash_features": 262144,
+    "target_docs": 180000,
+    "max_docred": 80000,
+    "max_douban": 55000,
+    "max_jd": 30000,
+    "max_taptap": 15000,
+    "docs_per_cell": 250,
+    "min_clusters": 32,
+    "max_clusters": 512,
+    "pq_subvectors": 12,
+    "pq_codewords": 32,
+    "topk": 10,
+    "lambda_cost": 0.08,
+    "cost_summary": 0.0,
+    "cost_pq": 0.2,
+    "cost_full": 0.58,
+    "random_state": 20260524,
+    "kmeans_iter": 80,
+    "batch_size": 2048,
+    "per_query_sample": 25000
+  },
+  "elapsed_seconds": 380.534261000008,
+  "sources": [
+    {
+      "dataset": "docred",
+      "source": "\u6587\u672c\u6570\u636e\u96c6/\u77e5\u8bc6\u56fe\u8c31/DocRED\u6587\u6863\u7ea7\u5173\u7cfb\u62bd\u53d6\u6570\u636e\u96c6\u57fa\u4e8e\u7ef4\u57fa\u767e\u79d1/DocRED-20221017T064209Z-001/DocRED/train_distant.json",
+      "documents": 80000,
+      "labels": 1720
+    },
+    {
+      "dataset": "douban",
+      "source": "\u6587\u672c\u6570\u636e\u96c6/\u89c2\u70b9\u62bd\u53d6/\u8c46\u74e3\u5f71\u8bc4\u6570\u636e\u96c6/archive(3)/\u0445\u043e\u041c\u0446\u0425\u2524\u0446\u0425\u2591\u0446\u041d\u043e/comments.csv",
+      "documents": 55000,
+      "labels": 5
+    },
+    {
+      "dataset": "jd_reviews",
+      "source": "\u6587\u672c\u6570\u636e\u96c6/\u60c5\u7eea\u8bc6\u522b/\u5546\u54c1\u8bc4\u8bba\u60c5\u611f\u9884\u6d4b\u6570\u636e\u96c6/\u5546\u54c1\u8bc4\u8bba\u60c5\u611f\u9884\u6d4b.gz",
+      "documents": 30000,
+      "labels": 5
+    },
+    {
+      "dataset": "taptap",
+      "source": "\u6587\u672c\u6570\u636e\u96c6/\u89c2\u70b9\u62bd\u53d6/TapTap\u6e38\u620f\u8bc4\u8bba/taptap_review_ready.csv",
+      "documents": 4888,
+      "labels": 2
+    }
+  ],
+  "datasets": [
+    {
+      "dataset": "docred",
+      "documents": 80000,
+      "queries_scored": 69218,
+      "ivf_cells": 320,
+      "mean_cell_size": 250.0,
+      "labels": 1720
+    },
+    {
+      "dataset": "douban",
+      "documents": 55000,
+      "queries_scored": 54987,
+      "ivf_cells": 220,
+      "mean_cell_size": 250.0,
+      "labels": 5
+    },
+    {
+      "dataset": "jd_reviews",
+      "documents": 30000,
+      "queries_scored": 29947,
+      "ivf_cells": 120,
+      "mean_cell_size": 250.0,
+      "labels": 5
+    },
+    {
+      "dataset": "taptap",
+      "documents": 4888,
+      "queries_scored": 4888,
+      "ivf_cells": 32,
+      "mean_cell_size": 152.75,
+      "labels": 2
+    }
+  ],
+  "vectorization": {
+    "hash_features": 262144,
+    "svd_dim": 192,
+    "explained_variance_ratio_sum": 0.13049380481243134
+  },
+  "mapping": {
+    "cell": "IVF-style coarse text-vector cluster",
+    "summary": "cluster centroid, dispersion, and list size",
+    "pq_view": "product-quantized subvector reconstruction used for approximate reranking",
+    "full_view": "full dense-vector reranking within the selected coarse cell",
+    "utility": "NDCG@10 - lambda * access_cost, lambda=0.08"
+  },
+  "outputs": {
+    "summary": "summaries/ivf_pq_rerank_large_adapter/large_ivf_pq_rerank_summary.csv",
+    "slices": "summaries/ivf_pq_rerank_large_adapter/large_ivf_pq_rerank_sufficiency_slices.csv",
+    "policy": "summaries/ivf_pq_rerank_large_adapter/large_ivf_pq_rerank_policy.csv",
+    "folds": "summaries/ivf_pq_rerank_large_adapter/large_ivf_pq_rerank_proxy_folds.csv",
+    "cluster_stats": "summaries/ivf_pq_rerank_large_adapter/large_ivf_cluster_stats.csv",
+    "per_query_sample": "summaries/ivf_pq_rerank_large_adapter/large_ivf_pq_rerank_per_query_sample.csv"
+  }
+}

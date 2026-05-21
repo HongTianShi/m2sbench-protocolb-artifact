@@ -1,0 +1,7 @@
+audit,result
+cost_anchor,"synthetic extra access costs use fixed relative operation units 0/28/42/58 normalized by 100; units proxy I/O, decode, aggregation, and support materialization rather than hardware seconds"
+task_utility_definition,synthetic A is downstream action correctness or balanced action accuracy; Bloomberg A is action payoff before explicit access cost
+continuous_region_grid,synthetic lambda-cost grid selects point/occupancy/moments across broad regions; semi-real selects moments/raster; Bloomberg selects summary/coarse/cross regions
+marginal_thresholds,"synthetic adjacent switch thresholds include positive, negative, and dominated transitions; Bloomberg thresholds vary by regime"
+cost_agnostic_pareto,"before applying lambda, several richer observed view adapters are Pareto-dominated by cheaper views in synthetic and Bloomberg slices"
+perturbation_bootstrap,independent +/-20% cost perturbations leave per-cell best-view selections nearly unchanged while most selections are not the richest view

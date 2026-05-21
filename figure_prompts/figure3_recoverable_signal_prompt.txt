@@ -1,0 +1,93 @@
+Create a vertically oriented single-column academic insight figure for an ACM/CIKM benchmark paper.
+
+Purpose:
+This figure explains the key empirical interpretation of M2S-Bench:
+hidden oracle headroom is not the same as legally recoverable routing signal.
+
+Main title:
+“Where Does Protocol B Expose Recoverable Access Value?”
+
+Subtitle:
+“Dense retrieval has oracle headroom but weak legal signals; structured evidence exposes stronger recoverable routing value.”
+
+Layout:
+Portrait / tall single-column figure.
+Two vertically stacked regime panels connected by a central label:
+“same Protocol B contract”
+
+The visual metaphor should be:
+best fixed view → valid router → evaluator-only oracle
+
+The distance between best fixed and oracle represents hidden headroom.
+The portion recoverable by a legal router represents legally recoverable access value.
+
+Use clean vector schematic style only.
+Do NOT use realistic bridges, cliffs, fog, cinematic lighting, or poster-style illustration.
+
+PANEL 1 — Dense semantic access
+Header:
+“Dense semantic access”
+Badge:
+“weak-signal stress regime”
+
+Small evidence-view menu:
+summary → PQ → HNSW → full vector → CE
+
+Main schematic:
+best fixed view
+→ valid learned router
+→ evaluator-only oracle
+
+The recoverable segment should be visibly small.
+Residual oracle headroom should remain substantial.
+
+Short side labels:
+
+* oracle headroom
+* weak legal signal
+* modest gains
+
+Small note under the line:
+“legally recoverable access value (typically small)”
+
+PANEL 2 — 2Wiki structured evidence
+Header:
+“2Wiki structured evidence”
+Badge:
+“primary structured validation”
+
+Small evidence motif:
+question/title sketch
+→ hyperlink path
+→ full context
+→ reranker
+
+Main schematic:
+best fixed 1-hop graph
+→ B1 context router
+→ evaluator-only oracle
+
+The recoverable segment should be visibly larger than in the dense panel.
+
+Short side labels:
+
+* hidden path structure
+* graph/context repair
+* stable gains
+
+Small note:
+“legally recoverable access value (substantial)”
+
+Residual oracle headroom should still remain visible.
+
+Bottom takeaway:
+“Protocol B separates hidden headroom from legally recoverable signal.”
+
+Style requirements:
+
+* academic insight figure, not decorative infographic
+* high readability in single-column ACM layout
+* use muted blue for dense and muted green/gold for structured evidence
+* avoid excessive text
+* avoid realistic scenery or AI-poster aesthetics
+* the figure should feel like a benchmark interpretation diagram explaining why dense access is a weak-signal stress regime while 2Wiki provides stronger recoverable routing signal

@@ -1,0 +1,898 @@
+{
+  "task": "hotpot_structured_evidence",
+  "dataset": "HotpotQA distractor",
+  "status": "candidate_structured_evidence_slice",
+  "n_rows": 100,
+  "split": "train",
+  "split_sizes": {
+    "train": 60,
+    "dev": 20,
+    "test": 20
+  },
+  "lambda_cost": 0.08,
+  "topk": 4,
+  "view_costs": {
+    "summary": 0.0,
+    "title_shortlist": 0.04,
+    "paragraph": 0.16,
+    "sentence": 0.28,
+    "full_context": 0.55
+  },
+  "views": {
+    "summary": "question plus context-title sketch only",
+    "title_shortlist": "paid title shortlist/rerank over released titles",
+    "paragraph": "paragraph text truncated to the first 2 sentence(s)",
+    "sentence": "candidate sentence scoring inside context titles",
+    "full_context": "all context paragraphs",
+    "ce": "cross-encoder rerank over purchased paragraph evidence"
+  },
+  "policy_rows": [
+    {
+      "policy": "fixed_summary",
+      "utility": 0.7025596358401386,
+      "raw_ndcg": 0.7025596358401386,
+      "support_recall": 0.7,
+      "support_f1": 0.4666666666666666,
+      "support_sentence_f1": 0.26746031746031745,
+      "cost": 0.0,
+      "regret": 0.1686539746084851,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 1.0
+      },
+      "diff_vs_best_fixed": -0.0936558421703626,
+      "gap_closed": -1.248775657815661
+    },
+    {
+      "policy": "fixed_title_shortlist",
+      "utility": 0.70738755692532,
+      "raw_ndcg": 0.7105875569253197,
+      "support_recall": 0.7,
+      "support_f1": 0.4666666666666666,
+      "support_sentence_f1": 0.26746031746031745,
+      "cost": 0.04000000000000001,
+      "regret": 0.1638260535233039,
+      "ce_buy": 0.0,
+      "view_share": {
+        "title_shortlist": 1.0
+      },
+      "diff_vs_best_fixed": -0.08882792108518123,
+      "gap_closed": -1.1844017737170849
+    },
+    {
+      "policy": "fixed_paragraph",
+      "utility": 0.7546151419824285,
+      "raw_ndcg": 0.7674151419824286,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333333,
+      "support_sentence_f1": 0.3206349206349206,
+      "cost": 0.16000000000000003,
+      "regret": 0.11659846846619508,
+      "ce_buy": 0.0,
+      "view_share": {
+        "paragraph": 1.0
+      },
+      "diff_vs_best_fixed": -0.04160033602807267,
+      "gap_closed": -0.5546849591540848
+    },
+    {
+      "policy": "fixed_sentence",
+      "utility": 0.7962154780105012,
+      "raw_ndcg": 0.818615478010501,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333332,
+      "support_sentence_f1": 0.4246031746031746,
+      "cost": 0.2800000000000001,
+      "regret": 0.07499813243812262,
+      "ce_buy": 0.0,
+      "view_share": {
+        "sentence": 1.0
+      },
+      "diff_vs_best_fixed": 0.0,
+      "gap_closed": 0.0
+    },
+    {
+      "policy": "fixed_full_context",
+      "utility": 0.7279022762018655,
+      "raw_ndcg": 0.7719022762018657,
+      "support_recall": 0.725,
+      "support_f1": 0.4833333333333333,
+      "support_sentence_f1": 0.2817460317460317,
+      "cost": 0.5500000000000002,
+      "regret": 0.14331133424675807,
+      "ce_buy": 0.0,
+      "view_share": {
+        "full_context": 1.0
+      },
+      "diff_vs_best_fixed": -0.06831320180863565,
+      "gap_closed": -0.9108653720810667
+    },
+    {
+      "policy": "threshold_gate(summary,sentence)",
+      "utility": 0.7842467981913648,
+      "raw_ndcg": 0.8032867981913647,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333332,
+      "support_sentence_f1": 0.4579365079365079,
+      "cost": 0.23800000000000004,
+      "regret": 0.08696681225725908,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.15,
+        "sentence": 0.85
+      },
+      "gate_threshold": 0.1677062869071961,
+      "gate_direction": "low_summary",
+      "rich_view": "sentence",
+      "dev_utility": 0.830347563958267,
+      "diff_vs_best_fixed": -0.011968679819136407,
+      "gap_closed": -0.1595863714207977
+    },
+    {
+      "policy": "best_legal_router(hgb_B0_title)",
+      "utility": 0.8043909630539494,
+      "raw_ndcg": 0.8237909630539493,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333333,
+      "support_sentence_f1": 0.40793650793650793,
+      "cost": 0.24250000000000008,
+      "regret": 0.06682264739467433,
+      "ce_buy": 0.0,
+      "view_share": {
+        "title_shortlist": 0.15,
+        "paragraph": 0.35,
+        "sentence": 0.35,
+        "full_context": 0.15
+      },
+      "feature_tier": "B0_title",
+      "dev_utility": 0.9050641648625847,
+      "routes": [
+        "paragraph",
+        "full_context",
+        "sentence",
+        "sentence",
+        "sentence",
+        "paragraph",
+        "sentence",
+        "full_context",
+        "full_context",
+        "paragraph",
+        "title_shortlist",
+        "title_shortlist",
+        "sentence",
+        "sentence",
+        "title_shortlist",
+        "sentence",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "diff_vs_best_fixed": 0.008175485043448227,
+      "gap_closed": 0.1090091816645359
+    },
+    {
+      "policy": "best_legal_adaptive",
+      "utility": 0.8043909630539494,
+      "raw_ndcg": 0.8237909630539493,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333333,
+      "support_sentence_f1": 0.40793650793650793,
+      "cost": 0.24250000000000008,
+      "regret": 0.06682264739467433,
+      "ce_buy": 0.0,
+      "view_share": {
+        "title_shortlist": 0.15,
+        "paragraph": 0.35,
+        "sentence": 0.35,
+        "full_context": 0.15
+      },
+      "feature_tier": "B0_title",
+      "dev_utility": 0.9050641648625847,
+      "routes": [
+        "paragraph",
+        "full_context",
+        "sentence",
+        "sentence",
+        "sentence",
+        "paragraph",
+        "sentence",
+        "full_context",
+        "full_context",
+        "paragraph",
+        "title_shortlist",
+        "title_shortlist",
+        "sentence",
+        "sentence",
+        "title_shortlist",
+        "sentence",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "diff_vs_best_fixed": 0.008175485043448227,
+      "gap_closed": 0.1090091816645359
+    },
+    {
+      "policy": "oracle_route",
+      "utility": 0.8712136104486238,
+      "raw_ndcg": 0.8796936104486237,
+      "support_recall": 0.875,
+      "support_f1": 0.5833333333333333,
+      "support_sentence_f1": 0.36507936507936506,
+      "cost": 0.10600000000000001,
+      "regret": 0.0,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.45,
+        "title_shortlist": 0.05,
+        "paragraph": 0.3,
+        "sentence": 0.2
+      },
+      "diff_vs_best_fixed": 0.07499813243812259,
+      "gap_closed": 1.0
+    }
+  ],
+  "best_fixed": "fixed_sentence",
+  "feature_tier_rows": [
+    {
+      "policy": "rf_B1_sentence_meta",
+      "utility": 0.8242936034156765,
+      "raw_ndcg": 0.8431336034156764,
+      "support_recall": 0.825,
+      "support_f1": 0.5499999999999999,
+      "support_sentence_f1": 0.4436507936507937,
+      "cost": 0.23550000000000004,
+      "regret": 0.046920007032947235,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.1,
+        "paragraph": 0.25,
+        "sentence": 0.6,
+        "full_context": 0.05
+      },
+      "feature_tier": "B1_sentence_meta",
+      "dev_utility": 0.8747320789148187,
+      "diff_vs_best_fixed": 0.02807812540517529,
+      "gap_closed": 0.3743843278809806
+    },
+    {
+      "policy": "et_B1_sentence_meta",
+      "utility": 0.8138343691825789,
+      "raw_ndcg": 0.8369943691825789,
+      "support_recall": 0.825,
+      "support_f1": 0.5499999999999998,
+      "support_sentence_f1": 0.3817460317460317,
+      "cost": 0.28950000000000004,
+      "regret": 0.05737924126604479,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.1,
+        "paragraph": 0.25,
+        "sentence": 0.4,
+        "full_context": 0.25
+      },
+      "feature_tier": "B1_sentence_meta",
+      "dev_utility": 0.8182728446817211,
+      "diff_vs_best_fixed": 0.01761889117207771,
+      "gap_closed": 0.23492439877238575
+    },
+    {
+      "policy": "hgb_B1_sentence_meta",
+      "utility": 0.80992492359654,
+      "raw_ndcg": 0.8278049235965399,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333332,
+      "support_sentence_f1": 0.41507936507936505,
+      "cost": 0.22350000000000003,
+      "regret": 0.061288686852083704,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.1,
+        "title_shortlist": 0.05,
+        "paragraph": 0.25,
+        "sentence": 0.55,
+        "full_context": 0.05
+      },
+      "feature_tier": "B1_sentence_meta",
+      "dev_utility": 0.8270468052243117,
+      "diff_vs_best_fixed": 0.013709445586038815,
+      "gap_closed": 0.1827971596139388
+    },
+    {
+      "policy": "hgb_B1_paragraph_meta",
+      "utility": 0.80888492359654,
+      "raw_ndcg": 0.8278049235965399,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333333,
+      "support_sentence_f1": 0.36507936507936506,
+      "cost": 0.2365,
+      "regret": 0.0623286868520837,
+      "ce_buy": 0.0,
+      "view_share": {
+        "title_shortlist": 0.2,
+        "paragraph": 0.3,
+        "sentence": 0.35,
+        "full_context": 0.15
+      },
+      "feature_tier": "B1_paragraph_meta",
+      "dev_utility": 0.8530728517146684,
+      "diff_vs_best_fixed": 0.012669445586038774,
+      "gap_closed": 0.16893014764723288
+    },
+    {
+      "policy": "hgb_B0_title",
+      "utility": 0.8043909630539494,
+      "raw_ndcg": 0.8237909630539493,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333333,
+      "support_sentence_f1": 0.40793650793650793,
+      "cost": 0.24250000000000008,
+      "regret": 0.06682264739467433,
+      "ce_buy": 0.0,
+      "view_share": {
+        "title_shortlist": 0.15,
+        "paragraph": 0.35,
+        "sentence": 0.35,
+        "full_context": 0.15
+      },
+      "feature_tier": "B0_title",
+      "dev_utility": 0.9050641648625847,
+      "diff_vs_best_fixed": 0.008175485043448227,
+      "gap_closed": 0.1090091816645359
+    },
+    {
+      "policy": "hgb_B1_context_sketch",
+      "utility": 0.8016709630539495,
+      "raw_ndcg": 0.8237909630539495,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333332,
+      "support_sentence_f1": 0.40793650793650793,
+      "cost": 0.2765,
+      "regret": 0.06954264739467432,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.05,
+        "title_shortlist": 0.1,
+        "paragraph": 0.05,
+        "sentence": 0.65,
+        "full_context": 0.15
+      },
+      "feature_tier": "B1_context_sketch",
+      "dev_utility": 0.8547041648625848,
+      "diff_vs_best_fixed": 0.005455485043448283,
+      "gap_closed": 0.07274161190546105
+    },
+    {
+      "policy": "et_B1_context_sketch",
+      "utility": 0.8012309630539495,
+      "raw_ndcg": 0.8237909630539495,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333332,
+      "support_sentence_f1": 0.4246031746031746,
+      "cost": 0.2820000000000001,
+      "regret": 0.06998264739467433,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.1,
+        "title_shortlist": 0.05,
+        "paragraph": 0.1,
+        "sentence": 0.55,
+        "full_context": 0.2
+      },
+      "feature_tier": "B1_context_sketch",
+      "dev_utility": 0.8377215245008577,
+      "diff_vs_best_fixed": 0.005015485043448287,
+      "gap_closed": 0.06687479915031652
+    },
+    {
+      "policy": "rf_B1_paragraph_meta",
+      "utility": 0.8007317288208519,
+      "raw_ndcg": 0.8176517288208517,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333333,
+      "support_sentence_f1": 0.3484126984126984,
+      "cost": 0.21150000000000002,
+      "regret": 0.07048188162777187,
+      "ce_buy": 0.0,
+      "view_share": {
+        "summary": 0.1,
+        "paragraph": 0.45,
+        "sentence": 0.4,
+        "full_context": 0.05
+      },
+      "feature_tier": "B1_paragraph_meta",
+      "dev_utility": 0.8766520789148187,
+      "diff_vs_best_fixed": 0.004516250810350675,
+      "gap_closed": 0.06021817695363041
+    }
+  ],
+  "control_rows": [
+    {
+      "control": "title_only",
+      "utility": 0.7025596358401386,
+      "raw_ndcg": 0.7025596358401386,
+      "support_recall": 0.7,
+      "support_f1": 0.4666666666666666,
+      "support_sentence_f1": 0.26746031746031745,
+      "cost": 0.0,
+      "regret": 0.1686539746084851,
+      "diff_vs_best_control": -0.0936558421703626
+    },
+    {
+      "control": "title_shortlist",
+      "utility": 0.70738755692532,
+      "raw_ndcg": 0.7105875569253197,
+      "support_recall": 0.7,
+      "support_f1": 0.4666666666666666,
+      "support_sentence_f1": 0.26746031746031745,
+      "cost": 0.04000000000000001,
+      "regret": 0.1638260535233039,
+      "diff_vs_best_control": -0.08882792108518123
+    },
+    {
+      "control": "real_paragraph",
+      "utility": 0.7546151419824285,
+      "raw_ndcg": 0.7674151419824286,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333333,
+      "support_sentence_f1": 0.3206349206349206,
+      "cost": 0.16000000000000003,
+      "regret": 0.11659846846619508,
+      "diff_vs_best_control": -0.04160033602807267
+    },
+    {
+      "control": "real_sentence",
+      "utility": 0.7962154780105012,
+      "raw_ndcg": 0.818615478010501,
+      "support_recall": 0.8,
+      "support_f1": 0.5333333333333332,
+      "support_sentence_f1": 0.4246031746031746,
+      "cost": 0.2800000000000001,
+      "regret": 0.07499813243812262,
+      "diff_vs_best_control": 0.0
+    },
+    {
+      "control": "shuffled_title",
+      "utility": 0.24502229026776018,
+      "raw_ndcg": 0.24502229026776018,
+      "support_recall": 0.3,
+      "support_f1": 0.2,
+      "support_sentence_f1": 0.1277777777777778,
+      "cost": 0.0,
+      "regret": 0.6261913201808635,
+      "diff_vs_best_control": -0.551193187742741
+    },
+    {
+      "control": "random_paragraph",
+      "utility": 0.33623625081035063,
+      "raw_ndcg": 0.3490362508103507,
+      "support_recall": 0.375,
+      "support_f1": 0.24999999999999994,
+      "support_sentence_f1": 0.15317460317460319,
+      "cost": 0.16000000000000003,
+      "regret": 0.534977359638273,
+      "diff_vs_best_control": -0.45997922720015055
+    },
+    {
+      "control": "random_sentence",
+      "utility": 0.3928898682919217,
+      "raw_ndcg": 0.41528986829192177,
+      "support_recall": 0.475,
+      "support_f1": 0.3166666666666666,
+      "support_sentence_f1": 0.20634920634920634,
+      "cost": 0.2800000000000001,
+      "regret": 0.4783237421567019,
+      "diff_vs_best_control": -0.4033256097185795
+    },
+    {
+      "control": "full_context",
+      "utility": 0.7279022762018655,
+      "raw_ndcg": 0.7719022762018657,
+      "support_recall": 0.725,
+      "support_f1": 0.4833333333333333,
+      "support_sentence_f1": 0.2817460317460317,
+      "cost": 0.5500000000000002,
+      "regret": 0.14331133424675807,
+      "diff_vs_best_control": -0.06831320180863565
+    }
+  ],
+  "type_rows": [
+    {
+      "type": "bridge",
+      "n": 17,
+      "best_fixed": "fixed_sentence",
+      "fixed_utility": 0.7689287512389315,
+      "oracle_utility": 0.8492395417042632,
+      "oracle_gap": 0.08031079046533174
+    },
+    {
+      "type": "comparison",
+      "n": 3,
+      "best_fixed": "fixed_summary",
+      "fixed_utility": 0.9732402630493958,
+      "oracle_utility": 0.9957333333333334,
+      "oracle_gap": 0.022493070283937544
+    }
+  ],
+  "oracle_view_share": {
+    "paragraph": 0.3,
+    "sentence": 0.2,
+    "summary": 0.45,
+    "title_shortlist": 0.05
+  },
+  "repeat_summary": {
+    "learned_minus_best_fixed_mean": 0.024849620633022373,
+    "ci95": [
+      0.022657989375291808,
+      0.02704125189075294
+    ],
+    "positive_share": 1.0,
+    "selected_policies": {
+      "best_legal_router(hgb_B1_sentence_meta)": 1,
+      "best_legal_router(rf_B1_paragraph_meta)": 1
+    },
+    "repeats": 2
+  },
+  "protocol_trace": {
+    "visible_fields": {
+      "query_id": "5a8d7341554299441c6b9fe5",
+      "question": "Musician and satirist Allie Goertz wrote a song about the \"The Simpsons\" character Milhouse, who Matt Groening named after who?",
+      "declared_views": [
+        "summary",
+        "title_shortlist",
+        "paragraph",
+        "sentence",
+        "full_context"
+      ],
+      "visible_titles": [
+        "Allie Goertz",
+        "List of The Simpsons guest stars",
+        "List of The Simpsons video games",
+        "The Simpsons: An Uncensored, Unauthorized History"
+      ],
+      "released_state": "question plus context-title sketch; support facts, answers, and unpaid sentence/CE scores are hidden"
+    },
+    "legal_action": {
+      "submitted_jsonl": {
+        "query_id": "5a8d7341554299441c6b9fe5",
+        "cell_id": "hotpot_5a8d7341554299441c6b9fe5",
+        "tier": "B1_structured",
+        "cost_menu": "hotpot-structured-v0-op",
+        "ranked_views": [
+          "paragraph",
+          "title_shortlist",
+          "sentence",
+          "full_context"
+        ],
+        "route": "paragraph"
+      },
+      "charged_cost": 0.16,
+      "scored_utility": 0.9872
+    },
+    "hidden_evaluator_fields": {
+      "support_titles": [
+        "allie goertz",
+        "milhouse van houten"
+      ],
+      "supporting_facts": [
+        [
+          "allie goertz",
+          0
+        ],
+        [
+          "allie goertz",
+          1
+        ],
+        [
+          "allie goertz",
+          2
+        ],
+        [
+          "milhouse van houten",
+          0
+        ]
+      ],
+      "answer": "President Richard Nixon"
+    },
+    "illegal_variant": {
+      "submitted_jsonl": {
+        "query_id": "5a8d7341554299441c6b9fe5",
+        "cell_id": "hotpot_5a8d7341554299441c6b9fe5",
+        "tier": "B1_structured",
+        "cost_menu": "hotpot-structured-v0-op",
+        "route": "sentence",
+        "supporting_facts": [
+          [
+            "allie goertz",
+            0
+          ],
+          [
+            "allie goertz",
+            1
+          ],
+          [
+            "allie goertz",
+            2
+          ],
+          [
+            "milhouse van houten",
+            0
+          ]
+        ],
+        "answer": "President Richard Nixon"
+      },
+      "rejection_reason": "supporting_facts and answers are evaluator-only fields."
+    },
+    "scope_note": "This is structured evidence acquisition over HotpotQA distractor contexts, not answer generation."
+  },
+  "examples": [
+    {
+      "id": "5a7a06935542990198eaf050",
+      "question": "Which magazine was started first Arthur's Magazine or First for Women?",
+      "type": "comparison",
+      "level": "medium",
+      "support_titles": [
+        "arthur's magazine",
+        "first for women"
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 1.0,
+        "title_shortlist": 0.9968,
+        "paragraph": 0.9872,
+        "sentence": 0.9776,
+        "full_context": 0.956
+      },
+      "top_titles": {
+        "summary": [
+          "Arthur's Magazine",
+          "First for Women",
+          "First Arthur County Courthouse and Jail",
+          "Women's colleges in the Southern United States"
+        ],
+        "title_shortlist": [
+          "Arthur's Magazine",
+          "First for Women",
+          "First Arthur County Courthouse and Jail",
+          "Women's colleges in the Southern United States"
+        ],
+        "paragraph": [
+          "First for Women",
+          "Arthur's Magazine",
+          "Women's colleges in the Southern United States",
+          "First Arthur County Courthouse and Jail"
+        ],
+        "sentence": [
+          "First for Women",
+          "Arthur's Magazine",
+          "Women's colleges in the Southern United States",
+          "William Rast"
+        ],
+        "full_context": [
+          "First for Women",
+          "Arthur's Magazine",
+          "Women's colleges in the Southern United States",
+          "First Arthur County Courthouse and Jail"
+        ]
+      }
+    },
+    {
+      "id": "5a879ab05542996e4f30887e",
+      "question": "The Oberoi family is part of a hotel company that has a head office in what city?",
+      "type": "bridge",
+      "level": "medium",
+      "support_titles": [
+        "oberoi family",
+        "the oberoi group"
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 1.0,
+        "title_shortlist": 0.9968,
+        "paragraph": 0.9872,
+        "sentence": 0.9776,
+        "full_context": 0.6494
+      },
+      "top_titles": {
+        "summary": [
+          "Oberoi family",
+          "The Oberoi Group",
+          "289th Military Police Company",
+          "Glennwanis Hotel"
+        ],
+        "title_shortlist": [
+          "Oberoi family",
+          "The Oberoi Group",
+          "289th Military Police Company",
+          "Glennwanis Hotel"
+        ],
+        "paragraph": [
+          "Oberoi family",
+          "The Oberoi Group",
+          "Future Fibre Technologies",
+          "Ritz-Carlton Jakarta"
+        ],
+        "sentence": [
+          "The Oberoi Group",
+          "Oberoi family",
+          "Future Fibre Technologies",
+          "Ritz-Carlton Jakarta"
+        ],
+        "full_context": [
+          "Ritz-Carlton Jakarta",
+          "The Oberoi Group",
+          "Oberoi family",
+          "Future Fibre Technologies"
+        ]
+      }
+    },
+    {
+      "id": "5a8d7341554299441c6b9fe5",
+      "question": "Musician and satirist Allie Goertz wrote a song about the \"The Simpsons\" character Milhouse, who Matt Groening named after who?",
+      "type": "bridge",
+      "level": "hard",
+      "support_titles": [
+        "allie goertz",
+        "milhouse van houten"
+      ],
+      "oracle_view": "paragraph",
+      "view_utility": {
+        "summary": 0.6131,
+        "title_shortlist": 0.6099,
+        "paragraph": 0.9872,
+        "sentence": 0.9776,
+        "full_context": 0.956
+      },
+      "top_titles": {
+        "summary": [
+          "Allie Goertz",
+          "List of The Simpsons guest stars",
+          "List of The Simpsons video games",
+          "The Simpsons: An Uncensored, Unauthorized History"
+        ],
+        "title_shortlist": [
+          "Allie Goertz",
+          "List of The Simpsons guest stars",
+          "List of The Simpsons video games",
+          "The Simpsons: An Uncensored, Unauthorized History"
+        ],
+        "paragraph": [
+          "Milhouse Van Houten",
+          "Allie Goertz",
+          "List of The Simpsons video games",
+          "The Simpsons: An Uncensored, Unauthorized History"
+        ],
+        "sentence": [
+          "Milhouse Van Houten",
+          "Allie Goertz",
+          "The Simpsons: An Uncensored, Unauthorized History",
+          "Homer Simpson"
+        ],
+        "full_context": [
+          "Allie Goertz",
+          "Milhouse Van Houten",
+          "The Simpsons: An Uncensored, Unauthorized History",
+          "Los Angeles Reader"
+        ]
+      }
+    },
+    {
+      "id": "5a82171f5542990a1d231f4a",
+      "question": " What nationality was James Henry Miller's wife?",
+      "type": "bridge",
+      "level": "medium",
+      "support_titles": [
+        "ewan maccoll",
+        "peggy seeger"
+      ],
+      "oracle_view": "full_context",
+      "view_utility": {
+        "summary": 0.0,
+        "title_shortlist": -0.0032,
+        "paragraph": -0.0128,
+        "sentence": -0.0224,
+        "full_context": 0.2201
+      },
+      "top_titles": {
+        "summary": [
+          "James Henry Deakin (junior)",
+          "Henry Miller Memorial Library",
+          "June Miller",
+          "James Innes-Ker, 7th Duke of Roxburghe"
+        ],
+        "title_shortlist": [
+          "James Henry Deakin (junior)",
+          "Henry Miller Memorial Library",
+          "June Miller",
+          "James Innes-Ker, 7th Duke of Roxburghe"
+        ],
+        "paragraph": [
+          "June Miller",
+          "Moloch: or, This Gentile World",
+          "Henry Miller Memorial Library",
+          "James Henry Deakin (junior)"
+        ],
+        "sentence": [
+          "June Miller",
+          "Incest: From a Journal of Love",
+          "James Henry Deakin (junior)",
+          "Henry Miller Memorial Library"
+        ],
+        "full_context": [
+          "Moloch: or, This Gentile World",
+          "June Miller",
+          "Incest: From a Journal of Love",
+          "Ewan MacColl"
+        ]
+      }
+    },
+    {
+      "id": "5a84dd955542997b5ce3ff79",
+      "question": "Cadmium Chloride is slightly soluble in this chemical, it is also called what?",
+      "type": "bridge",
+      "level": "medium",
+      "support_titles": [
+        "cadmium chloride",
+        "ethanol"
+      ],
+      "oracle_view": "summary",
+      "view_utility": {
+        "summary": 0.6131,
+        "title_shortlist": 0.6099,
+        "paragraph": 0.6003,
+        "sentence": 0.5907,
+        "full_context": 0.5691
+      },
+      "top_titles": {
+        "summary": [
+          "Cadmium chloride",
+          "Chloride",
+          "Magnesium chloride",
+          "Gold(III) chloride"
+        ],
+        "title_shortlist": [
+          "Cadmium chloride",
+          "Chloride",
+          "Magnesium chloride",
+          "Gold(III) chloride"
+        ],
+        "paragraph": [
+          "Cadmium chloride",
+          "Magnesium chloride",
+          "Heptanoic acid",
+          "Gold(III) chloride"
+        ],
+        "sentence": [
+          "Cadmium chloride",
+          "Water blue",
+          "Benzamide",
+          "Heptanoic acid"
+        ],
+        "full_context": [
+          "Cadmium chloride",
+          "Gold(III) chloride",
+          "Heptanoic acid",
+          "Magnesium chloride"
+        ]
+      }
+    }
+  ],
+  "config": {
+    "data_dir": "$M2SBENCH_HOTPOT_DIR",
+    "split": "train",
+    "max_rows": 100,
+    "topk": 4,
+    "lambda_cost": 0.08,
+    "seed": 20260518,
+    "repeats": 2,
+    "paragraph_sentences": 2,
+    "no_ce": true,
+    "ce_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "ce_batch_size": 64,
+    "max_doc_chars": 1800,
+    "example_rows": 5
+  },
+  "created_at": "2026-05-18 13:08:01"
+}

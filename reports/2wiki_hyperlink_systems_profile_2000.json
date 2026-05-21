@@ -1,0 +1,163 @@
+{
+  "task": "2wiki_hyperlink_corpus_systems_profile",
+  "source_report": "<artifact-root>/reports/2wiki_hyperlink_corpus_stress_2000.json",
+  "cold_profile": {
+    "corpus": "<local-data-root>/2WikiMultiHopQA/para_with_hyperlink/para_with_hyperlink.jsonl",
+    "n_rows": 2000,
+    "passes": 3,
+    "total_bytes_streamed": 21035908006,
+    "total_gb_streamed": 21.036,
+    "total_lines_scanned": 17968955,
+    "total_scan_seconds": 600.138,
+    "mean_scan_mb_per_s": 35.052,
+    "cold_materialization_s_per_query": 0.3001,
+    "cold_streamed_mb_per_query": 10.518,
+    "context_titles": 10900,
+    "selected_1hop_unique": 17706,
+    "selected_2hop_unique": 10272,
+    "doc_map_size": 32745,
+    "mean_1hop_per_query": 15.912,
+    "mean_2hop_per_query": 16.0,
+    "found_1hop": 14836,
+    "found_2hop": 9117
+  },
+  "policy_excerpt": {
+    "best_fixed": {
+      "policy": "fixed_hyperlink_1hop",
+      "utility": 0.7817352438161711,
+      "raw_ndcg": 0.7977352438161711,
+      "recall": 0.808125,
+      "cost": 0.2,
+      "regret": 0.09013995034215007,
+      "view_share": {
+        "hyperlink_1hop": 1.0
+      },
+      "diff_vs_best_fixed": 0.0,
+      "gap_closed": 0.0
+    },
+    "best_legal_adaptive": {
+      "policy": "best_legal_adaptive",
+      "utility": 0.8070540813235064,
+      "raw_ndcg": 0.8155920813235065,
+      "recall": 0.80375,
+      "cost": 0.106725,
+      "regret": 0.06482111283481479,
+      "view_share": {
+        "summary": 0.5325,
+        "provided_context": 0.075,
+        "hyperlink_1hop": 0.245,
+        "hyperlink_2hop": 0.14,
+        "full_local_pool": 0.0075
+      },
+      "dev_utility": 0.8156038343985901,
+      "diff_vs_best_fixed": 0.025318837507335323,
+      "gap_closed": 0.28088364161762835
+    },
+    "oracle_route": {
+      "policy": "oracle_route",
+      "utility": 0.8718751941583213,
+      "raw_ndcg": 0.877527194158321,
+      "recall": 0.86875,
+      "cost": 0.07064999999999999,
+      "regret": 0.0,
+      "view_share": {
+        "summary": 0.6125,
+        "provided_context": 0.1475,
+        "hyperlink_1hop": 0.1775,
+        "hyperlink_2hop": 0.0525,
+        "full_local_pool": 0.01
+      },
+      "diff_vs_best_fixed": 0.09013995034215017,
+      "gap_closed": 1.0
+    },
+    "repeat_summary": {
+      "learned_minus_best_fixed_mean": 0.02185070602881669,
+      "ci95": [
+        0.015003085723234852,
+        0.03126581547018795
+      ],
+      "positive_share": 1.0,
+      "repeats": 10
+    }
+  },
+  "control_excerpt": {
+    "real_1hop": {
+      "control": "real_1hop",
+      "utility": 0.7817352438161711,
+      "raw_ndcg": 0.7977352438161711,
+      "support_recall": 0.808125,
+      "support_f1": 0.583125,
+      "triple_endpoint_f1": 0.41886327561327563,
+      "cost": 0.2,
+      "regret": 0.09013995034215007,
+      "diff_vs_best_control": 0.0
+    },
+    "shuffled_1hop": {
+      "control": "shuffled_1hop",
+      "utility": 0.3013177571291963,
+      "raw_ndcg": 0.3173177571291963,
+      "support_recall": 0.381875,
+      "support_f1": 0.281875,
+      "triple_endpoint_f1": 0.20775847763347763,
+      "cost": 0.2,
+      "regret": 0.570557437029125,
+      "diff_vs_best_control": -0.4804174866869748
+    },
+    "degree_random_1hop": {
+      "control": "degree_random_1hop",
+      "utility": 0.7223662784547368,
+      "raw_ndcg": 0.7383662784547367,
+      "support_recall": 0.719375,
+      "support_f1": 0.5189583333333333,
+      "triple_endpoint_f1": 0.3686181457431458,
+      "cost": 0.2,
+      "regret": 0.14950891570358443,
+      "diff_vs_best_control": -0.05936896536143432
+    },
+    "real_2hop": {
+      "control": "real_2hop",
+      "utility": 0.7734883998879468,
+      "raw_ndcg": 0.8006883998879468,
+      "support_recall": 0.8175,
+      "support_f1": 0.5904166666666666,
+      "triple_endpoint_f1": 0.4235717893217894,
+      "cost": 0.3399999999999999,
+      "regret": 0.09838679427037444,
+      "diff_vs_best_control": -0.008246843928224279
+    },
+    "random_2hop": {
+      "control": "random_2hop",
+      "utility": 0.7283509151170212,
+      "raw_ndcg": 0.755550915117021,
+      "support_recall": 0.739375,
+      "support_f1": 0.5335416666666667,
+      "triple_endpoint_f1": 0.381061507936508,
+      "cost": 0.3399999999999999,
+      "regret": 0.1435242790413001,
+      "diff_vs_best_control": -0.053384328699149886
+    }
+  },
+  "summary_rows": [
+    {
+      "item": "Cold corpus materialization",
+      "value": "21.036 GB in 600.138 s",
+      "readout": "35.052 MB/s; 0.3001 s/query amortized"
+    },
+    {
+      "item": "Local evidence map",
+      "value": "32745 docs",
+      "readout": "10900 context titles; 17706 1-hop; 10272 2-hop"
+    },
+    {
+      "item": "Best fixed vs adaptive",
+      "value": "0.782 -> 0.807",
+      "readout": "oracle 0.872; repeated delta 0.0219"
+    },
+    {
+      "item": "Graph controls",
+      "value": "real 1-hop 0.782",
+      "readout": "shuffled 0.301; degree-random 0.722; random 2-hop 0.728"
+    }
+  ],
+  "scope_note": "This is a cold streaming/materialization profile for a query-local 2Wiki hyperlink evidence acquisition audit, not a full RAG serving benchmark."
+}

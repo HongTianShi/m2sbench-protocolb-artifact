@@ -1,0 +1,5 @@
+case,ambient_dim,intrinsic_dim,n_points,cells,max_mean_err,max_cov_err,gaussian_replica_cd,gaussian_replica_mmd,interpretation
+fullrank_gaussian_control,50,50,192,32,2.778448767356186e-16,3.885780586188048e-15,1.2220929693045937,0.0022264605891917713,degenerate control: no stable non-Gaussian hidden structure is injected
+fullrank_gaussian_control,50,50,384,32,2.1062434204151734e-16,3.885780586188048e-15,1.2276121852736384,0.004170820455014469,degenerate control: no stable non-Gaussian hidden structure is injected
+fullrank_gaussian_control,128,128,192,32,3.1456319031046104e-16,7.993605777301127e-15,1.5066966340373202,0.0022246152428171684,degenerate control: no stable non-Gaussian hidden structure is injected
+fullrank_gaussian_control,128,128,384,32,3.067569346685654e-16,4.107825191113079e-15,1.4989778067266006,0.004184513679207358,degenerate control: no stable non-Gaussian hidden structure is injected

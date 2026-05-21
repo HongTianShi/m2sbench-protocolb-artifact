@@ -1,0 +1,114 @@
+{
+  "task": "compression_evidence_ladder_audit",
+  "dataset": "beir/fiqa/test",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "documents": 57638,
+  "queries": 648,
+  "reported_queries": 260,
+  "reported_split": "CE-labeled boundary split",
+  "lambda": 0.08,
+  "nlist": 512,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "nprobe": 32,
+  "faiss_gpus": 1,
+  "menu_summary": {
+    "menu": "compression ladder",
+    "legal_choices": [
+      "summary",
+      "binary sign",
+      "IVF-PQ",
+      "trunc-96 fp32",
+      "int8 dense",
+      "trunc-192 fp32",
+      "full dense",
+      "cross-encoder rerank"
+    ],
+    "best_fixed_view": "int8 dense",
+    "best_fixed_utility": 0.33698737621307373,
+    "oracle_utility": 0.44813674688339233,
+    "oracle_gap": 0.1111493706703186
+  },
+  "rows": [
+    {
+      "view": "summary",
+      "bytes_touched": "cell stats",
+      "latency_us": 47.848594135757594,
+      "ndcg@10": 0.019013017416000366,
+      "cost": 0.0,
+      "utility@10": 0.019013017416000366,
+      "lambda_star_from_prev": "",
+      "oracle_best_share": 0.26153846153846155
+    },
+    {
+      "view": "binary sign",
+      "bytes_touched": "48 B",
+      "latency_us": 581.8389012346272,
+      "ndcg@10": 0.2874201834201813,
+      "cost": 0.08,
+      "utility@10": 0.2810201644897461,
+      "lambda_star_from_prev": 3.3550895750522614,
+      "oracle_best_share": 0.19230769230769232
+    },
+    {
+      "view": "IVF-PQ",
+      "bytes_touched": "24 B code",
+      "latency_us": 46.14709567907079,
+      "ndcg@10": 0.2552923262119293,
+      "cost": 0.2,
+      "utility@10": 0.23929235339164734,
+      "lambda_star_from_prev": -0.2677321434020996,
+      "oracle_best_share": 0.08846153846153847
+    },
+    {
+      "view": "trunc-96 fp32",
+      "bytes_touched": "384 B",
+      "latency_us": 3.5863935185132525,
+      "ndcg@10": 0.28133732080459595,
+      "cost": 0.26,
+      "utility@10": 0.260537326335907,
+      "lambda_star_from_prev": 0.43408324321111047,
+      "oracle_best_share": 0.1076923076923077
+    },
+    {
+      "view": "int8 dense",
+      "bytes_touched": "384 B",
+      "latency_us": 8.368871913557154,
+      "ndcg@10": 0.3609873950481415,
+      "cost": 0.3,
+      "utility@10": 0.33698737621307373,
+      "lambda_star_from_prev": 1.9912518560886392,
+      "oracle_best_share": 0.11923076923076924
+    },
+    {
+      "view": "trunc-192 fp32",
+      "bytes_touched": "768 B",
+      "latency_us": 4.966810185128115,
+      "ndcg@10": 0.3336598873138428,
+      "cost": 0.4,
+      "utility@10": 0.3016599118709564,
+      "lambda_star_from_prev": -0.27327507734298695,
+      "oracle_best_share": 0.06538461538461539
+    },
+    {
+      "view": "full dense",
+      "bytes_touched": "1536 B",
+      "latency_us": 7.547253086372228,
+      "ndcg@10": 0.3635552227497101,
+      "cost": 0.58,
+      "utility@10": 0.31715521216392517,
+      "lambda_star_from_prev": 0.16608519686592957,
+      "oracle_best_share": 0.015384615384615385
+    },
+    {
+      "view": "cross-encoder rerank",
+      "bytes_touched": "top-50 text",
+      "latency_us": 44066.930833333325,
+      "ndcg@10": 0.3761163055896759,
+      "cost": 1.03,
+      "utility@10": 0.29371628165245056,
+      "lambda_star_from_prev": 0.027913517422146265,
+      "oracle_best_share": 0.15
+    }
+  ]
+}

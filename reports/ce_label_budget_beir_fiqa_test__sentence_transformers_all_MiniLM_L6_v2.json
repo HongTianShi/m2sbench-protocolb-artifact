@@ -1,0 +1,160 @@
+{
+  "task": "ce_label_budget_audit",
+  "dataset": "beir/fiqa/test",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "boundary_csv": "<artifact-root>/reports/cross_encoder_access_boundary_beir_fiqa_test__sentence_transformers_all_MiniLM_L6_v2__cross_encoder_ms_marco_MiniLM_L_6_v2.csv",
+  "queries": 260,
+  "lambda": 0.08,
+  "ce_cost": 0.45,
+  "fixed_policies": [
+    {
+      "policy": "fixed cheap",
+      "queries": 260,
+      "ndcg@10": 0.36355525255203247,
+      "cost": 0.0,
+      "utility@10": 0.36355525255203247,
+      "regret": 0.05891166254878044,
+      "ce_buy_rate": 0.0,
+      "oracle_gap_closed": 0.0
+    },
+    {
+      "policy": "fixed CE",
+      "queries": 260,
+      "ndcg@10": 0.3761163055896759,
+      "cost": 0.45,
+      "utility@10": 0.3401162922382355,
+      "regret": 0.08235058188438416,
+      "ce_buy_rate": 1.0,
+      "oracle_gap_closed": -0.3978662169717059
+    }
+  ],
+  "feature_ablation": [
+    {
+      "queries": 104,
+      "ndcg@10": 0.38099735975265503,
+      "cost": 0.12115384615384615,
+      "utility@10": 0.37130504846572876,
+      "regret": 0.04743897169828415,
+      "ce_buy_rate": 0.2692307692307692,
+      "oracle_gap_closed": 0.28370532068130855,
+      "threshold": -0.009578367695212364,
+      "feature_budget": "score stats only",
+      "ce_labels": 0.6,
+      "policy": "surrogate-light CE adapter"
+    },
+    {
+      "queries": 104,
+      "ndcg@10": 0.393628865480423,
+      "cost": 0.19903846153846153,
+      "utility@10": 0.37770578265190125,
+      "regret": 0.04103824868798256,
+      "ce_buy_rate": 0.4423076923076923,
+      "oracle_gap_closed": 0.38035183212712503,
+      "threshold": -0.02854481339454651,
+      "feature_budget": "+ margin/entropy",
+      "ce_labels": 0.6,
+      "policy": "surrogate-light CE adapter"
+    },
+    {
+      "queries": 104,
+      "ndcg@10": 0.3756105601787567,
+      "cost": 0.16009615384615386,
+      "utility@10": 0.3628028631210327,
+      "regret": 0.055941179394721985,
+      "ce_buy_rate": 0.3557692307692308,
+      "oracle_gap_closed": 0.15532839870167797,
+      "threshold": -0.013283420354127884,
+      "feature_budget": "+ cheap agreement",
+      "ce_labels": 0.6,
+      "policy": "surrogate-light CE adapter"
+    },
+    {
+      "queries": 104,
+      "ndcg@10": 0.3647415339946747,
+      "cost": 0.19903846153846153,
+      "utility@10": 0.34881848096847534,
+      "regret": 0.06992558389902115,
+      "ce_buy_rate": 0.4423076923076923,
+      "oracle_gap_closed": -0.05582577681299114,
+      "threshold": -0.0015607774257659912,
+      "feature_budget": "+ cell/context proxies",
+      "ce_labels": 0.6,
+      "policy": "surrogate-light CE adapter"
+    }
+  ],
+  "label_budget": [
+    {
+      "selector": "random CE labels",
+      "ce_label_share": 0.05,
+      "queries": 104,
+      "ndcg@10": 0.3768854755163193,
+      "cost": 0.17177884615384614,
+      "utility@10": 0.3631431758403778,
+      "regret": 0.06558318197727203,
+      "ce_buy_rate": 0.38173076923076926,
+      "oracle_gap_closed": -0.32163513258876725,
+      "threshold": Infinity
+    },
+    {
+      "queries": 104,
+      "ndcg@10": 0.3697980046272278,
+      "cost": 0.44567307692307695,
+      "utility@10": 0.33414414525032043,
+      "regret": 0.09458219259977341,
+      "ce_buy_rate": 0.9903846153846154,
+      "oracle_gap_closed": -0.9060247693218954,
+      "threshold": -0.11685526371002197,
+      "selector": "high-value cheap-ambiguous labels",
+      "ce_label_share": 0.05
+    },
+    {
+      "selector": "random CE labels",
+      "ce_label_share": 0.1,
+      "queries": 104,
+      "ndcg@10": 0.3764527761936188,
+      "cost": 0.16502884615384616,
+      "utility@10": 0.36325047492980955,
+      "regret": 0.0654758782684803,
+      "ce_buy_rate": 0.3667307692307692,
+      "oracle_gap_closed": -0.31947283700098567,
+      "threshold": Infinity
+    },
+    {
+      "queries": 104,
+      "ndcg@10": 0.3763107657432556,
+      "cost": 0.1860576923076923,
+      "utility@10": 0.36142614483833313,
+      "regret": 0.06730020046234131,
+      "ce_buy_rate": 0.41346153846153844,
+      "oracle_gap_closed": -0.35623681075274144,
+      "threshold": 0.04167436063289642,
+      "selector": "high-value cheap-ambiguous labels",
+      "ce_label_share": 0.1
+    },
+    {
+      "selector": "random CE labels",
+      "ce_label_share": 0.2,
+      "queries": 104,
+      "ndcg@10": 0.37683942198753356,
+      "cost": 0.15568269230769233,
+      "utility@10": 0.3643848103284836,
+      "regret": 0.06434154465794563,
+      "ce_buy_rate": 0.3459615384615384,
+      "oracle_gap_closed": -0.2966136641915362,
+      "threshold": 0.014438802475109685
+    },
+    {
+      "queries": 104,
+      "ndcg@10": 0.3666234314441681,
+      "cost": 0.10817307692307693,
+      "utility@10": 0.35796958208084106,
+      "regret": 0.07075674831867218,
+      "ce_buy_rate": 0.2403846153846154,
+      "oracle_gap_closed": -0.42589360317285146,
+      "threshold": -0.022525688819587233,
+      "selector": "high-value cheap-ambiguous labels",
+      "ce_label_share": 0.2
+    }
+  ],
+  "faiss_gpus": 1
+}

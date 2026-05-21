@@ -1,0 +1,107 @@
+{
+  "task": "ir_router_significance",
+  "lambda": 0.08,
+  "aggregate": {
+    "fixed_pq": {
+      "utility": 0.3189040720462799,
+      "queries": 1148,
+      "paired_diff_vs_full": {
+        "mean": -0.027552109211683273,
+        "lo": -0.038455698918551204,
+        "hi": -0.016771014221012594
+      }
+    },
+    "fixed_full": {
+      "utility": 0.3464561998844147,
+      "queries": 1148
+    },
+    "summary_qpp_b0": {
+      "utility": 0.3467704951763153,
+      "queries": 1148,
+      "paired_diff_vs_full": {
+        "mean": 0.00031429840601049364,
+        "lo": -0.005571555416099727,
+        "hi": 0.006498861627187574
+      }
+    },
+    "query_summary_rf_b0": {
+      "utility": 0.3493216335773468,
+      "queries": 1148,
+      "paired_diff_vs_full": {
+        "mean": 0.002865453017875552,
+        "lo": -0.003081861522514373,
+        "hi": 0.008452764549292623
+      }
+    },
+    "summary_pq_qpp_b1": {
+      "utility": 0.3497735559940338,
+      "queries": 1148,
+      "paired_diff_vs_full": {
+        "mean": 0.0033173682168126106,
+        "lo": -0.0021100295067299157,
+        "hi": 0.008706685155630105
+      }
+    },
+    "query_summary_pq_rf_b1": {
+      "utility": 0.34541648626327515,
+      "queries": 1148,
+      "paired_diff_vs_full": {
+        "mean": -0.00103972596116364,
+        "lo": -0.007044619950465858,
+        "hi": 0.0047841156250797165
+      }
+    }
+  },
+  "per_dataset": [
+    {
+      "dataset": "beir/fiqa/test",
+      "test_queries": 259,
+      "fixed_pq": 0.242631733417511,
+      "fixed_full": 0.31831231713294983,
+      "summary_qpp_b0": 0.31831231713294983,
+      "query_summary_rf_b0": 0.3175528347492218,
+      "summary_pq_qpp_b1": 0.31861594319343567,
+      "query_summary_pq_rf_b1": 0.31385061144828796
+    },
+    {
+      "dataset": "beir/scifact/test",
+      "test_queries": 120,
+      "fixed_pq": 0.5459846258163452,
+      "fixed_full": 0.591009795665741,
+      "summary_qpp_b0": 0.5914685726165771,
+      "query_summary_rf_b0": 0.5893230438232422,
+      "summary_pq_qpp_b1": 0.6011331081390381,
+      "query_summary_pq_rf_b1": 0.5896377563476562
+    },
+    {
+      "dataset": "beir/nfcorpus/test",
+      "test_queries": 129,
+      "fixed_pq": 0.26354050636291504,
+      "fixed_full": 0.2649150490760803,
+      "summary_qpp_b0": 0.261803537607193,
+      "query_summary_rf_b0": 0.262729674577713,
+      "summary_pq_qpp_b1": 0.26363062858581543,
+      "query_summary_pq_rf_b1": 0.25586700439453125
+    },
+    {
+      "dataset": "beir/arguana",
+      "test_queries": 560,
+      "fixed_pq": 0.3299078345298767,
+      "fixed_full": 0.32763370871543884,
+      "summary_qpp_b0": 0.3288964629173279,
+      "query_summary_rf_b0": 0.33472397923469543,
+      "summary_pq_qpp_b1": 0.33207523822784424,
+      "query_summary_pq_rf_b1": 0.3298812508583069
+    },
+    {
+      "dataset": "antique/test",
+      "test_queries": 80,
+      "fixed_pq": 0.23746271431446075,
+      "fixed_full": 0.3339840769767761,
+      "summary_qpp_b0": 0.3339840769767761,
+      "query_summary_rf_b0": 0.3339840769767761,
+      "summary_pq_qpp_b1": 0.3364008367061615,
+      "query_summary_pq_rf_b1": 0.33442389965057373
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "task": "nested_ir_refinement_audit",
+  "dataset": "beir/fiqa/test",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "faiss_gpus": 1,
+  "documents": 57638,
+  "queries": 648,
+  "qrel_pairs": 1706,
+  "nlist": 512,
+  "pq_m": 24,
+  "pq_nbits": 8,
+  "lambda": 0.08,
+  "candidate_generation": {
+    "view": "full_flat",
+    "candidate_k": 200,
+    "mean_us_per_query": 67.40558796296344
+  },
+  "views": {
+    "summary": {
+      "ndcg@5": 0.10799586027860641,
+      "hit@5": 0.19598765432098766,
+      "recall@5": 0.09229126069403848,
+      "ndcg@10": 0.11148976534605026,
+      "hit@10": 0.22376543209876543,
+      "recall@10": 0.10754331830720722,
+      "cost": 0.0,
+      "utility@10": 0.11148976534605026,
+      "mean_us_per_query": 53.961279320989696
+    },
+    "pq": {
+      "ndcg@5": 0.27128463983535767,
+      "hit@5": 0.4876543209876543,
+      "recall@5": 0.2904879542611024,
+      "ndcg@10": 0.28700071573257446,
+      "hit@10": 0.5447530864197531,
+      "recall@10": 0.34100417329584,
+      "cost": 0.2,
+      "utility@10": 0.27100071573257445,
+      "mean_us_per_query": 50.36733179012528
+    },
+    "full": {
+      "ndcg@5": 0.34503790736198425,
+      "hit@5": 0.5725308641975309,
+      "recall@5": 0.36705632758873497,
+      "ndcg@10": 0.36867135763168335,
+      "hit@10": 0.6574074074074074,
+      "recall@10": 0.441305560865746,
+      "cost": 0.58,
+      "utility@10": 0.32227135763168335,
+      "mean_us_per_query": 42.28756635802794
+    }
+  },
+  "diagnostics": {
+    "candidate_pool": "full_flat_topk_fixed_for_all_views",
+    "candidate_k": 200,
+    "non_full_best_share": 0.6450617283950617,
+    "summary_best_share": 0.4027777777777778,
+    "pq_best_share": 0.24228395061728394,
+    "full_best_share": 0.3549382716049383,
+    "pq_beats_full_precost_share": 0.6018518518518519,
+    "summary_beats_full_precost_share": 0.42592592592592593,
+    "lambda_star_summary_to_pq": 0.877554751932621,
+    "lambda_star_pq_to_full": 0.21492274183976023,
+    "bootstrap_ci": {
+      "non_full_best_share": {
+        "mean": 0.645061731338501,
+        "lo": 0.6080247163772583,
+        "hi": 0.6805555820465088
+      },
+      "pq_beats_full_precost_share": {
+        "mean": 0.6018518805503845,
+        "lo": 0.5632715821266174,
+        "hi": 0.6404321193695068
+      }
+    }
+  }
+}
